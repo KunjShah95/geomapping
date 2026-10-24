@@ -156,8 +156,8 @@ def main():
             "height_km": round((lat_max - lat_min) * 110990.0 / 1000, 2),
         },
         "accuracy": accuracy,
-        # the correction itself, for the set-out sheet: browser code turns a
-        # ground coordinate back into the plan's own printed coordinate with it
+        # the correction itself, shown in the viewer's accuracy note; the
+        # warp grid is still published for the tools
         "ground_correction": None if not corr else {
             "id": corr["id"], "centre_m": corr["centre_m"], "M": corr["M"], "t_m": corr["t_m"],
             "model": corr["model"],

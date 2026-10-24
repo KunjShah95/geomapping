@@ -1,5 +1,9 @@
 /* =====================================================================
-   AudaMarkout - the geometry behind the survey set-out sheet.
+   AudaMarkout - the geometry behind the survey set-out (markout) sheet.
+
+   The viewer no longer loads this module or shows the sheet; it is kept
+   as a checked library so the numbers can still be reproduced and
+   verified from the command line.
 
    Two things live here:
 
@@ -10,9 +14,9 @@
             FE 400000, FN 400000, latitude of origin 22.5
 
         That is the same CRS tools/dp_georef.py uses, and the set-out
-        sheet is stated in it - because a set-out sheet that gives
-        latitudes and longitudes is not a set-out sheet, it is a
-        screenshot.
+        sheet is stated in it: eastings, northings, bearings and
+        distances are what a surveyor pegs from. Latitude and longitude
+        are carried beside them for a handheld GPS.
 
      2. The set-out itself: the corners of a plot, their easting and
         northing, the azimuth and length of every edge, the perimeter
@@ -25,9 +29,8 @@
    reduction removes only points that are within TOL_M of the straight
    line through their neighbours, so it cannot move a real corner.
 
-   Usable from a browser (window.AudaMarkout) and from node
-   (require('./web/markout.js')), so the same code that draws the sheet
-   is the code the check tool verifies.
+   Usable from node (require('./web/markout.js')), which is how the
+   check tool verifies it against pyproj.
    ===================================================================== */
 (function (root, factory) {
   const api = factory();

@@ -229,8 +229,10 @@ it is an upper bound on placement error.
 sparse). `dp_georef` applies it after the affine and inverts it by fixed-point
 iteration (round trip ~1e-5 m). Held-out (5 km blocks, 2 km buffer): **6.4 m
 median, 16.4 m p90**; measured on the rebuilt tiles 4.8 / 13.9 m (in-sample).
-The browser gets a 500 m copy (`data/dp2021/ground_warp.json`) so the set-out
-sheet's plan coordinates undo it too (7 mm median vs the exact inverse).
+The browser no longer fetches a copy of the warp: it is baked into the tiles,
+and the set-out sheet that used to undo it in the browser has been removed.
+(`data/dp2021/ground_warp.json` is still produced for the tools, but the site
+no longer ships it.)
 
 The earlier "19.8 m from today's satellite" figure is **withdrawn**: its
 road detector matched bright rooftops, and it missed the 85 m offset.

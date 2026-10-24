@@ -1,10 +1,11 @@
 """The reference for the survey set-out sheet.
 
-The viewer computes the set-out in the browser, in web/markout.js. This
-script computes the same thing the slow, authoritative way - with pyproj,
-in the same projected CRS the plan's sheets were drawn in - and writes the
-answer down. tools/dp_check_markout.js then re-computes it with the
-browser's code and compares the two.
+The set-out geometry lives in web/markout.js. The viewer no longer shows the
+sheet, so the library is now used from the command line. This script computes
+the same thing the slow, authoritative way - with pyproj, in the same
+projected CRS the plan's sheets were drawn in - and writes the answer down.
+tools/dp_check_markout.js then re-computes it with the library's code and
+compares the two.
 
 Why it matters: a set-out sheet is a list of numbers that somebody will
 peg a peg in the ground from. The numbers have to be right, and "right"

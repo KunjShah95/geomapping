@@ -14,7 +14,6 @@
       integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"
         integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
-<script src="markout.js"></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; connect-src 'self' https://tile.openstreetmap.org https://server.arcgisonline.com https://wayback.maptiles.arcgis.com https://unpkg.com; font-src 'self' https://unpkg.com; worker-src 'self' blob:;">
 <style>
   :root {
@@ -182,42 +181,6 @@
   .occ .w { flex: 1 1 auto; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .occ .p { color: #999; font: 10.5px ui-monospace, Menlo, Consolas, monospace; }
 
-  /* ---------------- the set-out (markout) sheet ---------------- */
-  #markout {
-    top: 12px; right: 70px; width: min(680px, calc(100vw - 150px)); max-height: 78vh; overflow: auto;
-    padding: 10px 12px;
-  }
-  #markout:not(.on) { display: none; }
-  #markout h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
-                color: #666; margin: 0 0 7px; display: flex; align-items: center; gap: 8px; }
-  #markout h2 span { flex: 1 1 auto; }
-  #markout h2 button { width: auto; margin: 0; padding: 0 7px; font-size: 15px; line-height: 1.3; }
-  #moMeta { font-size: 11.5px; line-height: 1.55; color: #333; margin-bottom: 8px; }
-  #moMeta b { color: var(--ink); font-weight: 600; }
-  #moScroll { overflow-x: auto; }
-  #moTable { width: 100%; border-collapse: collapse;
-             font: 10.5px/1.45 ui-monospace, Menlo, Consolas, monospace; }
-  #moTable th { text-align: right; font-weight: 600; color: #666; border-bottom: 1px solid var(--line);
-                padding: 2px 3px; font-size: 9.5px; text-transform: uppercase; letter-spacing: .03em;
-                white-space: nowrap; }
-  #moTable th:first-child, #moTable td:first-child { text-align: left; }
-  #moTable td { padding: 2px 3px; border-bottom: 1px solid #f2f2f2; text-align: right; white-space: nowrap; }
-  #moTable td.i { font-weight: 700; color: var(--accent); }
-  #moTable .sh { color: #8a8a8a; background: #fafafa; }
-  #moTable .ll { color: #3d3d3d; }
-  #moTable tr:hover td { background: #fafafa; }
-  #moSummary { margin-top: 8px; font-size: 11.5px; line-height: 1.6; color: #333; }
-  #moSummary b { color: var(--ink); }
-  #moNote { margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line);
-            font-size: 10.5px; color: #777; line-height: 1.55; }
-  .moBtns { display: flex; gap: 5px; margin-top: 9px; }
-  .moBtns button { margin: 0; padding: 4px 6px; font-size: 11px; }
-  .moChk { display: flex; align-items: center; gap: 5px; font-size: 11.5px; margin-top: 5px; font-weight: 400; }
-  .printHead { display: none; }
-
-  @media (max-width: 1080px) {
-    #markout { right: 70px; width: min(640px, calc(100vw - 92px)); max-height: 62vh; }
-  }
   /* phones: the drawers and the result sheet become bottom sheets */
   @media (max-width: 760px) {
     #topbar { top: 10px; left: 10px; width: calc(100vw - 20px); }
@@ -236,41 +199,8 @@
     #status { top: 66px; }
     #plotBadge { bottom: auto; top: 66px; }
     .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group { display: none; }
-    #markout { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 70vh;
-               border-radius: 18px 18px 0 0; z-index: 26; }
   }
   .drawer .grab { display: none; }
-
-  /* ---------------- printing the set-out sheet ----------------
-     The sheet is a field document: it gets printed, signed and carried
-     out. So the print view is the card itself, laid out on a page, with
-     the map and the panels out of the way. */
-  @media print {
-    /* the corner table is wide now that it carries lat/lon as well, so the
-       field document prints landscape and a long plot repeats its header */
-    @page { size: A4 landscape; margin: 10mm; }
-    html, body { height: auto; background: #fff; }
-    #map, #panel, #legend, #readout, #status, #plotBadge,
-    #topbar, #fabs, #sheet,
-    .maplibregl-ctrl, .maplibregl-popup, .maplibregl-canvas-container { display: none !important; }
-    /* the viewer controls are not part of the field document */
-    .no-print, #moClose { display: none !important; }
-    #markout { display: none !important; }
-    #markout.on {
-      display: block !important; position: static; width: auto; max-height: none;
-      overflow: visible; box-shadow: none; border: 0; border-radius: 0;
-      background: #fff; padding: 0;
-    }
-    #markout.on #moScroll { overflow: visible; }
-    #markout.on #moTable { font-size: 9.5pt; }
-    #markout.on #moTable thead { display: table-header-group; }
-    #markout.on #moTable tr { break-inside: avoid; }
-    #markout.on h2 { font-size: 12pt; margin: 0 0 6px; }
-    .printHead { display: block; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1.5px solid #333; }
-    .printHead .phTitle { font-size: 15pt; font-weight: 700; }
-    .printHead .phSub { font-size: 10pt; color: #444; margin-top: 2px; }
-    .printHead .phWhen { font-size: 9pt; color: #666; margin-top: 2px; }
-  }
 </style>
 </head>
 <body>
@@ -384,26 +314,6 @@
   <div id="recDetail" class="meta" style="display:none"></div>
 </section>
 
-<div id="markout" class="card">
-  <div class="printHead">
-    <div class="phTitle">AUDA Second Revised Development Plan 2021</div>
-    <div class="phSub">Survey set-out (markout) sheet &mdash; boundary from the plan's own drawing</div>
-    <div class="phWhen" id="printWhen"></div>
-  </div>
-  <h2><span>Survey set-out (markout)</span><button id="moClose" title="close">&times;</button></h2>
-  <div id="moMeta"></div>
-  <div id="moScroll"><table id="moTable"></table></div>
-  <div id="moSummary"></div>
-  <div class="moBtns no-print">
-    <button id="moCsv">CSV</button>
-    <button id="moJson">JSON</button>
-    <button id="moPrint">Print sheet</button>
-  </div>
-  <label class="moChk no-print"><input type="checkbox" id="moShow" checked> Show the set-out on the map</label>
-  <label class="moChk no-print"><input type="checkbox" id="moAz"> Show azimuths on the map</label>
-  <div id="moNote"></div>
-</div>
-
 <div id="readout">lon/lat —</div>
 <div id="status"></div>
 <div id="plotBadge"></div>
@@ -419,7 +329,7 @@
 
    So no URL in this file may start with '/': every one goes through U(),
    which prefixes the site root. Assets that sit beside index.html (icon,
-   manifest, markout.js, glyphs/) stay relative and need no help.
+   manifest, glyphs/) stay relative and need no help.
    ------------------------------------------------------------------ */
 const SITE = (() => {
   const p = location.pathname;
@@ -478,11 +388,7 @@ const map = new maplibregl.Map({
       zonehl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
       parcels: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
       parcelhl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-      units: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-      markoutEdges: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-      markoutCorners: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-      markoutEdgeLbl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-      markoutAzLbl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } }
+      units: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } }
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': '#ece7dd' } },
@@ -580,41 +486,6 @@ const map = new maplibregl.Map({
         layout: { visibility: 'none' },
         paint: { 'line-color': '#6a1b9a', 'line-width': 1.6, 'line-opacity': 0.8,
                  'line-dasharray': [3, 2] } },
-      /* ---- the set-out: the plot's own corners, its edges and their lengths ----
-         Drawn on top of everything, because the sheet is the point of it. */
-      { id: 'markout-edge-casing', type: 'line', source: 'markoutEdges',
-        paint: { 'line-color': '#ffffff', 'line-width': 6, 'line-opacity': 0.9 } },
-      { id: 'markout-edge', type: 'line', source: 'markoutEdges',
-        layout: { 'line-join': 'round', 'line-cap': 'round' },
-        paint: { 'line-color': '#0b3d91', 'line-width': 2.4, 'line-opacity': 1 } },
-      { id: 'markout-corner', type: 'circle', source: 'markoutCorners',
-        paint: { 'circle-radius': 5, 'circle-color': '#ffffff',
-                 'circle-stroke-color': '#0b3d91', 'circle-stroke-width': 2.4 } },
-      { id: 'markout-corner-lbl', type: 'symbol', source: 'markoutCorners',
-        layout: { 'text-field': ['get', 'i'], 'text-size': 11,
-                  'text-offset': [0, -1.2], 'text-anchor': 'bottom',
-                  'text-allow-overlap': true, 'text-ignore-placement': true,
-                  'text-font': ['Noto Sans Bold'] },
-        paint: { 'text-color': '#0b3d91', 'text-halo-color': '#fff', 'text-halo-width': 2.2 } },
-      /* the length of each edge, below the line: every dimension has to be
-         readable, because a dimension that is quietly dropped is a dimension
-         the surveyor has to guess at */
-      { id: 'markout-edge-lbl', type: 'symbol', source: 'markoutEdgeLbl',
-        layout: { 'text-field': ['get', 'd'], 'text-size': 11,
-                  'text-offset': [0, 1.0], 'text-anchor': 'top',
-                  'text-allow-overlap': true, 'text-ignore-placement': true,
-                  'text-font': ['Noto Sans Regular'] },
-        paint: { 'text-color': '#0b3d91', 'text-halo-color': '#fff',
-                 'text-halo-width': 2.4, 'text-halo-blur': 0.2 } },
-      /* and the azimuth of the edge, above the line, so the two never
-         collide with each other */
-      { id: 'markout-az-lbl', type: 'symbol', source: 'markoutAzLbl',
-        layout: { 'visibility': 'none',
-                  'text-field': ['get', 'a'], 'text-size': 10,
-                  'text-offset': [0, -1.0], 'text-anchor': 'bottom',
-                  'text-allow-overlap': true, 'text-ignore-placement': true,
-                  'text-font': ['Noto Sans Regular'] },
-        paint: { 'text-color': '#8a2b00', 'text-halo-color': '#fff', 'text-halo-width': 2.2 } },
       /* ---- the marked occurrences of a survey number ----
          The numbers repeat across the district, so a marked number is a set
          of places: a small numbered target on every occurrence, and the one
@@ -662,10 +533,6 @@ fetch(U('/data/dp2021/bounds.json'))
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
   .then(b => {
     CFG = b;
-    // the local ground warp, for the set-out sheet's plan coordinates
-    const gw = b.ground_correction && b.ground_correction.warp;
-    if (gw && gw.url) fetch(U(gw.url)).then(r => r.ok ? r.json() : null)
-      .then(w => { GROUND_WARP = w; }).catch(() => {});
     APP_CONFIG = b.app_config;
     const src = map.getSource('plan');
     // bounds.json stores site-absolute tile URLs ('/tiles_dp2021/...'); rebase
@@ -1115,9 +982,9 @@ map.on('load', () => {
        reaches this handler and the rec-hit handler both. The occurrence
        owns that click: it steps through the occurrences and it carries the
        record's own detail - village, scheme, land use, sheet - which this
-       handler does not have. Writing the sheet here as well would strip
-       those headings off, and which of the two landed last would decide
-       what the surveyor reads.
+       handler does not have. This handler's popup would land on top of the
+       occurrence's, and which of the two survived would depend on the order
+       the two happen to run in.
 
        Both handlers are dispatched from the same click, so the occurrence's
        claim is known one turn of the event loop later. Waiting for it
@@ -1129,15 +996,13 @@ map.on('load', () => {
       // and the plan's own plot boundary, if it has been extracted
       highlightParcelForPoint(c[0], c[1]).then(parcel => {
         showPlotBadge(parcel, p.t);
-        // the set-out sheet of that plot, in the grid the sheets were drawn in
-        showSetOut(parcel, { survey: p.t });
         const extra = parcel && parcel.properties
           ? '<div class="popup-meta">plot boundary from the vector plan<br>' +
             'area ' + fmtArea(parcel.properties.area_m2) +
             (parcel.properties.survey ? ' · survey ' + parcel.properties.survey : '') +
             '</div>'
           : '<div class="popup-meta">no plot boundary was recovered around this ' +
-            'number, so there is no set-out to give</div>';
+            'number</div>';
         new maplibregl.Popup({ offset: 14, maxWidth: '320px' })
           .setLngLat(c)
           .setHTML(
@@ -1287,18 +1152,18 @@ let markedLabel = '';
    record's detail. They can land in either order, and a fast step through
    the occurrences can start three of them. The token says which one is
    still wanted: an answer that arrives after a newer selection has been
-   made is dropped, so the panel and the sheet always belong to the
-   occurrence actually in hand. */
+   made is dropped, so the panel always belongs to the occurrence actually
+   in hand. */
 let selectToken = 0;
 
-/* Which click the set-out sheet belongs to. A marked occurrence is also one
+/* Which click a marked occurrence owns. A marked occurrence is also one
    of the plan's own numbers, so a single click reaches the rec-hit handler
    (which steps through the occurrences and carries the record's detail) and
-   the plot-hit handler (which sets out the plot under the pointer). The
-   occurrence claims the click; the plot handler stands aside. Both handlers
-   are dispatched from the same click, so the claim is made in one and read
-   in the other - the order they happen to run in cannot decide what the
-   sheet says. */
+   the plot-hit handler (which puts a popup on the plot under the pointer).
+   The occurrence claims the click; the plot handler stands aside. Both
+   handlers are dispatched from the same click, so the claim is made in one
+   and read in the other - the order they happen to run in cannot decide
+   which popup the surveyor sees. */
 let occClaim = null;      // { x, y } - the click a marked occurrence took
 
 function loadIndex() {
@@ -1499,7 +1364,7 @@ function selectOccurrence(i, opts) {
   map.getSource('recActive').setData({ type: 'FeatureCollection', features: [f] });
   renderOccurrences();
   highlightZoneForPoint(c[0], c[1]);
-  // the plot the record sits in, and the set-out of that plot
+  // the plot the record sits in, and the record's own detail
   Promise.all([
     findParcelForPoint(c[0], c[1]),
     lookupRecordDetail(f.properties.t, c[0], c[1])
@@ -1508,16 +1373,6 @@ function selectOccurrence(i, opts) {
     const src = map.getSource('parcelhl');
     if (src) src.setData({ type: 'FeatureCollection', features: parcel ? [parcel] : [] });
     showPlotBadge(parcel, f.properties.t);
-    // the sheet's own headings come from the record's detail, so they are
-    // gathered once here rather than patched in later
-    const meta = { survey: f.properties.t, record: c };
-    if (d) {
-      if (d.v) meta.village = d.v;
-      if (d.s) meta.scheme = d.s;
-      if (d.z) meta.zone = d.z;
-      if (d.b) meta.block = d.b;
-    }
-    showSetOut(parcel, meta, { explain: true });
     showRecordDetail(d);
   });
   if (o.fly) map.flyTo({ center: c, zoom: Math.max(map.getZoom(), 16.4), duration: 700 });
@@ -1744,310 +1599,6 @@ function showRecordDetail(d) {
   box.style.display = 'block';
 }
 
-/* ---------------- the survey set-out (markout) sheet ----------------
-   A set-out sheet is a field document: the corners of one plot, in the
-   plan's own projected metres, with the bearing and the distance of
-   every edge. It is computed here, in the browser, by web/markout.js -
-   the same module that tools/dp_check_markout.js verifies against
-   pyproj, to the millimetre. So the sheet on the screen and the sheet
-   that was checked cannot drift apart.
-
-   The corner list is reduced from the drawn outline first. The plan
-   draws a plot boundary as a polyline with a vertex every few
-   centimetres along a straight edge, and a set-out sheet that lists 51
-   points for a five-sided plot is a drawing, not a set-out. */
-let GROUND_WARP = null;     // data/dp2021/ground_warp.json, when the build has one
-let SETOUT = null;          // { so, parcel }
-let SETOUT_META = {};       // what the sheet says about the plot
-const MO_LAYERS = ['markout-edge-casing', 'markout-edge', 'markout-corner',
-                   'markout-corner-lbl', 'markout-edge-lbl'];
-const MO_AZ_LAYER = 'markout-az-lbl';
-
-/* the outer ring of a parcel feature, as [lon, lat] */
-function parcelRing(parcel) {
-  if (!parcel || !parcel.geometry) return null;
-  const g = parcel.geometry;
-  let ring = null;
-  if (g.type === 'Polygon' && g.coordinates && g.coordinates[0]) ring = g.coordinates[0];
-  else if (g.type === 'MultiPolygon' && g.coordinates && g.coordinates[0]) ring = g.coordinates[0][0];
-  if (!ring || ring.length < 3) return null;
-  return ring;
-}
-
-/* compute the set-out of a plot and show it.
-   A parcel with no usable boundary closes the sheet rather than leaving a
-   stale one up - unless the caller wants the absence explained, which is
-   what happens when the surveyor picks an occurrence: 6,014 of the 211,630
-   records - about one in thirty-five - sit outside every plot boundary the
-   vector sheets gave up, and that is worth saying out loud rather than
-   showing an empty box. */
-function showSetOut(parcel, meta, opts) {
-  const o = opts || {};
-  const ring = parcelRing(parcel);
-  const so = ring ? AudaMarkout.setOut(ring) : null;
-  if (so && CFG.ground_correction) AudaMarkout.addSheetCoords(so, CFG.ground_correction, GROUND_WARP);
-  if (!so) {
-    if (o.explain) showSetOutEmpty(meta);
-    else hideSetOut();
-    return false;
-  }
-  const p = (parcel && parcel.properties) || {};
-  SETOUT = { so: so, parcel: parcel };
-  SETOUT_META = Object.assign({
-    pid: p.pid, area: p.area_m2, block: p.block, survey: p.survey
-  }, meta || {});
-  renderSetOut();
-  renderSetOutMap(so);
-  document.getElementById('markout').classList.add('on');
-  return true;
-}
-
-/* no set-out here, and the reason why */
-function showSetOutEmpty(meta) {
-  const m = meta || {};
-  SETOUT = null;
-  SETOUT_META = {};
-  for (const id of ['markoutEdges', 'markoutCorners', 'markoutEdgeLbl', 'markoutAzLbl']) {
-    const s = map.getSource(id);
-    if (s) s.setData({ type: 'FeatureCollection', features: [] });
-  }
-  document.getElementById('moMeta').innerHTML =
-    setOutHeadline(m, 'this spot');
-
-  document.getElementById('moTable').innerHTML = '';
-  const at = Array.isArray(m.record) && m.record.length === 2
-    ? 'Record position <b>' + m.record[1].toFixed(8) + ', ' +
-      m.record[0].toFixed(8) + '</b> (lat, lon).<br>'
-    : '';
-  document.getElementById('moSummary').innerHTML =
-    at +
-    '<b>No set-out for this spot.</b><br>' +
-    'The plan&rsquo;s own plot boundaries were recovered from the vector sheets, ' +
-    'and this record sits outside every boundary that was recovered &mdash; ' +
-    '6,014 of the 211,630 records are like that, about one in thirty-five.<br>' +
-    'Step to the next occurrence, or click a plot boundary on the map to set ' +
-    'that one out.';
-  const w = document.getElementById('printWhen');
-  if (w) w.textContent = 'Printed ' + new Date().toLocaleString() +
-    ' from the AUDA Second Revised Development Plan 2021 viewer.';
-  document.getElementById('markout').classList.add('on');
-}
-function hideSetOut() {
-  SETOUT = null;
-  SETOUT_META = {};
-  const card = document.getElementById('markout');
-  if (card) card.classList.remove('on');
-  for (const id of ['markoutEdges', 'markoutCorners', 'markoutEdgeLbl', 'markoutAzLbl']) {
-    const s = map.getSource(id);
-    if (s) s.setData({ type: 'FeatureCollection', features: [] });
-  }
-}
-
-/* the sheet's headline: what the plan says this plot is */
-function setOutHeadline(m, fallback) {
-  const bits = [];
-  if (m.survey) bits.push('survey <b>' + m.survey + '</b>');
-  if (m.pid != null) bits.push('plot <b>#' + m.pid + '</b>');
-  if (m.village) bits.push('village <b>' + m.village + '</b>');
-  if (m.scheme) bits.push('scheme <b>' + m.scheme + '</b>');
-  if (m.zone) bits.push('land use <b>' + m.zone + '</b>');
-  if (m.block) bits.push('sheet <b>' + m.block + '</b>');
-  return bits.join(' &middot; ') || (fallback || 'the plan&rsquo;s own plot boundary');
-}
-
-/* the sheet itself */
-function renderSetOut() {
-  if (!SETOUT) return;
-  const so = SETOUT.so, m = SETOUT_META;
-
-  document.getElementById('moMeta').innerHTML = setOutHeadline(m);
-
-  // ground coordinates first; the sheet's own printed numbers beside them
-  const sheet = so.corners.length > 0 && so.corners[0].se != null;
-  let rows = '';
-  for (const c of so.corners) {
-    rows += '<tr><td class="i">' + c.i + '</td>' +
-            '<td>' + c.e.toFixed(3) + '</td>' +
-            '<td>' + c.n.toFixed(3) + '</td>' +
-            '<td class="ll">' + c.lat.toFixed(8) + '</td>' +
-            '<td class="ll">' + c.lon.toFixed(8) + '</td>' +
-            (sheet ? '<td class="sh">' + c.se.toFixed(3) + '</td>' +
-                     '<td class="sh">' + c.sn.toFixed(3) + '</td>' : '') +
-            '<td>' + c.az.toFixed(3) + '&deg;</td>' +
-            '<td>' + c.len.toFixed(3) + '</td>' +
-            '<td>' + c.bearing + '</td></tr>';
-  }
-  document.getElementById('moTable').innerHTML =
-    '<thead><tr><th>corner</th><th>easting</th><th>northing</th>' +
-    '<th class="ll" title="WGS 84 latitude of the corner on the ground, in decimal degrees">latitude</th>' +
-    '<th class="ll" title="WGS 84 longitude of the corner on the ground, in decimal degrees">longitude</th>' +
-    (sheet ? '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet E</th>' +
-             '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet N</th>' : '') +
-    '<th>azimuth</th><th>length</th><th>reduced bearing</th></tr></thead>' +
-    '<tbody>' + rows + '</tbody>';
-
-  // the area the plan itself recorded, and how far the sheet's own
-  // geometry is from it - both are worth saying out loud
-  let areaLine = 'Area <b>' + AudaMarkout.fmtArea(so.area_m2) + '</b>';
-  if (m.area != null && m.area > 0) {
-    const d = (so.area_m2 - m.area) / m.area * 100;
-    areaLine += ' &mdash; the plan&rsquo;s own figure ' +
-      AudaMarkout.fmtArea(m.area) + ' (' +
-      (d >= 0 ? '+' : '&minus;') + Math.abs(d).toFixed(2) + '%)';
-  }
-  const drawn = so.reduced
-    ? ' <span style="color:#888">(from ' + so.vertices_drawn +
-      ' drawn points, ' + so.reduced + ' of them on the straight)</span>'
-    : '';
-  const lines = [
-    areaLine,
-    'Perimeter <b>' + so.perimeter_m.toFixed(3) + ' m</b>',
-    'Corners <b>' + so.n + '</b>' + drawn
-  ];
-  // the record the surveyor clicked: where it sits inside this plot
-  if (Array.isArray(m.record) && m.record.length === 2) {
-    lines.push('Record position <b>' + m.record[1].toFixed(8) + ', ' +
-               m.record[0].toFixed(8) + '</b> (lat, lon)');
-  }
-  lines.push('Grid <b>' + AudaMarkout.CRS.name + '</b> &mdash; CM ' + AudaMarkout.CRS.lon0 +
-      '&deg;, k&#8320; ' + AudaMarkout.CRS.k0 + ', FE/FN ' +
-      AudaMarkout.CRS.FE + '/' + AudaMarkout.CRS.FN);
-  document.getElementById('moSummary').innerHTML = lines.join('<br>');
-
-  const w = document.getElementById('printWhen');
-  if (w) w.textContent = 'Printed ' + new Date().toLocaleString() +
-    ' from the AUDA Second Revised Development Plan 2021 viewer.';
-}
-
-/* the set-out drawn on the map: the edges, the corners, and the
-   dimension on each edge */
-function renderSetOutMap(so) {
-  const edges = [], corners = [], edgeLbl = [], azLbl = [];
-  const n = so.corners.length;
-  for (let i = 0; i < n; i++) {
-    const c = so.corners[i], nx = so.corners[(i + 1) % n];
-    const a = [c.lon, c.lat], b = [nx.lon, nx.lat];
-    edges.push({ type: 'Feature', properties: { i: c.i },
-                 geometry: { type: 'LineString', coordinates: [a, b] } });
-    corners.push({ type: 'Feature', properties: { i: c.i, e: c.e, n: c.n },
-                   geometry: { type: 'Point', coordinates: a } });
-    // the length of the edge, at its middle
-    edgeLbl.push({ type: 'Feature', properties: { d: c.len.toFixed(2) + ' m' },
-                   geometry: { type: 'Point', coordinates: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] } });
-    // the azimuth of the edge, a third of the way along it.
-    // NOTE: a MapLibre symbol draws text on a canvas - HTML entities are
-    // not decoded there, so the degree sign is the character itself.
-    azLbl.push({ type: 'Feature', properties: { a: c.az.toFixed(1) + '°' },
-                 geometry: { type: 'Point',
-                             coordinates: [a[0] + (b[0] - a[0]) * 0.33,
-                                           a[1] + (b[1] - a[1]) * 0.33] } });
-  }
-  setSource('markoutEdges', edges);
-  setSource('markoutCorners', corners);
-  setSource('markoutEdgeLbl', edgeLbl);
-  setSource('markoutAzLbl', azLbl);
-}
-
-function setSource(id, features) {
-  const s = map.getSource(id);
-  if (s) s.setData({ type: 'FeatureCollection', features: features });
-}
-
-/* the two checkboxes on the sheet */
-function applySetOutVisibility() {
-  const show = document.getElementById('moShow').checked;
-  for (const id of MO_LAYERS) {
-    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', show ? 'visible' : 'none');
-  }
-  const az = show && document.getElementById('moAz').checked;
-  if (map.getLayer(MO_AZ_LAYER))
-    map.setLayoutProperty(MO_AZ_LAYER, 'visibility', az ? 'visible' : 'none');
-}
-
-/* ---- the exports ---- */
-function setOutFilename(ext) {
-  const m = SETOUT_META || {};
-  const bits = ['auda-markout'];
-  if (m.survey) bits.push(String(m.survey).replace(/[^\w.-]+/g, '_'));
-  if (m.pid != null) bits.push('plot-' + m.pid);
-  return bits.join('_') + '.' + ext;
-}
-
-function download(filename, text, mime) {
-  const blob = new Blob([text], { type: (mime || 'text/plain') + ';charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
-}
-
-function exportSetOutCsv() {
-  if (!SETOUT) return;
-  download(setOutFilename('csv'), AudaMarkout.toCsv(SETOUT.so, SETOUT_META), 'text/csv');
-}
-
-function exportSetOutJson() {
-  if (!SETOUT) return;
-  const so = SETOUT.so;
-  const out = {
-    title: 'AUDA Second Revised Development Plan 2021 - survey set-out (markout)',
-    survey: SETOUT_META.survey || null,
-    plot_id: SETOUT_META.pid != null ? SETOUT_META.pid : null,
-    village: SETOUT_META.village || null,
-    tp_scheme: SETOUT_META.scheme || null,
-    land_use: SETOUT_META.zone || null,
-    sheet: SETOUT_META.block || null,
-    crs: {
-      name: AudaMarkout.CRS.name,
-      central_meridian: AudaMarkout.CRS.lon0,
-      latitude_of_origin: AudaMarkout.CRS.lat0,
-      scale_factor: AudaMarkout.CRS.k0,
-      false_easting: AudaMarkout.CRS.FE,
-      false_northing: AudaMarkout.CRS.FN,
-      datum: 'WGS_1984',
-      units: 'metre'
-    },
-    ground_correction: CFG.ground_correction ? CFG.ground_correction.id : null,
-    corners: so.corners.map(c => ({
-      corner: c.i,
-      easting_m: c.e,
-      northing_m: c.n,
-      sheet_easting_m: c.se != null ? c.se : null,
-      sheet_northing_m: c.sn != null ? c.sn : null,
-      azimuth_to_next_deg: c.az,
-      length_to_next_m: c.len,
-      cumulative_m: c.cum,
-      reduced_bearing_to_next: c.bearing,
-      interior_angle_deg: c.interior,
-      latitude: c.lat,
-      longitude: c.lon
-    })),
-    area_m2: so.area_m2,
-    perimeter_m: so.perimeter_m,
-    corner_count: so.n,
-    vertices_drawn: so.vertices_drawn,
-    vertices_on_straight: so.reduced,
-    plan_area_m2: SETOUT_META.area != null ? SETOUT_META.area : null,
-    generated: new Date().toISOString()
-  };
-  download(setOutFilename('json'), JSON.stringify(out, null, 2), 'application/json');
-}
-
-/* the honest caveat, on the sheet and on the printout */
-document.getElementById('moNote').innerHTML =
-  'The corners are the plan&rsquo;s own drawn boundary, in the grid the sheets were ' +
-  'drawn in. <b>Easting/northing</b> are on the ground: the printed sheets place the ' +
-  'plan about 85&nbsp;m east of where it belongs, and the map corrects that. ' +
-  '<b>Sheet E/N</b> are the numbers the printed sheet itself would give. ' +
-  '<b>Latitude/longitude</b> are those same ground corners in WGS&nbsp;84 decimal ' +
-  'degrees &mdash; what a handheld GPS shows. The ' +
-  '<b>shape</b> is the plan&rsquo;s; the corrected <b>position</b> agrees with ' +
-  'OSM roads to about 6&nbsp;m (median). Peg from the edges and the bearings, and ' +
-  'treat the coordinates as a starting point rather than a finished survey.';
-
 map.on('load', () => {
   document.getElementById('recGo').onclick = runSearch;
   document.getElementById('recSearch').addEventListener('keydown', e => {
@@ -2081,14 +1632,6 @@ map.on('load', () => {
     else if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); stepOccurrence(1); }
   }, true);
 
-  /* ---- the set-out sheet's own controls ---- */
-  document.getElementById('moClose').onclick = () => hideSetOut();
-  document.getElementById('moShow').onchange = applySetOutVisibility;
-  document.getElementById('moAz').onchange = applySetOutVisibility;
-  document.getElementById('moCsv').onclick = exportSetOutCsv;
-  document.getElementById('moJson').onclick = exportSetOutJson;
-  document.getElementById('moPrint').onclick = () => window.print();
-
   /* ---- click a plot boundary ---- */
   map.on('click', 'parcel-line', e => {
     const f = e.features && e.features[0];
@@ -2096,8 +1639,6 @@ map.on('load', () => {
     const p = f.properties || {};
     const src = map.getSource('parcelhl');
     if (src) src.setData({ type: 'FeatureCollection', features: [f] });
-    // and the set-out of that plot: the sheet the surveyor actually needs
-    showSetOut(f, { survey: p.survey });
     const rows = [];
     if (p.pid != null) rows.push('plot #' + p.pid);
     if (p.area_m2 != null) rows.push('area ' + fmtArea(p.area_m2));
@@ -2114,15 +1655,6 @@ map.on('load', () => {
   });
   map.on('mouseenter', 'parcel-line', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'parcel-line', () => map.getCanvas().style.cursor = '');
-
-  /* ---- click the highlighted plot boundary: the same set-out again ---- */
-  map.on('click', 'parcel-hl-line', e => {
-    const f = e.features && e.features[0];
-    if (!f) return;
-    showSetOut(f, { survey: (f.properties || {}).survey });
-  });
-  map.on('mouseenter', 'parcel-hl-line', () => map.getCanvas().style.cursor = 'pointer');
-  map.on('mouseleave', 'parcel-hl-line', () => map.getCanvas().style.cursor = '');
 
   /* ---- click a village / scheme boundary ---- */
   map.on('click', 'unit-line', e => {
@@ -2151,11 +1683,10 @@ map.on('load', () => {
     if (!f) return;
     const rc = f.geometry.coordinates;
     /* This is an occurrence of the number that is already marked, so it is
-       a step through the list rather than a fresh lookup: select it, and
-       the plot it sits in opens as a set-out sheet. */
+       a step through the list rather than a fresh lookup: select it. */
     const idx = (f.properties.occ || 1) - 1;
-    // claim the click: this occurrence, and its record's detail, own the
-    // sheet - the plan's own number under the pointer must not overwrite it
+    // claim the click: the occurrence owns it, so the plan's own number
+    // handler does not put a second popup on the same pixel
     occClaim = { x: e.point.x, y: e.point.y };
     if (idx >= 0 && idx < markedRecords.length) selectOccurrence(idx, { fly: true });
     new maplibregl.Popup({ offset: 14 })
@@ -2304,20 +1835,6 @@ map.on('mousemove', e => {
     if (!inside) say('you are outside the AUDA plan area');
   });
   geo.on('error', () => { loc.classList.remove('busy'); say('could not get your location'); });
-
-  /* the set-out sheet takes the same corner as the drawers: it wins. On a
-     phone it also takes the bottom of the screen from the result sheet, and
-     gives it back when it closes */
-  let sheetParked = false;
-  new MutationObserver(() => {
-    const on = $('markout').classList.contains('on');
-    if (on) {
-      setDrawer(null, false);
-      if (narrow() && sheet.classList.contains('open')) { sheet.classList.remove('open'); sheetParked = true; }
-    } else if (sheetParked) {
-      sheet.classList.add('open'); sheetParked = false;
-    }
-  }).observe($('markout'), { attributes: true, attributeFilter: ['class'] });
 
   $('zoomHint').onclick = () => map.easeTo({ zoom: 14.5 });
 

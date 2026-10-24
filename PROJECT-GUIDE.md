@@ -481,9 +481,6 @@ vertex against the nearest ink. It is in
   with that name.
 * A **record detail panel** gives the plot, the plot's area, the village,
   the scheme and the land use.
-* Clicking a number also opens a **set-out (markout) sheet** for the plot it
-  is in - the corners in the plan's own metres, with the bearings and the
-  distances. Section 11 is that work.
 
 
 
@@ -590,11 +587,10 @@ turn the plan's own zoning on and off over the satellite.
 
 ---
 
-## 11. Marking a record properly, and the set-out sheet
+## 11. Marking a record properly
 
 The last piece of work: the **marking** side of the viewer, polished into
-something a surveyor can actually work with, and a **set-out (markout)
-sheet** they can carry out.
+something a surveyor can actually work with.
 
 ### A survey number is a set of places, not a place
 
@@ -615,80 +611,24 @@ marked number is a **set**, and the viewer treats it as one:
 * **link** copies a deep link to the occurrence in hand
   (`#rec=461&occ=4`), so a colleague opens exactly the same plot.
 
-### The set-out sheet
+### No set-out sheet
 
-Picking an occurrence opens a **set-out (markout) sheet**: the corners of
-that plot, in the plan's own projected metres, with the bearing and the
-distance of every edge.
+The viewer used to open a **set-out (markout) sheet** for the plot holding
+the clicked record. It no longer does: a click highlights the plot, shows its
+badge and the record detail, and that is all. The field-sheet view - the
+corner table with ground and sheet coordinates, the CSV and JSON exports, the
+corners and azimuths drawn on the map, and the print layout - was removed at
+the client's request.
 
-| column | what it is |
-| --- | --- |
-| corner | the corner number, counted from the south-west corner, counter-clockwise |
-| easting / northing | the corner in the plan's own grid |
-| azimuth | the azimuth of the edge from this corner to the next |
-| length | the length of that edge, in metres |
-| reduced bearing | the same edge as a quadrant bearing |
-
-The sheet also carries the plot's area and perimeter, the corner count, the
-plan's **own** area figure beside the computed one, and the grid's full
-definition.
-
-On the map the same corners are drawn: the plot's edges in blue, every
-corner as a white dot with its number, and the length of every edge along
-the edge. The azimuths can be switched on as well, above the edges.
-
-**Where the numbers come from.** The projection is the plan's own -
-`WGS_1984_Transverse_Mercator`, central meridian 71.5°E, latitude of
-origin 22.5°N, k₀ 0.999738, false easting/northing 400000/400000. It is the
-same CRS `tools/dp_georef.py` uses to put the sheets on the Earth, so the
-sheet and the map cannot disagree about where a plot is.
-
-### The honest empty case
-
-**6,014 of the 211,630 records - 2.8% - sit outside every plot boundary
-the vector sheets gave up.** For those there is no set-out to give, and the
-viewer says so rather than showing an empty box:
-
-> **No set-out for this spot.** The plan's own plot boundaries were
-> recovered from the vector sheets, and this record sits outside every
-> boundary that was recovered - 6,014 of the 211,630 records are like that,
-> about one in thirty-five. Step to the next occurrence, or click a plot
-> boundary on the map to set that one out.
-
-This was **21.5%** before the shared strokes were assembled (section 9). The
-recovery is strictly additive: all 166,149 records that already had a plot
-kept **exactly** the plot they had, and the 39,467 that gained one gained it
-from a newly assembled face.
-
-### The corners are reduced, not just listed
-
-The plan draws a plot boundary as a polyline with a vertex every few
-centimetres along a straight edge. A set-out sheet that lists 51 points for
-a five-sided plot is a drawing, not a set-out. So the corner list is
-reduced first: a vertex is dropped when it lies within **5 cm** of the
-straight line through its neighbours, and duplicates within **1 cm** are
-merged. What is left is then counted from the south-west corner, going
-counter-clockwise, so that two sheets for the same plot always start in the
-same place.
-
-### Exports, and the print
-
-* **CSV** - the corner table for a spreadsheet. RFC 4180: the comment lines
-  carry no commas, and the reduced bearing (which holds a double quote for
-  the seconds) is quoted with the inner quote doubled.
-* **JSON** - the same table with the CRS spelled out, the plan's own area,
-  and the corner count.
-* **Print sheet** - the print view is the sheet **alone**. The map, the
-  panels, the occurrence list, the buttons and the checkboxes are all out
-  of the way, and what is left is the field document: a title, the date, the
-  corner table, the summary and the caveat.
+The geometry behind it is still in the repository: `web/markout.js` holds the
+projection and the corner reduction, and `tools/dp_check_markout.js` still
+verifies it. Only the viewer no longer loads or shows it.
 
 ### How it was verified
 
-The set-out is computed **in the browser**, in `web/markout.js`, so that the
-sheet on the screen and the sheet that was checked cannot drift apart.
-`tools/dp_markout_reference.py` computes the same thing with **pyproj**, and
-`tools/dp_check_markout.js` compares them:
+The geometry is `web/markout.js`: the projection, the corner reduction and the
+set-out table. `tools/dp_markout_reference.py` computes the same thing with
+**pyproj**, and `tools/dp_check_markout.js` compares them:
 
 ```
 python tools/dp_markout_reference.py
@@ -750,6 +690,7 @@ wrong:
   in every village. The index grew from 4.5 MB to 5.35 MB.
 * A marked occurrence is also one of the plan's own numbers, so one click
   reaches two handlers. The occurrence **claims** the click and the
-  plan-number handler stands aside; otherwise the two race, and the sheet's
-  headings would be whichever landed last.
+  plan-number handler stands aside; otherwise both would open a popup on the
+  same pixel and the order they ran in would decide which one the surveyor
+  saw.
 

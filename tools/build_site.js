@@ -11,7 +11,7 @@
  * the layout web/index.html expects when it sits at the site root:
  *
  *   dist/index.html              (web/index.html, unchanged)
- *   dist/{icon.svg,markout.js,sw.js,manifest.webmanifest}
+ *   dist/{icon.svg,sw.js,manifest.webmanifest}
  *   dist/glyphs/                 (web/glyphs)
  *   dist/tiles_dp2021/{z}/...    (the plan raster pyramid)
  *   dist/data/dp2021/...         (bounds, indexes, per-tile buckets)
@@ -51,13 +51,13 @@ const MAX_TILE_ZOOM = Number(arg('max-tile-zoom', '17'));
 const MIN_TILE_ZOOM = Number(arg('min-tile-zoom', '11'));
 
 /* The page shell: everything that lives beside index.html. */
-const SHELL = ['index.html', 'icon.svg', 'markout.js', 'sw.js', 'manifest.webmanifest'];
+const SHELL = ['index.html', 'icon.svg', 'sw.js', 'manifest.webmanifest'];
 
 /* data/dp2021 files the viewer fetches (see the fetch(U('/data/dp2021/...'))
    calls in web/index.html). The whole-layer geojson / ndjson files are build
    intermediates and stay out. */
 const DATA_FILES = [
-  'bounds.json', 'legend.json', 'imagery.json', 'ground_warp.json',
+  'bounds.json', 'legend.json', 'imagery.json',
   'labels.geojson', 'units.geojson',
   'number_index.json', 'village_index.json', 'village_units.json',
   'manifest.json', 'accuracy.json', 'label_stats.json', 'boundary_stats.json',

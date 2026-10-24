@@ -1,21 +1,21 @@
-/* Check the browser's set-out code against the pyproj reference.
+/* Check web/markout.js against the pyproj reference.
  *
  *   python tools/dp_markout_reference.py      (writes work/markout_reference.json)
  *   node tools/dp_check_markout.js            (compares)
  *
- * The viewer's set-out is computed in the browser, in web/markout.js. The
- * reference is computed with pyproj, in tools/dp_markout_reference.py.
- * This script re-computes the reference parcels with the browser's code
- * and compares the two.
+ * The set-out geometry lives in web/markout.js; the viewer no longer shows
+ * the sheet, but the library is kept and checked. The reference is computed
+ * with pyproj, in tools/dp_markout_reference.py. This script re-computes the
+ * reference parcels with the library's code and compares the two.
  *
  * What it checks:
  *   - the projection: lon/lat -> the plan's own metres, to the millimetre
  *   - the corner reduction: the same corners come out of both
  *   - every corner's easting, northing, azimuth and length
  *   - the area and the perimeter
- *   - the INVERSE projection: the browser's metres -> lon/lat, against
- *     pyproj's own inverse, because those are the numbers the sheet
- *     prints and the ones the map draws the corners at
+ *   - the INVERSE projection: the library's metres -> lon/lat, against
+ *     pyproj's own inverse, because those were the numbers the sheet
+ *     printed and the map draws the corners at
  *   - the round trip: lon/lat -> metres -> lon/lat
  *
  * A set-out sheet is a list of numbers somebody will peg a peg in the

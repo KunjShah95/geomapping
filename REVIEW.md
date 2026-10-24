@@ -132,6 +132,10 @@ a village is also inside a plot, and the plot wins.
 
 ## Applied fixes (marking and set-out)
 
+> Historical note: the set-out (markout) sheet has since been removed from the
+> viewer at the client's request. The marking work below remains; the geometry
+> and its checks are still in `web/markout.js` and `tools/`.
+
 ### `web/index.html` — the marking side
 
 - **A marked occurrence is also one of the plan's own numbers, so one click
