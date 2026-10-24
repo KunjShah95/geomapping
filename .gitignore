@@ -11,6 +11,14 @@ work/*.zip
 # tiles are a build artefact; keep if you deploy them, ignore if you rebuild
 # tiles/
 
+# local-only inputs and scratch: too large for GitHub (or not ours to publish),
+# so they stay out of the repository and out of git status. Everything the site
+# publishes is listed in tools/build_site.js.
+NEW DP BOOK AUDA/
+tiles/
+_tmp_district.png
+dist/
+
 node_modules/
 __pycache__/
 
@@ -49,8 +57,9 @@ data/dp2021/zone_offsets.json
 data/dp2021/zone_satellite.json
 data/dp2021/record_checks.json
 
-# work/: scratch, logs and measurements. Ignore its JSON, except the files the build
-# needs to reproduce the delivered map:
+# work/: scratch, logs and measurements. All of it is local, except the files the
+# build needs to reproduce the delivered map:
+work/*
 work/**/*.json
 work/**/*.geojson
 work/**/*.ndjson
@@ -58,9 +67,11 @@ work/**/*.ndjson
 !work/dp_ground_correction.json
 !work/dp_ground_warp.json
 !work/georef_osm/
+work/georef_osm/*
 !work/georef_osm/field.json
 !work/georef_osm/field_raw.json
 !work/georef_osm_warp/
+work/georef_osm_warp/*
 !work/georef_osm_warp/field.json
 # (work/osm/roads.json, 53 MB, stays ignored: re-download with the Overpass query in
 #  tools/dp_osm_offsets.py's docstring)
