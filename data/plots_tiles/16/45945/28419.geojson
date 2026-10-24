@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[72.3862722,23.2217852]},"properties":{"t":"501","s":0.816,"z":"Water","c":"#78d8f8","px":8295,"py":5853}},{"type":"Feature","geometry":{"type":"Point","coordinates":[72.3885194,23.2213486]},"properties":{"t":"200","s":0.836,"z":"Residential","c":"#f8b800","px":8384,"py":5872}}]}

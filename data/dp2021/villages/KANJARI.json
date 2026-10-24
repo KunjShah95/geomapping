@@ -1,0 +1,19 @@
+{
+  "name": "KANJARI",
+  "file": "KANJARI.pdf",
+  "block": "NW",
+  "matched_place_names": 256,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4652.0,
+    8850.3
+  ],
+  "lon_min": 72.4334074,
+  "lon_max": 72.4741727,
+  "lat_min": 23.5033596,
+  "lat_max": 23.5416453,
+  "width_km": 4.16,
+  "height_km": 4.25,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KANJARI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

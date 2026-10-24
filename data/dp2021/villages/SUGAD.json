@@ -1,0 +1,19 @@
+{
+  "name": "SUGAD",
+  "file": "SUGAD.pdf",
+  "block": "NE",
+  "matched_place_names": 80,
+  "runner_up_votes": 48,
+  "offset_points": [
+    3864.5,
+    8858.0
+  ],
+  "lon_min": 72.7281034,
+  "lon_max": 72.7607682,
+  "lat_min": 23.501697,
+  "lat_max": 23.5302809,
+  "width_km": 3.33,
+  "height_km": 3.17,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SUGAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "JAMIYATPUR",
+  "file": "JAMIYATPUR.pdf",
+  "block": "NE",
+  "matched_place_names": 9,
+  "runner_up_votes": 1,
+  "offset_points": [
+    1182.1,
+    6634.2
+  ],
+  "lon_min": 72.5789283,
+  "lon_max": 72.6082763,
+  "lat_min": 23.3894946,
+  "lat_max": 23.4207776,
+  "width_km": 3.0,
+  "height_km": 3.47,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JAMIYATPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

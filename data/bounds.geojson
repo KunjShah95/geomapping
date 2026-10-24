@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "auda-rdp-2022",
+        "title": "AUDA Revised Development Plan 2022",
+        "crs": "EPSG:3857",
+        "m_per_px": 2.5703,
+        "native_zoom": 15.77,
+        "anisotropy": 0.994913,
+        "accuracy_note": "anchored to a published bounding box, not survey control"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.178109,
+              22.763306
+            ],
+            [
+              72.860675,
+              22.763306
+            ],
+            [
+              72.860675,
+              23.357406
+            ],
+            [
+              72.178109,
+              23.357406
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

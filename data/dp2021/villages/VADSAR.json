@@ -1,0 +1,19 @@
+{
+  "name": "VADSAR",
+  "file": "VADSAR.pdf",
+  "block": "NW",
+  "matched_place_names": 234,
+  "runner_up_votes": 2,
+  "offset_points": [
+    10052.9,
+    7510.0
+  ],
+  "lon_min": 72.7312874,
+  "lon_max": 72.779015,
+  "lat_min": 23.4328348,
+  "lat_max": 23.4669208,
+  "width_km": 4.87,
+  "height_km": 3.78,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VADSAR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

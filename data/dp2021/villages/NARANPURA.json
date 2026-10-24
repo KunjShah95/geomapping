@@ -1,0 +1,19 @@
+{
+  "name": "NARANPURA",
+  "file": "NARANPURA.pdf",
+  "block": "SW",
+  "matched_place_names": 68,
+  "runner_up_votes": 1,
+  "offset_points": [
+    3606.1,
+    192.9
+  ],
+  "lon_min": 72.3708368,
+  "lon_max": 72.3892478,
+  "lat_min": 22.7688862,
+  "lat_max": 22.8031233,
+  "width_km": 1.89,
+  "height_km": 3.8,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NARANPURA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

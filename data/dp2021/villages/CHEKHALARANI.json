@@ -1,0 +1,19 @@
+{
+  "name": "CHEKHALARANI",
+  "file": "CHEKHALARANI.pdf",
+  "block": "NE",
+  "matched_place_names": 10,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7100.5,
+    1550.0
+  ],
+  "lon_min": 72.9030303,
+  "lon_max": 72.9404904,
+  "lat_min": 23.1276315,
+  "lat_max": 23.1543886,
+  "width_km": 3.83,
+  "height_km": 2.97,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHEKHALARANI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

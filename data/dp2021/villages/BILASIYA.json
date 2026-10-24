@@ -1,0 +1,19 @@
+{
+  "name": "BILASIYA",
+  "file": "BILASIYA.pdf",
+  "block": "NE",
+  "matched_place_names": 7,
+  "runner_up_votes": 3,
+  "offset_points": [
+    6350.5,
+    10570.3
+  ],
+  "lon_min": 72.8663967,
+  "lon_max": 72.8974926,
+  "lat_min": 23.5878087,
+  "lat_max": 23.6071243,
+  "width_km": 3.17,
+  "height_km": 2.14,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BILASIYA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

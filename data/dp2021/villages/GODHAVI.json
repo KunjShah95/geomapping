@@ -1,0 +1,19 @@
+{
+  "name": "GODHAVI",
+  "file": "GODHAVI.pdf",
+  "block": "SW",
+  "matched_place_names": 310,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7674.8,
+    463.9
+  ],
+  "lon_min": 72.594614,
+  "lon_max": 72.6509342,
+  "lat_min": 22.7810315,
+  "lat_max": 22.8355791,
+  "width_km": 5.78,
+  "height_km": 6.05,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GODHAVI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

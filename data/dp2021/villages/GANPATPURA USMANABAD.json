@@ -1,0 +1,19 @@
+{
+  "name": "GANPATPURA USMANABAD",
+  "file": "GANPATPURA USMANABAD.pdf",
+  "block": "NW",
+  "matched_place_names": 76,
+  "runner_up_votes": 1,
+  "offset_points": [
+    11214.6,
+    6748.0
+  ],
+  "lon_min": 72.7950798,
+  "lon_max": 72.8221904,
+  "lat_min": 23.393632,
+  "lat_max": 23.4232819,
+  "width_km": 2.77,
+  "height_km": 3.29,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GANPATPURA USMANABAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

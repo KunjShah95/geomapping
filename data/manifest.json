@@ -1,0 +1,11 @@
+{
+  "generated": "2026-10-19T05:41:28Z",
+  "file_count": 10127,
+  "total_bytes": 180300696,
+  "prefixes": [
+    "tiles",
+    "data"
+  ],
+  "cache_control": "public, max-age=31536000, immutable",
+  "note": "tiles are content-addressed by path; a changed tile changes its path"
+}

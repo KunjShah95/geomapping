@@ -1,0 +1,59 @@
+{
+  "method": "local offset between the plan and z16 satellite imagery, measured by FFT cross-correlation at 168 sample points across the sheet (tools/measure_hires_fft.py)",
+  "what_it_measures": "the difference between where the plan's content sits and where the same content sits in satellite imagery",
+  "caveat": "The plan was drawn from an older base map than the satellite imagery, so most of this offset is the base map's age, not the georeference. A linear field explains only 4% of the variance, and the offset does not grow with distance from the sheet centre - both signs that there is no large correctable scale error.",
+  "n_samples": 168,
+  "offset_median_m": 52.8,
+  "offset_mean_m": 59.6,
+  "offset_p90_m": 122.0,
+  "offset_max_m": 164.4,
+  "median_dlon_m": -2.2,
+  "median_dmerc_m": -2.2,
+  "near_centre": {
+    "n": 98,
+    "median_m": 48.0
+  },
+  "far_centre": {
+    "n": 70,
+    "median_m": 61.6
+  },
+  "quadrants": {
+    "west": {
+      "n": 76,
+      "median_shift_m": 63.4,
+      "median_dlon_m": 0.0,
+      "median_dmerc_m": -3.3
+    },
+    "east": {
+      "n": 92,
+      "median_shift_m": 48.0,
+      "median_dlon_m": -2.2,
+      "median_dmerc_m": -2.2
+    },
+    "north": {
+      "n": 76,
+      "median_shift_m": 51.7,
+      "median_dlon_m": -2.2,
+      "median_dmerc_m": -2.2
+    },
+    "south": {
+      "n": 92,
+      "median_shift_m": 56.8,
+      "median_dlon_m": -1.1,
+      "median_dmerc_m": -6.6
+    }
+  },
+  "systematic_variance_explained_pct": 4.0,
+  "linear_field": {
+    "lon": [
+      6.3268465984635,
+      -4.3043830777921596e-05,
+      -0.0006641753117689873
+    ],
+    "merc": [
+      -6.332442257283654,
+      0.00015569711333765545,
+      -0.002297095589138711
+    ]
+  }
+}

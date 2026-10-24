@@ -1,0 +1,19 @@
+{
+  "name": "MOTERA",
+  "file": "MOTERA.pdf",
+  "block": "NE",
+  "matched_place_names": 98,
+  "runner_up_votes": 1,
+  "offset_points": [
+    2650.9,
+    9652.0
+  ],
+  "lon_min": 72.6613857,
+  "lon_max": 72.6968094,
+  "lat_min": 23.5426733,
+  "lat_max": 23.5745014,
+  "width_km": 3.61,
+  "height_km": 3.53,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MOTERA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

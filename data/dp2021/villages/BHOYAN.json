@@ -1,0 +1,19 @@
+{
+  "name": "BHOYAN",
+  "file": "BHOYAN.pdf",
+  "block": "NW",
+  "matched_place_names": 159,
+  "runner_up_votes": 2,
+  "offset_points": [
+    9280.6,
+    6599.6
+  ],
+  "lon_min": 72.6882118,
+  "lon_max": 72.7270457,
+  "lat_min": 23.3868446,
+  "lat_max": 23.4306253,
+  "width_km": 3.97,
+  "height_km": 4.86,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHOYAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

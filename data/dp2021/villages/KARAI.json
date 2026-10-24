@@ -1,0 +1,19 @@
+{
+  "name": "KARAI",
+  "file": "KARAI.pdf",
+  "block": "NE",
+  "matched_place_names": 14,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4826.7,
+    8591.0
+  ],
+  "lon_min": 72.7811498,
+  "lon_max": 72.8090245,
+  "lat_min": 23.4876873,
+  "lat_max": 23.5112873,
+  "width_km": 2.85,
+  "height_km": 2.62,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KARAI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

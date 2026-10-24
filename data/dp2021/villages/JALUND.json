@@ -1,0 +1,19 @@
+{
+  "name": "JALUND",
+  "file": "JALUND.pdf",
+  "block": "NE",
+  "matched_place_names": 11,
+  "runner_up_votes": 1,
+  "offset_points": [
+    964.2,
+    2852.2
+  ],
+  "lon_min": 72.5653573,
+  "lon_max": 72.5943106,
+  "lat_min": 23.196797,
+  "lat_max": 23.2286498,
+  "width_km": 2.96,
+  "height_km": 3.54,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JALUND.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

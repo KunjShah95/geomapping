@@ -1,0 +1,19 @@
+{
+  "name": "MAKARBA",
+  "file": "MAKARBA.pdf",
+  "block": "SW",
+  "matched_place_names": 417,
+  "runner_up_votes": 1,
+  "offset_points": [
+    10675.0,
+    1618.2
+  ],
+  "lon_min": 72.7600891,
+  "lon_max": 72.8090804,
+  "lat_min": 22.8386557,
+  "lat_max": 22.8828439,
+  "width_km": 5.03,
+  "height_km": 4.9,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MAKARBA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

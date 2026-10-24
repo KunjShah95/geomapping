@@ -1,0 +1,137 @@
+{
+  "source": "read from the legend block of DP 2021 AUDA Final-1.pdf",
+  "entries": [
+    {
+      "color": "#ffff00",
+      "label": "Residental Zone I-R1",
+      "x": 163.4,
+      "y": 545.8
+    },
+    {
+      "color": "#ffbf00",
+      "label": "Residental Zone II-R2",
+      "x": 163.4,
+      "y": 624.0
+    },
+    {
+      "color": "#b2cc66",
+      "label": "Residental Zone III-R3",
+      "x": 163.4,
+      "y": 702.0
+    },
+    {
+      "color": "#a87000",
+      "label": "Residental Aﬀordabl e Housi ng Zone 1-RAH 1",
+      "x": 163.4,
+      "y": 780.0
+    },
+    {
+      "color": "#d7d79e",
+      "label": "Core Walled City-CW",
+      "x": 163.4,
+      "y": 858.0
+    },
+    {
+      "color": "#a55200",
+      "label": "Gamtal-GM",
+      "x": 163.4,
+      "y": 936.0
+    },
+    {
+      "color": "#ffbf00",
+      "label": "Gamtal Extension-GME",
+      "x": 163.4,
+      "y": 1014.2
+    },
+    {
+      "color": "#0070ff",
+      "label": "Central Business District-CBD",
+      "x": 163.4,
+      "y": 1092.0
+    },
+    {
+      "color": "#7f9fff",
+      "label": "Commercial Zone-C",
+      "x": 163.4,
+      "y": 1170.2
+    },
+    {
+      "color": "#9966cc",
+      "label": "Industrial Zone General-IG",
+      "x": 163.4,
+      "y": 1326.2
+    },
+    {
+      "color": "#ff3f00",
+      "label": "Knowledge & Insttuuonal Zone- KZ",
+      "x": 163.4,
+      "y": 1482.2
+    },
+    {
+      "color": "#00dc00",
+      "label": "Parks , Gardens & Open Space-P",
+      "x": 163.4,
+      "y": 1560.5
+    },
+    {
+      "color": "#66cc99",
+      "label": "General Agricultural Zone-A1",
+      "x": 163.4,
+      "y": 1638.2
+    },
+    {
+      "color": "#3bb300",
+      "label": "Prime Agricultural Zone-A2",
+      "x": 163.4,
+      "y": 1716.5
+    },
+    {
+      "color": "#267300",
+      "label": "Restricted Agricultural Zone-A3",
+      "x": 163.4,
+      "y": 1794.5
+    },
+    {
+      "color": "#c3c3c3",
+      "label": "Existng Road",
+      "x": 163.4,
+      "y": 1950.5
+    },
+    {
+      "color": "#adadad",
+      "label": "Existng Rai lwa y",
+      "x": 163.4,
+      "y": 2028.5
+    },
+    {
+      "color": "#cdcd66",
+      "label": "Ancient Monument",
+      "x": 163.4,
+      "y": 2106.7
+    },
+    {
+      "color": "#baff00",
+      "label": "Burial & Crematon Gr ound",
+      "x": 163.4,
+      "y": 2184.5
+    },
+    {
+      "color": "#4c995f",
+      "label": "Sewage / Water Treatment Plant",
+      "x": 163.4,
+      "y": 2262.7
+    },
+    {
+      "color": "#7fdfff",
+      "label": "Waterbody",
+      "x": 163.4,
+      "y": 2418.7
+    },
+    {
+      "color": "#adadad",
+      "label": "Proposed DFC",
+      "x": 163.4,
+      "y": 3277.0
+    }
+  ]
+}

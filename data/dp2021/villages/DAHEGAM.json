@@ -1,0 +1,19 @@
+{
+  "name": "DAHEGAM",
+  "file": "DAHEGAM.pdf",
+  "block": "NE",
+  "matched_place_names": 378,
+  "runner_up_votes": 35,
+  "offset_points": [
+    9923.0,
+    6852.7
+  ],
+  "lon_min": 73.061715,
+  "lon_max": 73.129871,
+  "lat_min": 23.3960691,
+  "lat_max": 23.457091,
+  "width_km": 6.96,
+  "height_km": 6.77,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DAHEGAM.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

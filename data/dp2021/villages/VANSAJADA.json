@@ -1,0 +1,19 @@
+{
+  "name": "VANSAJADA",
+  "file": "VANSAJADA.pdf",
+  "block": "NW",
+  "matched_place_names": 80,
+  "runner_up_votes": 3,
+  "offset_points": [
+    8700.0,
+    6097.2
+  ],
+  "lon_min": 72.6559268,
+  "lon_max": 72.6819661,
+  "lat_min": 23.3615795,
+  "lat_max": 23.3914996,
+  "width_km": 2.66,
+  "height_km": 3.32,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANSAJADA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

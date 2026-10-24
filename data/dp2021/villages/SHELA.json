@@ -1,0 +1,19 @@
+{
+  "name": "SHELA",
+  "file": "SHELA.pdf",
+  "block": "SW",
+  "matched_place_names": 106,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9123.2,
+    2037.6
+  ],
+  "lon_min": 72.6749284,
+  "lon_max": 72.718433,
+  "lat_min": 22.8607539,
+  "lat_max": 22.8882253,
+  "width_km": 4.46,
+  "height_km": 3.05,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHELA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

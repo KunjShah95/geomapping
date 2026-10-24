@@ -1,0 +1,19 @@
+{
+  "name": "CHHARODI GURUKUL",
+  "file": "CHHARODI GURUKUL.pdf",
+  "block": "NE",
+  "matched_place_names": 138,
+  "runner_up_votes": 1,
+  "offset_points": [
+    767.8,
+    9043.6
+  ],
+  "lon_min": 72.557025,
+  "lon_max": 72.5796554,
+  "lat_min": 23.5125165,
+  "lat_max": 23.5292365,
+  "width_km": 2.31,
+  "height_km": 1.86,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHHARODI GURUKUL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "MEMNAGAR",
+  "file": "MEMNAGAR.pdf",
+  "block": "SE",
+  "matched_place_names": 4,
+  "runner_up_votes": 3,
+  "offset_points": [
+    667.4,
+    328.3
+  ],
+  "lon_min": 72.607352,
+  "lon_max": 72.6347938,
+  "lat_min": 22.8018852,
+  "lat_max": 22.819428,
+  "width_km": 2.82,
+  "height_km": 1.95,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MEMNAGAR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

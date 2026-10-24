@@ -1,0 +1,19 @@
+{
+  "name": "LUNASAN",
+  "file": "LUNASAN.pdf",
+  "block": "NW",
+  "matched_place_names": 53,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8786.7,
+    3911.6
+  ],
+  "lon_min": 72.6597468,
+  "lon_max": 72.6907254,
+  "lat_min": 23.2501002,
+  "lat_max": 23.2704162,
+  "width_km": 3.17,
+  "height_km": 2.25,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LUNASAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

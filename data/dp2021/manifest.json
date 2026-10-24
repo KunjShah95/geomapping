@@ -1,0 +1,39 @@
+{
+  "id": "auda-srdp-2021",
+  "generated_from": "AUDA DP 2021 (Second Revised) - four georeferenced vector GeoPDF parts supplied by the client",
+  "tiles": {
+    "count": 43469,
+    "bytes": 416582520,
+    "per_zoom": {
+      "11": 20,
+      "12": 72,
+      "13": 250,
+      "14": 852,
+      "15": 2721,
+      "16": 8921,
+      "17": 30633
+    }
+  },
+  "layers": {
+    "plan": {
+      "kind": "raster",
+      "url": "/tiles_dp2021/{z}/{x}/{y}.webp",
+      "zmin": 11,
+      "zmax": 17
+    },
+    "plots": {
+      "kind": "geojson",
+      "url": "/data/dp2021/plots.geojson",
+      "count": 207934,
+      "buckets": "/data/dp2021/plots/15/{x}/{y}.geojson"
+    },
+    "labels": {
+      "kind": "geojson",
+      "url": "/data/dp2021/labels.geojson"
+    },
+    "legend": {
+      "kind": "json",
+      "url": "/data/dp2021/legend.json"
+    }
+  }
+}

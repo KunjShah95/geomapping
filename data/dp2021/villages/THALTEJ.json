@@ -1,0 +1,19 @@
+{
+  "name": "THALTEJ",
+  "file": "THALTEJ.pdf",
+  "block": "SW",
+  "matched_place_names": 11,
+  "runner_up_votes": 10,
+  "offset_points": [
+    10005.7,
+    -1084.3
+  ],
+  "lon_min": 72.4473637,
+  "lon_max": 72.5392429,
+  "lat_min": 22.7305088,
+  "lat_max": 22.8069466,
+  "width_km": 9.43,
+  "height_km": 8.48,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/THALTEJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

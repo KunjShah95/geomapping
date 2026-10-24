@@ -1,0 +1,16 @@
+{
+  "461-2_504_435": {
+    "numbers": [
+      "461/2",
+      "504",
+      "435"
+    ],
+    "marks": 2,
+    "centre": [
+      72.301464,
+      23.0634902
+    ],
+    "geojson": "/data/dp2021/marked/461-2_504_435.geojson",
+    "image": "work/newdp/marked/461-2_504_435.png"
+  }
+}

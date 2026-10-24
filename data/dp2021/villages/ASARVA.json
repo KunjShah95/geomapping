@@ -1,0 +1,19 @@
+{
+  "name": "ASARVA",
+  "file": "ASARVA.pdf",
+  "block": "NE",
+  "matched_place_names": 3,
+  "runner_up_votes": 2,
+  "offset_points": [
+    3119.6,
+    11644.1
+  ],
+  "lon_min": 72.7474871,
+  "lon_max": 72.7885977,
+  "lat_min": 23.377594,
+  "lat_max": 23.413381,
+  "width_km": 4.2,
+  "height_km": 3.97,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ASARVA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CHILODA",
+  "file": "CHILODA.pdf",
+  "block": "NE",
+  "matched_place_names": 141,
+  "runner_up_votes": 2,
+  "offset_points": [
+    4936.6,
+    9437.3
+  ],
+  "lon_min": 72.7876434,
+  "lon_max": 72.8156353,
+  "lat_min": 23.5307703,
+  "lat_max": 23.5587591,
+  "width_km": 2.86,
+  "height_km": 3.11,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHILODA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

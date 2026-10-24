@@ -1,0 +1,19 @@
+{
+  "name": "PALSANA",
+  "file": "PALSANA.pdf",
+  "block": "NW",
+  "matched_place_names": 22,
+  "runner_up_votes": 3,
+  "offset_points": [
+    11222.3,
+    5827.2
+  ],
+  "lon_min": 72.795049,
+  "lon_max": 72.8240883,
+  "lat_min": 23.3466792,
+  "lat_max": 23.3786476,
+  "width_km": 2.97,
+  "height_km": 3.55,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PALSANA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

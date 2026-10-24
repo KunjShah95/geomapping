@@ -1,0 +1,19 @@
+{
+  "name": "DODAR",
+  "file": "DODAR.pdf",
+  "block": "SW",
+  "matched_place_names": 3,
+  "runner_up_votes": 1,
+  "offset_points": [
+    2455.1,
+    -650.8
+  ],
+  "lon_min": 72.2501388,
+  "lon_max": 72.2937064,
+  "lat_min": 22.7541109,
+  "lat_max": 22.7907944,
+  "width_km": 4.47,
+  "height_km": 4.07,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DODAR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

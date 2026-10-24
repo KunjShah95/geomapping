@@ -1,0 +1,19 @@
+{
+  "name": "DHSNAP",
+  "file": "DHSNAP.pdf",
+  "block": "NE",
+  "matched_place_names": 16,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8452.5,
+    2886.6
+  ],
+  "lon_min": 72.9782851,
+  "lon_max": 73.0161428,
+  "lat_min": 23.1950524,
+  "lat_max": 23.2330393,
+  "width_km": 3.87,
+  "height_km": 4.22,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DHSNAP.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "NIDHRAD",
+  "file": "NIDHRAD.pdf",
+  "block": "SW",
+  "matched_place_names": 63,
+  "runner_up_votes": 1,
+  "offset_points": [
+    6667.4,
+    908.6
+  ],
+  "lon_min": 72.5394027,
+  "lon_max": 72.5843497,
+  "lat_min": 22.8041678,
+  "lat_max": 22.8446631,
+  "width_km": 4.61,
+  "height_km": 4.49,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NIDHRAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

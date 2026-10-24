@@ -1,0 +1,19 @@
+{
+  "name": "CHANDKHEDA",
+  "file": "CHANDKHEDA.pdf",
+  "block": "NE",
+  "matched_place_names": 370,
+  "runner_up_votes": 3,
+  "offset_points": [
+    1766.3,
+    9066.2
+  ],
+  "lon_min": 72.6122275,
+  "lon_max": 72.6685823,
+  "lat_min": 23.5130276,
+  "lat_max": 23.5467438,
+  "width_km": 5.75,
+  "height_km": 3.74,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHANDKHEDA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

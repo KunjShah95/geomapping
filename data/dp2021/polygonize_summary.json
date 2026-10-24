@@ -1,0 +1,17 @@
+{
+  "faces_from_linework": 231574,
+  "faces_of_plot_size": 231944,
+  "records_without_a_plot_before": 43747,
+  "records_placed_now": 42773,
+  "placed_by_linework": 42270,
+  "placed_by_cell_fills": 503,
+  "flagged_not_a_survey_number": 0,
+  "records_still_without_a_plot": 974,
+  "new_plots": 40720,
+  "check_against_closed_rings": {
+    "pairs": 159600,
+    "iou_median": 0.9999,
+    "iou_p10": 0.9991,
+    "share_iou_over_0.9": 0.9424
+  }
+}

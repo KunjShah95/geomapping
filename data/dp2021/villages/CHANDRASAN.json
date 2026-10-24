@@ -1,0 +1,19 @@
+{
+  "name": "CHANDRASAN",
+  "file": "CHANDRASAN.pdf",
+  "block": "SW",
+  "matched_place_names": 5,
+  "runner_up_votes": 3,
+  "offset_points": [
+    3881.0,
+    -529.2
+  ],
+  "lon_min": 72.3285698,
+  "lon_max": 72.3693046,
+  "lat_min": 22.7599333,
+  "lat_max": 22.8027816,
+  "width_km": 4.18,
+  "height_km": 4.76,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHANDRASAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

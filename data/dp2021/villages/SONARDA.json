@@ -1,0 +1,19 @@
+{
+  "name": "SONARDA",
+  "file": "SONARDA.pdf",
+  "block": "NE",
+  "matched_place_names": 23,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8010.7,
+    8853.1
+  ],
+  "lon_min": 72.9572422,
+  "lon_max": 73.0040626,
+  "lat_min": 23.4992885,
+  "lat_max": 23.5257262,
+  "width_km": 4.78,
+  "height_km": 2.93,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SONARDA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

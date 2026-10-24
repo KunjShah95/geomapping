@@ -1,0 +1,19 @@
+{
+  "name": "IYAVA",
+  "file": "IYAVA.pdf",
+  "block": "SW",
+  "matched_place_names": 33,
+  "runner_up_votes": 2,
+  "offset_points": [
+    4423.6,
+    612.8
+  ],
+  "lon_min": 72.4159215,
+  "lon_max": 72.4605726,
+  "lat_min": 22.7898806,
+  "lat_max": 22.8296844,
+  "width_km": 4.58,
+  "height_km": 4.42,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/IYAVA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,106 @@
+{
+  "classes": {
+    "Residental Zone I-R1": {
+      "polygons": 27457,
+      "area_km2": 173.5,
+      "holes": 368
+    },
+    "Residental Zone II-R2 / Gamtal Extension-GME": {
+      "polygons": 16916,
+      "area_km2": 96.0,
+      "holes": 101
+    },
+    "Residental Zone III-R3": {
+      "polygons": 5954,
+      "area_km2": 29.1,
+      "holes": 26
+    },
+    "Residental A\ufb00ordabl e Housi ng Zone 1-RAH 1": {
+      "polygons": 776,
+      "area_km2": 9.8,
+      "holes": 38
+    },
+    "Core Walled City-CW": {
+      "polygons": 230,
+      "area_km2": 3.5,
+      "holes": 1
+    },
+    "Gamtal-GM": {
+      "polygons": 394,
+      "area_km2": 23.4,
+      "holes": 651
+    },
+    "Central Business District-CBD": {
+      "polygons": 155,
+      "area_km2": 0.8,
+      "holes": 2
+    },
+    "Commercial Zone-C": {
+      "polygons": 734,
+      "area_km2": 4.7,
+      "holes": 15
+    },
+    "Industrial Zone General-IG": {
+      "polygons": 8146,
+      "area_km2": 95.1,
+      "holes": 148
+    },
+    "Knowledge & Insttuuonal Zone- KZ": {
+      "polygons": 1134,
+      "area_km2": 20.9,
+      "holes": 70
+    },
+    "Parks , Gardens & Open Space-P": {
+      "polygons": 155,
+      "area_km2": 1.5,
+      "holes": 4
+    },
+    "General Agricultural Zone-A1": {
+      "polygons": 36156,
+      "area_km2": 324.3,
+      "holes": 153
+    },
+    "Prime Agricultural Zone-A2": {
+      "polygons": 35328,
+      "area_km2": 410.0,
+      "holes": 994
+    },
+    "Restricted Agricultural Zone-A3": {
+      "polygons": 800,
+      "area_km2": 12.5,
+      "holes": 75
+    },
+    "Existng Road": {
+      "polygons": 5349,
+      "area_km2": 25.3,
+      "holes": 12
+    },
+    "Existng Rai lwa y / Proposed DFC": {
+      "polygons": 863,
+      "area_km2": 15.7,
+      "holes": 31
+    },
+    "Ancient Monument": {
+      "polygons": 4,
+      "area_km2": 0.1,
+      "holes": 0
+    },
+    "Burial & Crematon Gr ound": {
+      "polygons": 53,
+      "area_km2": 0.6,
+      "holes": 0
+    },
+    "Sewage / Water Treatment Plant": {
+      "polygons": 330,
+      "area_km2": 15.1,
+      "holes": 32
+    },
+    "Waterbody": {
+      "polygons": 3268,
+      "area_km2": 71.9,
+      "holes": 89
+    }
+  },
+  "total_polygons": 144202,
+  "total_area_km2": 1334.0
+}

@@ -1,0 +1,19 @@
+{
+  "name": "VAMAJ",
+  "file": "VAMAJ.pdf",
+  "block": "NW",
+  "matched_place_names": 702,
+  "runner_up_votes": 15,
+  "offset_points": [
+    7468.0,
+    4386.4
+  ],
+  "lon_min": 72.5871958,
+  "lon_max": 72.6567985,
+  "lat_min": 23.274559,
+  "lat_max": 23.3331084,
+  "width_km": 7.12,
+  "height_km": 6.5,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VAMAJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,50 @@
+{
+  "method": "the four part sheets are a regular 2x2 grid in the projected plane, fitted to all sixteen of their published corner values; a ground correction fitted to OSM roads then moves the plan onto the ground",
+  "sheet_fit_rms_m": 2.26,
+  "sheet_fit_note": "How well the four sheets agree with their own printed corners. It is internal consistency only and says nothing about where the plan sits on the ground: the printed corners themselves place the plan ~85 m east of the ground.",
+  "ground_correction": {
+    "id": "osm-affine-937w",
+    "shift_at_centre_m": [
+      -84.9,
+      -23.8
+    ],
+    "rotation_deg": -0.0299,
+    "scale_x": 1.000109,
+    "scale_y": 1.000671,
+    "fit": {
+      "windows": 937,
+      "before_median_m": 90.5,
+      "before_p90_m": 100.6,
+      "after_median_m": 8.5,
+      "after_p90_m": 23.9,
+      "held_out_median_m": 8.9,
+      "held_out_p90_m": 24.0
+    }
+  },
+  "plan_to_ground": {
+    "offset_median_m": 6.4,
+    "offset_p90_m": 16.42,
+    "n_windows": 977,
+    "window_m": 1688,
+    "reference": "OSM roads",
+    "in_sample_median_m": 4.8,
+    "in_sample_p90_m": 13.9,
+    "note": "offset_* is the held-out prediction (5 km blocks, 2 km buffer); in_sample_* is measured on the windows the warp was fitted to"
+  },
+  "plan_to_ground_note": "Residual offset between the plan's road corridors and OSM roads. It includes OSM's own error and places where the plan's drawing differs from what was built, so it is an upper bound on the placement error, not the placement error itself.",
+  "projection": "WGS_1984_Transverse_Mercator, CM 71.5, k0 0.999738, FE/FN 400000 (the CRS published in the source files)",
+  "scale_m_per_point": 2.822434,
+  "ground_warp": {
+    "id": "gauss3km-s0.1-954w",
+    "sigma_m": 3000.0,
+    "max_shift_m": 26.89,
+    "fit": {
+      "windows": 954,
+      "before_median_m": 7.66,
+      "before_p90_m": 19.75,
+      "held_out_median_m": 6.4,
+      "held_out_p90_m": 16.42,
+      "cv": "5 km blocks, 2 km buffer"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "VADODARA",
+  "file": "VADODARA.pdf",
+  "block": "NE",
+  "matched_place_names": 6,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8620.4,
+    6969.7
+  ],
+  "lon_min": 72.989858,
+  "lon_max": 73.0335956,
+  "lat_min": 23.4030031,
+  "lat_max": 23.4413849,
+  "width_km": 4.47,
+  "height_km": 4.26,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VADODARA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

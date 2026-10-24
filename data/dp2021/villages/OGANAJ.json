@@ -1,0 +1,19 @@
+{
+  "name": "OGANAJ",
+  "file": "OGANAJ.pdf",
+  "block": "NW",
+  "matched_place_names": 5,
+  "runner_up_votes": 4,
+  "offset_points": [
+    11685.0,
+    8726.5
+  ],
+  "lon_min": 72.5003609,
+  "lon_max": 72.5400485,
+  "lat_min": 23.3022083,
+  "lat_max": 23.3542311,
+  "width_km": 4.06,
+  "height_km": 5.77,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/OGANAJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

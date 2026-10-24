@@ -1,0 +1,19 @@
+{
+  "name": "CHENPUR",
+  "file": "CHENPUR.pdf",
+  "block": "NE",
+  "matched_place_names": 61,
+  "runner_up_votes": 2,
+  "offset_points": [
+    1358.8,
+    9953.8
+  ],
+  "lon_min": 72.5900767,
+  "lon_max": 72.6101424,
+  "lat_min": 23.5586991,
+  "lat_max": 23.5756807,
+  "width_km": 2.05,
+  "height_km": 1.88,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHENPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

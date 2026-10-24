@@ -1,0 +1,19 @@
+{
+  "name": "DARIYAPUR KAZIPUR",
+  "file": "DARIYAPUR KAZIPUR.pdf",
+  "block": "NE",
+  "matched_place_names": 3,
+  "runner_up_votes": 2,
+  "offset_points": [
+    2262.2,
+    11631.7
+  ],
+  "lon_min": 72.7001457,
+  "lon_max": 72.7340256,
+  "lat_min": 23.3773422,
+  "lat_max": 23.4094574,
+  "width_km": 3.46,
+  "height_km": 3.56,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DARIYAPUR KAZIPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

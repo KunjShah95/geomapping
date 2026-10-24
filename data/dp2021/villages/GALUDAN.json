@@ -1,0 +1,19 @@
+{
+  "name": "GALUDAN",
+  "file": "GALUDAN.pdf",
+  "block": "NE",
+  "matched_place_names": 22,
+  "runner_up_votes": 8,
+  "offset_points": [
+    8647.0,
+    8321.0
+  ],
+  "lon_min": 72.9920975,
+  "lon_max": 73.0324999,
+  "lat_min": 23.4718886,
+  "lat_max": 23.4947704,
+  "width_km": 4.13,
+  "height_km": 2.54,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GALUDAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

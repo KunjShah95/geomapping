@@ -1,0 +1,19 @@
+{
+  "name": "VIROCHANNAGAR",
+  "file": "VIROCHANNAGAR.pdf",
+  "block": "NW",
+  "matched_place_names": 6,
+  "runner_up_votes": 5,
+  "offset_points": [
+    584.4,
+    9458.7
+  ],
+  "lon_min": 72.1936563,
+  "lon_max": 72.2656048,
+  "lat_min": 23.3053169,
+  "lat_max": 23.3782263,
+  "width_km": 7.35,
+  "height_km": 8.09,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VIROCHANNAGAR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

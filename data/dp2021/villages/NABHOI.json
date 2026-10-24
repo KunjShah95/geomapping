@@ -1,0 +1,19 @@
+{
+  "name": "NABHOI",
+  "file": "NABHOI.pdf",
+  "block": "NE",
+  "matched_place_names": 20,
+  "runner_up_votes": 8,
+  "offset_points": [
+    4265.1,
+    8517.4
+  ],
+  "lon_min": 72.7500796,
+  "lon_max": 72.7704832,
+  "lat_min": 23.4842537,
+  "lat_max": 23.5102394,
+  "width_km": 2.08,
+  "height_km": 2.88,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NABHOI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

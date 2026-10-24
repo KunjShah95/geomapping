@@ -1,0 +1,19 @@
+{
+  "name": "JETPURA",
+  "file": "JETPURA.pdf",
+  "block": "NW",
+  "matched_place_names": 33,
+  "runner_up_votes": 1,
+  "offset_points": [
+    6416.2,
+    5262.6
+  ],
+  "lon_min": 72.5295062,
+  "lon_max": 72.5461269,
+  "lat_min": 23.3200009,
+  "lat_max": 23.3352997,
+  "width_km": 1.7,
+  "height_km": 1.7,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JETPURA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

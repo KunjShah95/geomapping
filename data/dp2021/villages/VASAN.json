@@ -1,0 +1,19 @@
+{
+  "name": "VASAN",
+  "file": "VASAN.pdf",
+  "block": "NE",
+  "matched_place_names": 15,
+  "runner_up_votes": 1,
+  "offset_points": [
+    3653.7,
+    692.5
+  ],
+  "lon_min": 72.7126756,
+  "lon_max": 72.7449777,
+  "lat_min": 23.0855842,
+  "lat_max": 23.1238028,
+  "width_km": 3.31,
+  "height_km": 4.24,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

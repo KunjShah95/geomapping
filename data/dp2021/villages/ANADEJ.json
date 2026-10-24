@@ -1,0 +1,19 @@
+{
+  "name": "ANADEJ",
+  "file": "ANADEJ.pdf",
+  "block": "NW",
+  "matched_place_names": 241,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4732.5,
+    10034.4
+  ],
+  "lon_min": 72.4382852,
+  "lon_max": 72.4838993,
+  "lat_min": 23.5636606,
+  "lat_max": 23.6085344,
+  "width_km": 4.65,
+  "height_km": 4.98,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ANADEJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

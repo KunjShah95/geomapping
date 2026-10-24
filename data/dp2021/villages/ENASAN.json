@@ -1,0 +1,19 @@
+{
+  "name": "ENASAN",
+  "file": "ENASAN.pdf",
+  "block": "NE",
+  "matched_place_names": 13,
+  "runner_up_votes": 1,
+  "offset_points": [
+    6489.9,
+    9801.6
+  ],
+  "lon_min": 72.8736985,
+  "lon_max": 72.9017953,
+  "lat_min": 23.5485869,
+  "lat_max": 23.572555,
+  "width_km": 2.87,
+  "height_km": 2.66,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ENASAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

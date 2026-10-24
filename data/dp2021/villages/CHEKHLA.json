@@ -1,0 +1,19 @@
+{
+  "name": "CHEKHLA",
+  "file": "CHEKHLA.pdf",
+  "block": "NW",
+  "matched_place_names": 3,
+  "runner_up_votes": 3,
+  "offset_points": [
+    5411.2,
+    11079.1
+  ],
+  "lon_min": 72.4166923,
+  "lon_max": 72.4828331,
+  "lat_min": 23.3509585,
+  "lat_max": 23.3982489,
+  "width_km": 6.76,
+  "height_km": 5.25,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHEKHLA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

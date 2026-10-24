@@ -1,0 +1,19 @@
+{
+  "name": "AMBLIYARA",
+  "file": "AMBLIYARA.pdf",
+  "block": "NW",
+  "matched_place_names": 153,
+  "runner_up_votes": 1,
+  "offset_points": [
+    6400.2,
+    7099.2
+  ],
+  "lon_min": 72.5293436,
+  "lon_max": 72.556716,
+  "lat_min": 23.4135558,
+  "lat_max": 23.4369929,
+  "width_km": 2.8,
+  "height_km": 2.6,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/AMBLIYARA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

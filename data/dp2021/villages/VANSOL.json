@@ -1,0 +1,19 @@
+{
+  "name": "VANSOL",
+  "file": "VANSOL.pdf",
+  "block": "NW",
+  "matched_place_names": 181,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8557.6,
+    4388.1
+  ],
+  "lon_min": 72.6473167,
+  "lon_max": 72.6693517,
+  "lat_min": 23.2745516,
+  "lat_max": 23.300103,
+  "width_km": 2.25,
+  "height_km": 2.84,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANSOL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

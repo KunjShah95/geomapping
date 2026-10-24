@@ -1,0 +1,19 @@
+{
+  "name": "KAROLI",
+  "file": "KAROLI.pdf",
+  "block": "NW",
+  "matched_place_names": 153,
+  "runner_up_votes": 1,
+  "offset_points": [
+    8848.2,
+    7685.7
+  ],
+  "lon_min": 72.6648176,
+  "lon_max": 72.6905038,
+  "lat_min": 23.4424902,
+  "lat_max": 23.4642353,
+  "width_km": 2.62,
+  "height_km": 2.41,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KAROLI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

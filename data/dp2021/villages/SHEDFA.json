@@ -1,0 +1,19 @@
+{
+  "name": "SHEDFA",
+  "file": "SHEDFA.pdf",
+  "block": "NW",
+  "matched_place_names": 15,
+  "runner_up_votes": 1,
+  "offset_points": [
+    6919.9,
+    7873.3
+  ],
+  "lon_min": 72.5583646,
+  "lon_max": 72.5818011,
+  "lat_min": 23.452843,
+  "lat_max": 23.4665661,
+  "width_km": 2.39,
+  "height_km": 1.52,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHEDFA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

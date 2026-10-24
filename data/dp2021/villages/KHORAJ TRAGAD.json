@@ -1,0 +1,19 @@
+{
+  "name": "KHORAJ TRAGAD",
+  "file": "KHORAJ TRAGAD.pdf",
+  "block": "NE",
+  "matched_place_names": 214,
+  "runner_up_votes": 30,
+  "offset_points": [
+    1061.7,
+    7793.0
+  ],
+  "lon_min": 72.5727545,
+  "lon_max": 72.6084885,
+  "lat_min": 23.4485657,
+  "lat_max": 23.4840799,
+  "width_km": 3.65,
+  "height_km": 3.94,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHORAJ TRAGAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

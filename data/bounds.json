@@ -1,0 +1,55 @@
+{
+  "id": "auda-rdp-2022",
+  "title": "AUDA Revised Development Plan 2022",
+  "source": "audareviseddevelopmentplan2022map04112022064034976.pdf (1 page, 27200x25600 scan)",
+  "crs": "EPSG:3857",
+  "lon_min": 72.178109,
+  "lon_max": 72.860675,
+  "lat_min": 22.763306,
+  "lat_max": 23.357406,
+  "raster_source": {
+    "type": "raster",
+    "tiles": [
+      "/tiles/{z}/{x}/{y}.jpg"
+    ],
+    "tileSize": 256,
+    "minzoom": 11,
+    "maxzoom": 16,
+    "bounds": [
+      72.178109,
+      22.763306,
+      72.860675,
+      23.357406
+    ]
+  },
+  "map_view": {
+    "fitBounds": [
+      [
+        72.178109,
+        22.763306
+      ],
+      [
+        72.860675,
+        23.357406
+      ]
+    ],
+    "minZoom": 11,
+    "maxZoom": 18
+  },
+  "resolution": {
+    "m_per_px": 2.5703,
+    "native_zoom": 15.77,
+    "anisotropy": 0.994913,
+    "width_km": 69.91
+  },
+  "accuracy": {
+    "method": "sheet edges anchored to the AUDA bbox published by townplanmap.com",
+    "aspect_agreement_pct": 0.509,
+    "worst_case_error_m": 365,
+    "caveat": "Not survey control. The reference bbox is hand-entered and internally anisotropic by 0.5%, which accumulates to roughly 365 m at the far north/south edges of this 70 km sheet. Verified good near the centre (~10-20 m at z16). Replace with surveyed control points before any parcel-level legal use.",
+    "improvement_paths": [
+      "least-squares fit against the place names burned into the scan (MOTERA, BHAT, HANSOL, ASARVA, RAMOL, SANAND, ...)",
+      "request the georeferenced original or a GeoPDF from AUDA"
+    ]
+  }
+}

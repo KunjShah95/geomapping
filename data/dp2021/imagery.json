@@ -1,0 +1,169 @@
+{
+ "source": "Esri World Imagery Wayback",
+ "config": "https://s3-us-west-2.amazonaws.com/config.maptiles.arcgis.com/waybackconfig.json",
+ "attribution": "Esri World Imagery Wayback; imagery \u00a9 its providers (Maxar, Vantor, et al.)",
+ "default": "wayback-10321",
+ "note": "Labels are the capture date over the centre of the plan. Captures can differ slightly across the area; see `captures`.",
+ "releases": [
+  {
+   "id": "wayback-4756",
+   "release": "2019-12-12",
+   "capture": "2017-09-28",
+   "captures": {
+    "centre": 20170928,
+    "west": 20170928,
+    "north": 20170928,
+    "east": 20170928
+   },
+   "sensor": "WV03",
+   "provider": "DigitalGlobe",
+   "res_m": 0.31,
+   "label": "2017-09 (DigitalGlobe)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/4756/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-18289",
+   "release": "2020-07-01",
+   "capture": "2019-03-22",
+   "captures": {
+    "centre": 20190322,
+    "west": 20190322,
+    "north": 20190322,
+    "east": 20190414
+   },
+   "sensor": "WV03_VNIR",
+   "provider": "Maxar",
+   "res_m": 0.31,
+   "label": "2019-03 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/18289/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-9812",
+   "release": "2021-02-24",
+   "capture": "2020-03-12",
+   "captures": {
+    "centre": 20200312,
+    "west": 20200312,
+    "north": 20200312,
+    "east": 20200317
+   },
+   "sensor": "GE01",
+   "provider": "Maxar",
+   "res_m": 0.46,
+   "label": "2020-03 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/9812/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-10321",
+   "release": "2022-03-16",
+   "capture": "2021-10-18",
+   "captures": {
+    "centre": 20211018,
+    "west": 20211018,
+    "north": 20211018,
+    "east": 20211018
+   },
+   "sensor": "WV02",
+   "provider": "Maxar",
+   "res_m": 0.5,
+   "label": "2021-10 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10321/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-7110",
+   "release": "2022-11-02",
+   "capture": "2022-02-09",
+   "captures": {
+    "centre": 20220209,
+    "west": 20220220,
+    "north": 20220512,
+    "east": 20220220
+   },
+   "sensor": "WV02",
+   "provider": "Maxar",
+   "res_m": 0.5,
+   "label": "2022-02 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/7110/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-25982",
+   "release": "2023-06-13",
+   "capture": "2023-02-22",
+   "captures": {
+    "centre": 20230222,
+    "west": 20230222,
+    "north": 20230222,
+    "east": 20230222
+   },
+   "sensor": "WV03",
+   "provider": "Maxar",
+   "res_m": 0.31,
+   "label": "2023-02 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/25982/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-34007",
+   "release": "2025-02-27",
+   "capture": "2024-05-17",
+   "captures": {
+    "centre": 20240517,
+    "west": 20240321,
+    "north": 20240203,
+    "east": 20240213
+   },
+   "sensor": "WV03",
+   "provider": "Maxar",
+   "res_m": 0.31,
+   "label": "2024-05 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/34007/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-49999",
+   "release": "2025-07-31",
+   "capture": "2025-05-14",
+   "captures": {
+    "centre": 20250514,
+    "west": 20250425,
+    "north": 20250501,
+    "east": 20250121
+   },
+   "sensor": "WV03",
+   "provider": "Maxar",
+   "res_m": 0.31,
+   "label": "2025-05 (Maxar)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/49999/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-49059",
+   "release": "2026-04-30",
+   "capture": "2025-11-16",
+   "captures": {
+    "centre": 20251116,
+    "west": 20260127,
+    "north": 20260127,
+    "east": 20251230
+   },
+   "sensor": "WV02",
+   "provider": "Vantor",
+   "res_m": 0.5,
+   "label": "2025-11 (Vantor)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/49059/{z}/{y}/{x}"
+  },
+  {
+   "id": "wayback-63116",
+   "release": "2026-09-24",
+   "capture": "2025-12-17",
+   "captures": {
+    "centre": 20251217,
+    "west": 20260508,
+    "north": 20260127,
+    "east": 20260516
+   },
+   "sensor": "WV03",
+   "provider": "Vantor",
+   "res_m": 0.31,
+   "label": "2025-12 (Vantor)",
+   "tiles": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/63116/{z}/{y}/{x}"
+  }
+ ]
+}

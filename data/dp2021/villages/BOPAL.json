@@ -1,0 +1,19 @@
+{
+  "name": "BOPAL",
+  "file": "BOPAL.pdf",
+  "block": "SW",
+  "matched_place_names": 289,
+  "runner_up_votes": 1,
+  "offset_points": [
+    10055.7,
+    843.8
+  ],
+  "lon_min": 72.7256765,
+  "lon_max": 72.756491,
+  "lat_min": 22.7996012,
+  "lat_max": 22.8370756,
+  "width_km": 3.16,
+  "height_km": 4.16,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BOPAL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "SANAVAD",
+  "file": "SANAVAD.pdf",
+  "block": "NW",
+  "matched_place_names": 60,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9269.7,
+    9263.2
+  ],
+  "lon_min": 72.6888245,
+  "lon_max": 72.7091971,
+  "lat_min": 23.5227582,
+  "lat_max": 23.5469015,
+  "width_km": 2.08,
+  "height_km": 2.68,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANAVAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

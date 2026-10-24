@@ -1,0 +1,19 @@
+{
+  "name": "PIYAJ",
+  "file": "PIYAJ.pdf",
+  "block": "NW",
+  "matched_place_names": 73,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9105.5,
+    4548.8
+  ],
+  "lon_min": 72.6776191,
+  "lon_max": 72.7139443,
+  "lat_min": 23.2824062,
+  "lat_max": 23.3186638,
+  "width_km": 3.71,
+  "height_km": 4.02,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PIYAJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

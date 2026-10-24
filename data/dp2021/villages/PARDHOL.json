@@ -1,0 +1,19 @@
+{
+  "name": "PARDHOL",
+  "file": "PARDHOL.pdf",
+  "block": "NE",
+  "matched_place_names": 18,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7237.0,
+    10254.2
+  ],
+  "lon_min": 72.9152501,
+  "lon_max": 72.9512128,
+  "lat_min": 23.5712035,
+  "lat_max": 23.5910236,
+  "width_km": 3.67,
+  "height_km": 2.2,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PARDHOL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "KOTPURA",
+  "file": "KOTPURA.pdf",
+  "block": "SW",
+  "matched_place_names": 13,
+  "runner_up_votes": 1,
+  "offset_points": [
+    2764.7,
+    1483.0
+  ],
+  "lon_min": 72.3249758,
+  "lon_max": 72.3613139,
+  "lat_min": 22.8348123,
+  "lat_max": 22.87277,
+  "width_km": 3.73,
+  "height_km": 4.21,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KOTPURA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

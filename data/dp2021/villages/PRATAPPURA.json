@@ -1,0 +1,19 @@
+{
+  "name": "PRATAPPURA",
+  "file": "PRATAPPURA.pdf",
+  "block": "NW",
+  "matched_place_names": 16,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9865.4,
+    3911.6
+  ],
+  "lon_min": 72.7192538,
+  "lon_max": 72.7448453,
+  "lat_min": 23.2496818,
+  "lat_max": 23.2791074,
+  "width_km": 2.62,
+  "height_km": 3.27,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PRATAPPURA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

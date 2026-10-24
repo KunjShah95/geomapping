@@ -1,0 +1,19 @@
+{
+  "name": "HAJIPUR",
+  "file": "HAJIPUR.pdf",
+  "block": "NW",
+  "matched_place_names": 294,
+  "runner_up_votes": 2,
+  "offset_points": [
+    7277.7,
+    6898.9
+  ],
+  "lon_min": 72.5777303,
+  "lon_max": 72.641344,
+  "lat_min": 23.4027513,
+  "lat_max": 23.4413032,
+  "width_km": 6.5,
+  "height_km": 4.28,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HAJIPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

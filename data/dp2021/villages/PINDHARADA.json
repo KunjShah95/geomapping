@@ -1,0 +1,19 @@
+{
+  "name": "PINDHARADA",
+  "file": "PINDHARADA.pdf",
+  "block": "NE",
+  "matched_place_names": 6,
+  "runner_up_votes": 1,
+  "offset_points": [
+    5984.2,
+    660.8
+  ],
+  "lon_min": 72.8410602,
+  "lon_max": 72.8752871,
+  "lat_min": 23.0828866,
+  "lat_max": 23.1085011,
+  "width_km": 3.5,
+  "height_km": 2.84,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PINDHARADA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

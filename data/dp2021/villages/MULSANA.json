@@ -1,0 +1,19 @@
+{
+  "name": "MULSANA",
+  "file": "MULSANA.pdf",
+  "block": "NW",
+  "matched_place_names": 138,
+  "runner_up_votes": 2,
+  "offset_points": [
+    5909.6,
+    9310.7
+  ],
+  "lon_min": 72.5030983,
+  "lon_max": 72.5380393,
+  "lat_min": 23.5264154,
+  "lat_max": 23.5663804,
+  "width_km": 3.57,
+  "height_km": 4.44,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MULSANA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

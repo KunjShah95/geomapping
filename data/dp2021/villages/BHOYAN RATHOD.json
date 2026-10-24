@@ -1,0 +1,19 @@
+{
+  "name": "BHOYAN RATHOD",
+  "file": "BHOYAN RATHOD.pdf",
+  "block": "NE",
+  "matched_place_names": 22,
+  "runner_up_votes": 2,
+  "offset_points": [
+    393.1,
+    4060.2
+  ],
+  "lon_min": 72.5343382,
+  "lon_max": 72.5647962,
+  "lat_min": 23.2585807,
+  "lat_max": 23.2982206,
+  "width_km": 3.11,
+  "height_km": 4.4,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHOYAN RATHOD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

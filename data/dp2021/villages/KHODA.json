@@ -1,0 +1,19 @@
+{
+  "name": "KHODA",
+  "file": "KHODA.pdf",
+  "block": "SW",
+  "matched_place_names": 37,
+  "runner_up_votes": 1,
+  "offset_points": [
+    3866.3,
+    1068.7
+  ],
+  "lon_min": 72.3854289,
+  "lon_max": 72.4137619,
+  "lat_min": 22.8133988,
+  "lat_max": 22.8641108,
+  "width_km": 2.91,
+  "height_km": 5.63,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHODA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

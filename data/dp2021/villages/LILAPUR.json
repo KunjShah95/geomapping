@@ -1,0 +1,19 @@
+{
+  "name": "LILAPUR",
+  "file": "LILAPUR.pdf",
+  "block": "NW",
+  "matched_place_names": 78,
+  "runner_up_votes": 1,
+  "offset_points": [
+    11947.2,
+    8020.7
+  ],
+  "lon_min": 72.8361865,
+  "lon_max": 72.86302,
+  "lat_min": 23.4581556,
+  "lat_max": 23.4804294,
+  "width_km": 2.74,
+  "height_km": 2.47,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LILAPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

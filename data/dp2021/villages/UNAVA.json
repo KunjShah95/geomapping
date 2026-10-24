@@ -1,0 +1,19 @@
+{
+  "name": "UNAVA",
+  "file": "UNAVA.pdf",
+  "block": "NE",
+  "matched_place_names": 36,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4500.7,
+    615.3
+  ],
+  "lon_min": 72.7593049,
+  "lon_max": 72.8041052,
+  "lat_min": 23.0811722,
+  "lat_max": 23.1238707,
+  "width_km": 4.59,
+  "height_km": 4.74,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/UNAVA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

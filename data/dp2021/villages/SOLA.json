@@ -1,0 +1,19 @@
+{
+  "name": "SOLA",
+  "file": "SOLA.pdf",
+  "block": "NW",
+  "matched_place_names": 4,
+  "runner_up_votes": 4,
+  "offset_points": [
+    11738.9,
+    10452.9
+  ],
+  "lon_min": 72.5037311,
+  "lon_max": 72.5404571,
+  "lat_min": 23.3544841,
+  "lat_max": 23.3929843,
+  "width_km": 3.75,
+  "height_km": 4.27,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SOLA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

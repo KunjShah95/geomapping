@@ -1,0 +1,19 @@
+{
+  "name": "KALANA",
+  "file": "KALANA.pdf",
+  "block": "SW",
+  "matched_place_names": 10,
+  "runner_up_votes": 1,
+  "offset_points": [
+    2240.9,
+    1079.7
+  ],
+  "lon_min": 72.2960472,
+  "lon_max": 72.3312649,
+  "lat_min": 22.8144104,
+  "lat_max": 22.8523861,
+  "width_km": 3.61,
+  "height_km": 4.21,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALANA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

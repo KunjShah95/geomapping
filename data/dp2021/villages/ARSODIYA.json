@@ -1,0 +1,19 @@
+{
+  "name": "ARSODIYA",
+  "file": "ARSODIYA.pdf",
+  "block": "NW",
+  "matched_place_names": 19,
+  "runner_up_votes": 1,
+  "offset_points": [
+    12106.9,
+    4018.6
+  ],
+  "lon_min": 72.8429546,
+  "lon_max": 72.862423,
+  "lat_min": 23.2541603,
+  "lat_max": 23.2753696,
+  "width_km": 1.99,
+  "height_km": 2.35,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ARSODIYA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "RAJPUR",
+  "file": "RAJPUR.pdf",
+  "block": "NE",
+  "matched_place_names": 15,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7190.9,
+    1080.7
+  ],
+  "lon_min": 72.9077608,
+  "lon_max": 72.9300263,
+  "lat_min": 23.1038041,
+  "lat_max": 23.1239849,
+  "width_km": 2.28,
+  "height_km": 2.24,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAJPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

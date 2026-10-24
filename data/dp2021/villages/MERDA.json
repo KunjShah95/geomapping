@@ -1,0 +1,19 @@
+{
+  "name": "MERDA",
+  "file": "MERDA.pdf",
+  "block": "NW",
+  "matched_place_names": 139,
+  "runner_up_votes": 1,
+  "offset_points": [
+    5855.6,
+    6186.8
+  ],
+  "lon_min": 72.4989141,
+  "lon_max": 72.514307,
+  "lat_min": 23.3673239,
+  "lat_max": 23.3907111,
+  "width_km": 1.57,
+  "height_km": 2.6,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MERDA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

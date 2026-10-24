@@ -1,0 +1,19 @@
+{
+  "name": "THOL",
+  "file": "THOL.pdf",
+  "block": "NW",
+  "matched_place_names": 753,
+  "runner_up_votes": 2,
+  "offset_points": [
+    6034.0,
+    8151.1
+  ],
+  "lon_min": 72.509524,
+  "lon_max": 72.6004573,
+  "lat_min": 23.4668784,
+  "lat_max": 23.5296802,
+  "width_km": 9.28,
+  "height_km": 6.97,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/THOL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

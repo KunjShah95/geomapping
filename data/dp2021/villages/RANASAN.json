@@ -1,0 +1,19 @@
+{
+  "name": "RANASAN",
+  "file": "RANASAN.pdf",
+  "block": "NE",
+  "matched_place_names": 43,
+  "runner_up_votes": 1,
+  "offset_points": [
+    5856.6,
+    9567.9
+  ],
+  "lon_min": 72.8385666,
+  "lon_max": 72.864247,
+  "lat_min": 23.5370086,
+  "lat_max": 23.553794,
+  "width_km": 2.62,
+  "height_km": 1.86,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RANASAN.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

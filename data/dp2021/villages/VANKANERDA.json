@@ -1,0 +1,19 @@
+{
+  "name": "VANKANERDA",
+  "file": "VANKANERDA.pdf",
+  "block": "NE",
+  "matched_place_names": 7,
+  "runner_up_votes": 5,
+  "offset_points": [
+    7785.9,
+    7991.4
+  ],
+  "lon_min": 72.9443387,
+  "lon_max": 72.9772741,
+  "lat_min": 23.4556216,
+  "lat_max": 23.4813643,
+  "width_km": 3.36,
+  "height_km": 2.86,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANKANERDA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

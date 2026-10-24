@@ -1,0 +1,11 @@
+{
+  "generated": "2026-10-21T08:38:46Z",
+  "file_count": 45157,
+  "total_bytes": 494156960,
+  "prefixes": [
+    "tiles_dp2021",
+    "data/dp2021"
+  ],
+  "cache_control": "public, max-age=31536000, immutable",
+  "note": "tiles are content-addressed by path; a changed tile changes its path"
+}

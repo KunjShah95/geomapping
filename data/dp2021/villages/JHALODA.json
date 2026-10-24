@@ -1,0 +1,19 @@
+{
+  "name": "JHALODA",
+  "file": "JHALODA.pdf",
+  "block": "NW",
+  "matched_place_names": 510,
+  "runner_up_votes": 2,
+  "offset_points": [
+    5532.2,
+    7483.7
+  ],
+  "lon_min": 72.4815457,
+  "lon_max": 72.524197,
+  "lat_min": 23.4333726,
+  "lat_max": 23.4782875,
+  "width_km": 4.36,
+  "height_km": 4.99,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JHALODA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

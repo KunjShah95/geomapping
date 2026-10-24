@@ -1,0 +1,19 @@
+{
+  "name": "BHAT",
+  "file": "BHAT.pdf",
+  "block": "NE",
+  "matched_place_names": 115,
+  "runner_up_votes": 47,
+  "offset_points": [
+    3849.8,
+    9581.6
+  ],
+  "lon_min": 72.7276324,
+  "lon_max": 72.7623058,
+  "lat_min": 23.5385693,
+  "lat_max": 23.5690211,
+  "width_km": 3.54,
+  "height_km": 3.38,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHAT.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

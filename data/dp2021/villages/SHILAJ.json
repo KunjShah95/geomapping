@@ -1,0 +1,19 @@
+{
+  "name": "SHILAJ",
+  "file": "SHILAJ.pdf",
+  "block": "SW",
+  "matched_place_names": 8,
+  "runner_up_votes": 5,
+  "offset_points": [
+    9946.3,
+    -37.4
+  ],
+  "lon_min": 72.6621742,
+  "lon_max": 72.7061489,
+  "lat_min": 22.7827312,
+  "lat_max": 22.8140196,
+  "width_km": 4.51,
+  "height_km": 3.47,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHILAJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

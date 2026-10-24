@@ -1,0 +1,19 @@
+{
+  "name": "SANTEJ",
+  "file": "SANTEJ.pdf",
+  "block": "NW",
+  "matched_place_names": 577,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9241.0,
+    8578.2
+  ],
+  "lon_min": 72.6869238,
+  "lon_max": 72.7596554,
+  "lat_min": 23.4874457,
+  "lat_max": 23.550743,
+  "width_km": 7.42,
+  "height_km": 7.03,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANTEJ.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

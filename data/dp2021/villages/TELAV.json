@@ -1,0 +1,19 @@
+{
+  "name": "TELAV",
+  "file": "TELAV.pdf",
+  "block": "SW",
+  "matched_place_names": 44,
+  "runner_up_votes": 1,
+  "offset_points": [
+    9018.5,
+    2784.6
+  ],
+  "lon_min": 72.6694965,
+  "lon_max": 72.7024885,
+  "lat_min": 22.8989559,
+  "lat_max": 22.9321653,
+  "width_km": 3.38,
+  "height_km": 3.69,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/TELAV.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "VASNA IYAVA",
+  "file": "VASNA IYAVA.pdf",
+  "block": "SW",
+  "matched_place_names": 22,
+  "runner_up_votes": 2,
+  "offset_points": [
+    5431.3,
+    1216.0
+  ],
+  "lon_min": 72.4715448,
+  "lon_max": 72.508612,
+  "lat_min": 22.8203361,
+  "lat_max": 22.8571772,
+  "width_km": 3.8,
+  "height_km": 4.09,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASNA IYAVA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

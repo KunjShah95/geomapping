@@ -1,0 +1,19 @@
+{
+  "name": "HANSOL",
+  "file": "HANSOL.pdf",
+  "block": "NE",
+  "matched_place_names": 64,
+  "runner_up_votes": 1,
+  "offset_points": [
+    3218.6,
+    10709.3
+  ],
+  "lon_min": 72.6932587,
+  "lon_max": 72.732851,
+  "lat_min": 23.5962854,
+  "lat_max": 23.608182,
+  "width_km": 4.04,
+  "height_km": 1.32,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HANSOL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

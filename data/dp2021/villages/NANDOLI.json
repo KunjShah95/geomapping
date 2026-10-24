@@ -1,0 +1,19 @@
+{
+  "name": "NANDOLI",
+  "file": "NANDOLI.pdf",
+  "block": "NW",
+  "matched_place_names": 21,
+  "runner_up_votes": 1,
+  "offset_points": [
+    10110.9,
+    11072.1
+  ],
+  "lon_min": 72.736186,
+  "lon_max": 72.759773,
+  "lat_min": 23.614563,
+  "lat_max": 23.6365198,
+  "width_km": 2.41,
+  "height_km": 2.44,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NANDOLI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "KALOL",
+  "file": "KALOL.pdf",
+  "block": "NW",
+  "matched_place_names": 242,
+  "runner_up_votes": 2,
+  "offset_points": [
+    10353.2,
+    3535.4
+  ],
+  "lon_min": 72.7459844,
+  "lon_max": 72.8170234,
+  "lat_min": 23.2299187,
+  "lat_max": 23.2737559,
+  "width_km": 7.27,
+  "height_km": 4.87,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALOL.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

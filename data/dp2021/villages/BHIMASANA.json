@@ -1,0 +1,19 @@
+{
+  "name": "BHIMASANA",
+  "file": "BHIMASANA.pdf",
+  "block": "NW",
+  "matched_place_names": 31,
+  "runner_up_votes": 2,
+  "offset_points": [
+    7978.3,
+    8091.2
+  ],
+  "lon_min": 72.6169351,
+  "lon_max": 72.6401639,
+  "lat_min": 23.4635367,
+  "lat_max": 23.4743141,
+  "width_km": 2.37,
+  "height_km": 1.2,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHIMASANA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

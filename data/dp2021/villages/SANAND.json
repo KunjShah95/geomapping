@@ -1,0 +1,19 @@
+{
+  "name": "SANAND",
+  "file": "SANAND.pdf",
+  "block": "SW",
+  "matched_place_names": 899,
+  "runner_up_votes": 2,
+  "offset_points": [
+    5883.9,
+    1653.9
+  ],
+  "lon_min": 72.4965983,
+  "lon_max": 72.5896466,
+  "lat_min": 22.8421289,
+  "lat_max": 22.9141829,
+  "width_km": 9.54,
+  "height_km": 8.0,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANAND.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

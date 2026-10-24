@@ -1,0 +1,19 @@
+{
+  "name": "MUTHIYA",
+  "file": "MUTHIYA.pdf",
+  "block": "NE",
+  "matched_place_names": 226,
+  "runner_up_votes": 1,
+  "offset_points": [
+    5412.8,
+    9960.6
+  ],
+  "lon_min": 72.8142324,
+  "lon_max": 72.8501111,
+  "lat_min": 23.5571501,
+  "lat_max": 23.5810502,
+  "width_km": 3.66,
+  "height_km": 2.65,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MUTHIYA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

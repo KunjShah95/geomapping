@@ -1,0 +1,19 @@
+{
+  "name": "GOTA",
+  "file": "GOTA.pdf",
+  "block": "NE",
+  "matched_place_names": 152,
+  "runner_up_votes": 1,
+  "offset_points": [
+    370.1,
+    9883.1
+  ],
+  "lon_min": 72.5353783,
+  "lon_max": 72.5677266,
+  "lat_min": 23.5553931,
+  "lat_max": 23.5848626,
+  "width_km": 3.3,
+  "height_km": 3.27,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GOTA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

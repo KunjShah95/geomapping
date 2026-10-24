@@ -1,0 +1,19 @@
+{
+  "name": "RAIPUR",
+  "file": "RAIPUR.pdf",
+  "block": "NE",
+  "matched_place_names": 73,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7381.4,
+    9188.9
+  ],
+  "lon_min": 72.9226481,
+  "lon_max": 72.9539368,
+  "lat_min": 23.5168804,
+  "lat_max": 23.5497173,
+  "width_km": 3.19,
+  "height_km": 3.64,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAIPUR.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

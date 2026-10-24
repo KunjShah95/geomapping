@@ -1,0 +1,2567 @@
+{
+  "ADHANA": {
+    "name": "ADHANA",
+    "file": "ADHANA.pdf",
+    "block": "NW",
+    "matched_place_names": 50,
+    "runner_up_votes": 3,
+    "offset_points": [
+      7646.4,
+      9334.1
+    ],
+    "lon_min": 72.3861764,
+    "lon_max": 72.4157564,
+    "lat_min": 23.2904566,
+    "lat_max": 23.3148398,
+    "width_km": 3.02,
+    "height_km": 2.71,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ADHANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ADRAJ": {
+    "name": "ADRAJ",
+    "file": "ADRAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 712,
+    "runner_up_votes": 2,
+    "offset_points": [
+      5904.7,
+      5706.4
+    ],
+    "lon_min": 72.5014419,
+    "lon_max": 72.560723,
+    "lat_min": 23.3425275,
+    "lat_max": 23.3851821,
+    "width_km": 6.06,
+    "height_km": 4.73,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ADRAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "AMBLIYARA": {
+    "name": "AMBLIYARA",
+    "file": "AMBLIYARA.pdf",
+    "block": "NW",
+    "matched_place_names": 153,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6400.2,
+      7099.2
+    ],
+    "lon_min": 72.5293436,
+    "lon_max": 72.556716,
+    "lat_min": 23.4135558,
+    "lat_max": 23.4369929,
+    "width_km": 2.8,
+    "height_km": 2.6,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/AMBLIYARA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "AMIYAPUR": {
+    "name": "AMIYAPUR",
+    "file": "AMIYAPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 27,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3592.5,
+      8766.7
+    ],
+    "lon_min": 72.713029,
+    "lon_max": 72.7255543,
+    "lat_min": 23.4973235,
+    "lat_max": 23.5228421,
+    "width_km": 1.28,
+    "height_km": 2.83,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/AMIYAPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ANADEJ": {
+    "name": "ANADEJ",
+    "file": "ANADEJ.pdf",
+    "block": "NW",
+    "matched_place_names": 241,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4732.5,
+      10034.4
+    ],
+    "lon_min": 72.4382852,
+    "lon_max": 72.4838993,
+    "lat_min": 23.5636606,
+    "lat_max": 23.6085344,
+    "width_km": 4.65,
+    "height_km": 4.98,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ANADEJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ARSODIYA": {
+    "name": "ARSODIYA",
+    "file": "ARSODIYA.pdf",
+    "block": "NW",
+    "matched_place_names": 19,
+    "runner_up_votes": 1,
+    "offset_points": [
+      12106.9,
+      4018.6
+    ],
+    "lon_min": 72.8429546,
+    "lon_max": 72.862423,
+    "lat_min": 23.2541603,
+    "lat_max": 23.2753696,
+    "width_km": 1.99,
+    "height_km": 2.35,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ARSODIYA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ASARVA": {
+    "name": "ASARVA",
+    "file": "ASARVA.pdf",
+    "block": "NE",
+    "matched_place_names": 3,
+    "runner_up_votes": 2,
+    "offset_points": [
+      3119.6,
+      11644.1
+    ],
+    "lon_min": 72.7474871,
+    "lon_max": 72.7885977,
+    "lat_min": 23.377594,
+    "lat_max": 23.413381,
+    "width_km": 4.2,
+    "height_km": 3.97,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ASARVA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BHADAJ": {
+    "name": "BHADAJ",
+    "file": "BHADAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 353,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10366.1,
+      10334.7
+    ],
+    "lon_min": 72.7499461,
+    "lon_max": 72.7943344,
+    "lat_min": 23.5766938,
+    "lat_max": 23.6131603,
+    "width_km": 4.53,
+    "height_km": 4.05,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHADAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BHAT": {
+    "name": "BHAT",
+    "file": "BHAT.pdf",
+    "block": "NE",
+    "matched_place_names": 115,
+    "runner_up_votes": 47,
+    "offset_points": [
+      3849.8,
+      9581.6
+    ],
+    "lon_min": 72.7276324,
+    "lon_max": 72.7623058,
+    "lat_min": 23.5385693,
+    "lat_max": 23.5690211,
+    "width_km": 3.54,
+    "height_km": 3.38,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHAT.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BHIMASANA": {
+    "name": "BHIMASANA",
+    "file": "BHIMASANA.pdf",
+    "block": "NW",
+    "matched_place_names": 31,
+    "runner_up_votes": 2,
+    "offset_points": [
+      7978.3,
+      8091.2
+    ],
+    "lon_min": 72.6169351,
+    "lon_max": 72.6401639,
+    "lat_min": 23.4635367,
+    "lat_max": 23.4743141,
+    "width_km": 2.37,
+    "height_km": 1.2,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHIMASANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BHOYAN RATHOD": {
+    "name": "BHOYAN RATHOD",
+    "file": "BHOYAN RATHOD.pdf",
+    "block": "NE",
+    "matched_place_names": 22,
+    "runner_up_votes": 2,
+    "offset_points": [
+      393.1,
+      4060.2
+    ],
+    "lon_min": 72.5343382,
+    "lon_max": 72.5647962,
+    "lat_min": 23.2585807,
+    "lat_max": 23.2982206,
+    "width_km": 3.11,
+    "height_km": 4.4,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHOYAN RATHOD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BHOYAN": {
+    "name": "BHOYAN",
+    "file": "BHOYAN.pdf",
+    "block": "NW",
+    "matched_place_names": 159,
+    "runner_up_votes": 2,
+    "offset_points": [
+      9280.6,
+      6599.6
+    ],
+    "lon_min": 72.6882118,
+    "lon_max": 72.7270457,
+    "lat_min": 23.3868446,
+    "lat_max": 23.4306253,
+    "width_km": 3.97,
+    "height_km": 4.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BHOYAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BILASIYA": {
+    "name": "BILASIYA",
+    "file": "BILASIYA.pdf",
+    "block": "NE",
+    "matched_place_names": 7,
+    "runner_up_votes": 3,
+    "offset_points": [
+      6350.5,
+      10570.3
+    ],
+    "lon_min": 72.8663967,
+    "lon_max": 72.8974926,
+    "lat_min": 23.5878087,
+    "lat_max": 23.6071243,
+    "width_km": 3.17,
+    "height_km": 2.14,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BILASIYA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BOL": {
+    "name": "BOL",
+    "file": "BOL.pdf",
+    "block": "SW",
+    "matched_place_names": 66,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2637.0,
+      2610.2
+    ],
+    "lon_min": 72.3182977,
+    "lon_max": 72.3637417,
+    "lat_min": 22.892265,
+    "lat_max": 22.9238135,
+    "width_km": 4.66,
+    "height_km": 3.5,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BOPAL": {
+    "name": "BOPAL",
+    "file": "BOPAL.pdf",
+    "block": "SW",
+    "matched_place_names": 289,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10055.7,
+      843.8
+    ],
+    "lon_min": 72.7256765,
+    "lon_max": 72.756491,
+    "lat_min": 22.7996012,
+    "lat_max": 22.8370756,
+    "width_km": 3.16,
+    "height_km": 4.16,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BOPAL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "BORISANA": {
+    "name": "BORISANA",
+    "file": "BORISANA.pdf",
+    "block": "NW",
+    "matched_place_names": 75,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10277.8,
+      4765.8
+    ],
+    "lon_min": 72.742407,
+    "lon_max": 72.7850467,
+    "lat_min": 23.2929011,
+    "lat_max": 23.3272979,
+    "width_km": 4.36,
+    "height_km": 3.82,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/BORISANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHANDKHEDA": {
+    "name": "CHANDKHEDA",
+    "file": "CHANDKHEDA.pdf",
+    "block": "NE",
+    "matched_place_names": 370,
+    "runner_up_votes": 3,
+    "offset_points": [
+      1766.3,
+      9066.2
+    ],
+    "lon_min": 72.6122275,
+    "lon_max": 72.6685823,
+    "lat_min": 23.5130276,
+    "lat_max": 23.5467438,
+    "width_km": 5.75,
+    "height_km": 3.74,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHANDKHEDA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHANDLODIYA": {
+    "name": "CHANDLODIYA",
+    "file": "CHANDLODIYA.pdf",
+    "block": "NE",
+    "matched_place_names": 111,
+    "runner_up_votes": 1,
+    "offset_points": [
+      692.5,
+      10591.9
+    ],
+    "lon_min": 72.5534923,
+    "lon_max": 72.5881231,
+    "lat_min": 23.5913832,
+    "lat_max": 23.6118063,
+    "width_km": 3.53,
+    "height_km": 2.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHANDLODIYA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHANDRASAN": {
+    "name": "CHANDRASAN",
+    "file": "CHANDRASAN.pdf",
+    "block": "SW",
+    "matched_place_names": 5,
+    "runner_up_votes": 3,
+    "offset_points": [
+      3881.0,
+      -529.2
+    ],
+    "lon_min": 72.3285698,
+    "lon_max": 72.3693046,
+    "lat_min": 22.7599333,
+    "lat_max": 22.8027816,
+    "width_km": 4.18,
+    "height_km": 4.76,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHANDRASAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHEKHALARANI": {
+    "name": "CHEKHALARANI",
+    "file": "CHEKHALARANI.pdf",
+    "block": "NE",
+    "matched_place_names": 10,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7100.5,
+      1550.0
+    ],
+    "lon_min": 72.9030303,
+    "lon_max": 72.9404904,
+    "lat_min": 23.1276315,
+    "lat_max": 23.1543886,
+    "width_km": 3.83,
+    "height_km": 2.97,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHEKHALARANI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHEKHLA": {
+    "name": "CHEKHLA",
+    "file": "CHEKHLA.pdf",
+    "block": "NW",
+    "matched_place_names": 3,
+    "runner_up_votes": 3,
+    "offset_points": [
+      5411.2,
+      11079.1
+    ],
+    "lon_min": 72.4166923,
+    "lon_max": 72.4828331,
+    "lat_min": 23.3509585,
+    "lat_max": 23.3982489,
+    "width_km": 6.76,
+    "height_km": 5.25,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHEKHLA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHENPUR": {
+    "name": "CHENPUR",
+    "file": "CHENPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 61,
+    "runner_up_votes": 2,
+    "offset_points": [
+      1358.8,
+      9953.8
+    ],
+    "lon_min": 72.5900767,
+    "lon_max": 72.6101424,
+    "lat_min": 23.5586991,
+    "lat_max": 23.5756807,
+    "width_km": 2.05,
+    "height_km": 1.88,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHENPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHHALA": {
+    "name": "CHHALA",
+    "file": "CHHALA.pdf",
+    "block": "NE",
+    "matched_place_names": 79,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8352.0,
+      1173.0
+    ],
+    "lon_min": 72.971789,
+    "lon_max": 73.0434614,
+    "lat_min": 23.1074436,
+    "lat_max": 23.1565598,
+    "width_km": 7.34,
+    "height_km": 5.45,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHHALA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHHARODI GURUKUL": {
+    "name": "CHHARODI GURUKUL",
+    "file": "CHHARODI GURUKUL.pdf",
+    "block": "NE",
+    "matched_place_names": 138,
+    "runner_up_votes": 1,
+    "offset_points": [
+      767.8,
+      9043.6
+    ],
+    "lon_min": 72.557025,
+    "lon_max": 72.5796554,
+    "lat_min": 23.5125165,
+    "lat_max": 23.5292365,
+    "width_km": 2.31,
+    "height_km": 1.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHHARODI GURUKUL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHHRODI": {
+    "name": "CHHRODI",
+    "file": "CHHRODI.pdf",
+    "block": "SW",
+    "matched_place_names": 65,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2420.7,
+      402.5
+    ],
+    "lon_min": 72.3057316,
+    "lon_max": 72.3509216,
+    "lat_min": 22.779781,
+    "lat_max": 22.8132724,
+    "width_km": 4.64,
+    "height_km": 3.72,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHHRODI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "CHILODA": {
+    "name": "CHILODA",
+    "file": "CHILODA.pdf",
+    "block": "NE",
+    "matched_place_names": 141,
+    "runner_up_votes": 2,
+    "offset_points": [
+      4936.6,
+      9437.3
+    ],
+    "lon_min": 72.7876434,
+    "lon_max": 72.8156353,
+    "lat_min": 23.5307703,
+    "lat_max": 23.5587591,
+    "width_km": 2.86,
+    "height_km": 3.11,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/CHILODA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "DAHEGAM": {
+    "name": "DAHEGAM",
+    "file": "DAHEGAM.pdf",
+    "block": "NE",
+    "matched_place_names": 378,
+    "runner_up_votes": 35,
+    "offset_points": [
+      9923.0,
+      6852.7
+    ],
+    "lon_min": 73.061715,
+    "lon_max": 73.129871,
+    "lat_min": 23.3960691,
+    "lat_max": 23.457091,
+    "width_km": 6.96,
+    "height_km": 6.77,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DAHEGAM.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "DANTALI": {
+    "name": "DANTALI",
+    "file": "DANTALI.pdf",
+    "block": "NE",
+    "matched_place_names": 13,
+    "runner_up_votes": 1,
+    "offset_points": [
+      606.1,
+      7038.4
+    ],
+    "lon_min": 72.5472808,
+    "lon_max": 72.5756579,
+    "lat_min": 23.4103252,
+    "lat_max": 23.4302857,
+    "width_km": 2.9,
+    "height_km": 2.22,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DANTALI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "DARIYAPUR KAZIPUR": {
+    "name": "DARIYAPUR KAZIPUR",
+    "file": "DARIYAPUR KAZIPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 3,
+    "runner_up_votes": 2,
+    "offset_points": [
+      2262.2,
+      11631.7
+    ],
+    "lon_min": 72.7001457,
+    "lon_max": 72.7340256,
+    "lat_min": 23.3773422,
+    "lat_max": 23.4094574,
+    "width_km": 3.46,
+    "height_km": 3.56,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DARIYAPUR KAZIPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "DHSNAP": {
+    "name": "DHSNAP",
+    "file": "DHSNAP.pdf",
+    "block": "NE",
+    "matched_place_names": 16,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8452.5,
+      2886.6
+    ],
+    "lon_min": 72.9782851,
+    "lon_max": 73.0161428,
+    "lat_min": 23.1950524,
+    "lat_max": 23.2330393,
+    "width_km": 3.87,
+    "height_km": 4.22,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DHSNAP.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "DODAR": {
+    "name": "DODAR",
+    "file": "DODAR.pdf",
+    "block": "SW",
+    "matched_place_names": 3,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2455.1,
+      -650.8
+    ],
+    "lon_min": 72.2501388,
+    "lon_max": 72.2937064,
+    "lat_min": 22.7541109,
+    "lat_max": 22.7907944,
+    "width_km": 4.47,
+    "height_km": 4.07,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/DODAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ENASAN": {
+    "name": "ENASAN",
+    "file": "ENASAN.pdf",
+    "block": "NE",
+    "matched_place_names": 13,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6489.9,
+      9801.6
+    ],
+    "lon_min": 72.8736985,
+    "lon_max": 72.9017953,
+    "lat_min": 23.5485869,
+    "lat_max": 23.572555,
+    "width_km": 2.87,
+    "height_km": 2.66,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ENASAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "FULETRA": {
+    "name": "FULETRA",
+    "file": "FULETRA.pdf",
+    "block": "NW",
+    "matched_place_names": 251,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6866.2,
+      4769.0
+    ],
+    "lon_min": 72.5541453,
+    "lon_max": 72.593364,
+    "lat_min": 23.2945183,
+    "lat_max": 23.3290178,
+    "width_km": 4.01,
+    "height_km": 3.83,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/FULETRA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GALUDAN": {
+    "name": "GALUDAN",
+    "file": "GALUDAN.pdf",
+    "block": "NE",
+    "matched_place_names": 22,
+    "runner_up_votes": 8,
+    "offset_points": [
+      8647.0,
+      8321.0
+    ],
+    "lon_min": 72.9920975,
+    "lon_max": 73.0324999,
+    "lat_min": 23.4718886,
+    "lat_max": 23.4947704,
+    "width_km": 4.13,
+    "height_km": 2.54,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GALUDAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GANPATPURA USMANABAD": {
+    "name": "GANPATPURA USMANABAD",
+    "file": "GANPATPURA USMANABAD.pdf",
+    "block": "NW",
+    "matched_place_names": 76,
+    "runner_up_votes": 1,
+    "offset_points": [
+      11214.6,
+      6748.0
+    ],
+    "lon_min": 72.7950798,
+    "lon_max": 72.8221904,
+    "lat_min": 23.393632,
+    "lat_max": 23.4232819,
+    "width_km": 2.77,
+    "height_km": 3.29,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GANPATPURA USMANABAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GHATLODIA": {
+    "name": "GHATLODIA",
+    "file": "GHATLODIA.pdf",
+    "block": "NE",
+    "matched_place_names": 110,
+    "runner_up_votes": 1,
+    "offset_points": [
+      445.1,
+      11196.7
+    ],
+    "lon_min": 72.5400515,
+    "lon_max": 72.5771474,
+    "lat_min": 23.6222897,
+    "lat_max": 23.6422267,
+    "width_km": 3.78,
+    "height_km": 2.21,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GHATLODIA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GHUMA": {
+    "name": "GHUMA",
+    "file": "GHUMA.pdf",
+    "block": "SW",
+    "matched_place_names": 147,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9576.2,
+      1094.5
+    ],
+    "lon_min": 72.6994252,
+    "lon_max": 72.7328483,
+    "lat_min": 22.8125658,
+    "lat_max": 22.8473196,
+    "width_km": 3.43,
+    "height_km": 3.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GHUMA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GIYOD": {
+    "name": "GIYOD",
+    "file": "GIYOD.pdf",
+    "block": "NE",
+    "matched_place_names": 7,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9121.2,
+      2492.9
+    ],
+    "lon_min": 73.0149259,
+    "lon_max": 73.0584847,
+    "lat_min": 23.1745708,
+    "lat_max": 23.2090695,
+    "width_km": 4.46,
+    "height_km": 3.83,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GIYOD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GODHAVI": {
+    "name": "GODHAVI",
+    "file": "GODHAVI.pdf",
+    "block": "SW",
+    "matched_place_names": 310,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7674.8,
+      463.9
+    ],
+    "lon_min": 72.594614,
+    "lon_max": 72.6509342,
+    "lat_min": 22.7810315,
+    "lat_max": 22.8355791,
+    "width_km": 5.78,
+    "height_km": 6.05,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GODHAVI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "GOTA": {
+    "name": "GOTA",
+    "file": "GOTA.pdf",
+    "block": "NE",
+    "matched_place_names": 152,
+    "runner_up_votes": 1,
+    "offset_points": [
+      370.1,
+      9883.1
+    ],
+    "lon_min": 72.5353783,
+    "lon_max": 72.5677266,
+    "lat_min": 23.5553931,
+    "lat_max": 23.5848626,
+    "width_km": 3.3,
+    "height_km": 3.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/GOTA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "HAJIPUR": {
+    "name": "HAJIPUR",
+    "file": "HAJIPUR.pdf",
+    "block": "NW",
+    "matched_place_names": 294,
+    "runner_up_votes": 2,
+    "offset_points": [
+      7277.7,
+      6898.9
+    ],
+    "lon_min": 72.5777303,
+    "lon_max": 72.641344,
+    "lat_min": 23.4027513,
+    "lat_max": 23.4413032,
+    "width_km": 6.5,
+    "height_km": 4.28,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HAJIPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "HANSOL": {
+    "name": "HANSOL",
+    "file": "HANSOL.pdf",
+    "block": "NE",
+    "matched_place_names": 64,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3218.6,
+      10709.3
+    ],
+    "lon_min": 72.6932587,
+    "lon_max": 72.732851,
+    "lat_min": 23.5962854,
+    "lat_max": 23.608182,
+    "width_km": 4.04,
+    "height_km": 1.32,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HANSOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "HANSPURA": {
+    "name": "HANSPURA",
+    "file": "HANSPURA.pdf",
+    "block": "NE",
+    "matched_place_names": 37,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5851.7,
+      10665.6
+    ],
+    "lon_min": 72.8388625,
+    "lon_max": 72.8690094,
+    "lat_min": 23.5929187,
+    "lat_max": 23.6151728,
+    "width_km": 3.08,
+    "height_km": 2.47,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HANSPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "HUKA": {
+    "name": "HUKA",
+    "file": "HUKA.pdf",
+    "block": "NE",
+    "matched_place_names": 4,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7423.5,
+      10885.6
+    ],
+    "lon_min": 72.9259071,
+    "lon_max": 72.9539036,
+    "lat_min": 23.6033602,
+    "lat_max": 23.621254,
+    "width_km": 2.86,
+    "height_km": 1.99,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HUKA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ISANPUR": {
+    "name": "ISANPUR",
+    "file": "ISANPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 23,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8408.3,
+      4735.0
+    ],
+    "lon_min": 72.9768845,
+    "lon_max": 73.0388122,
+    "lat_min": 23.2890484,
+    "lat_max": 23.3267361,
+    "width_km": 6.33,
+    "height_km": 4.18,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ISANPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "IYAVA": {
+    "name": "IYAVA",
+    "file": "IYAVA.pdf",
+    "block": "SW",
+    "matched_place_names": 33,
+    "runner_up_votes": 2,
+    "offset_points": [
+      4423.6,
+      612.8
+    ],
+    "lon_min": 72.4159215,
+    "lon_max": 72.4605726,
+    "lat_min": 22.7898806,
+    "lat_max": 22.8296844,
+    "width_km": 4.58,
+    "height_km": 4.42,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/IYAVA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JAGATPUR": {
+    "name": "JAGATPUR",
+    "file": "JAGATPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 75,
+    "runner_up_votes": 51,
+    "offset_points": [
+      688.3,
+      9603.2
+    ],
+    "lon_min": 72.5528568,
+    "lon_max": 72.5852017,
+    "lat_min": 23.5410053,
+    "lat_max": 23.5601444,
+    "width_km": 3.3,
+    "height_km": 2.12,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JAGATPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JAKHORA": {
+    "name": "JAKHORA",
+    "file": "JAKHORA.pdf",
+    "block": "NE",
+    "matched_place_names": 8,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7880.1,
+      1229.2
+    ],
+    "lon_min": 72.9458184,
+    "lon_max": 72.976208,
+    "lat_min": 23.1109493,
+    "lat_max": 23.1395531,
+    "width_km": 3.11,
+    "height_km": 3.17,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JAKHORA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JALUND": {
+    "name": "JALUND",
+    "file": "JALUND.pdf",
+    "block": "NE",
+    "matched_place_names": 11,
+    "runner_up_votes": 1,
+    "offset_points": [
+      964.2,
+      2852.2
+    ],
+    "lon_min": 72.5653573,
+    "lon_max": 72.5943106,
+    "lat_min": 23.196797,
+    "lat_max": 23.2286498,
+    "width_km": 2.96,
+    "height_km": 3.54,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JALUND.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JAMIYATPUR": {
+    "name": "JAMIYATPUR",
+    "file": "JAMIYATPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 9,
+    "runner_up_votes": 1,
+    "offset_points": [
+      1182.1,
+      6634.2
+    ],
+    "lon_min": 72.5789283,
+    "lon_max": 72.6082763,
+    "lat_min": 23.3894946,
+    "lat_max": 23.4207776,
+    "width_km": 3.0,
+    "height_km": 3.47,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JAMIYATPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JASPUR": {
+    "name": "JASPUR",
+    "file": "JASPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 3,
+    "runner_up_votes": 3,
+    "offset_points": [
+      -618.4,
+      6963.7
+    ],
+    "lon_min": 72.4963804,
+    "lon_max": 72.5414727,
+    "lat_min": 23.2481239,
+    "lat_max": 23.286703,
+    "width_km": 4.61,
+    "height_km": 4.28,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JASPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JETPURA": {
+    "name": "JETPURA",
+    "file": "JETPURA.pdf",
+    "block": "NW",
+    "matched_place_names": 33,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6416.2,
+      5262.6
+    ],
+    "lon_min": 72.5295062,
+    "lon_max": 72.5461269,
+    "lat_min": 23.3200009,
+    "lat_max": 23.3352997,
+    "width_km": 1.7,
+    "height_km": 1.7,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JETPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "JHALODA": {
+    "name": "JHALODA",
+    "file": "JHALODA.pdf",
+    "block": "NW",
+    "matched_place_names": 510,
+    "runner_up_votes": 2,
+    "offset_points": [
+      5532.2,
+      7483.7
+    ],
+    "lon_min": 72.4815457,
+    "lon_max": 72.524197,
+    "lat_min": 23.4333726,
+    "lat_max": 23.4782875,
+    "width_km": 4.36,
+    "height_km": 4.99,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/JHALODA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KALANA": {
+    "name": "KALANA",
+    "file": "KALANA.pdf",
+    "block": "SW",
+    "matched_place_names": 10,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2240.9,
+      1079.7
+    ],
+    "lon_min": 72.2960472,
+    "lon_max": 72.3312649,
+    "lat_min": 22.8144104,
+    "lat_max": 22.8523861,
+    "width_km": 3.61,
+    "height_km": 4.21,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KALI": {
+    "name": "KALI",
+    "file": "KALI.pdf",
+    "block": "NE",
+    "matched_place_names": 44,
+    "runner_up_votes": 25,
+    "offset_points": [
+      1878.2,
+      9889.9
+    ],
+    "lon_min": 72.6187687,
+    "lon_max": 72.643606,
+    "lat_min": 23.555202,
+    "lat_max": 23.5805791,
+    "width_km": 2.53,
+    "height_km": 2.82,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KALOL": {
+    "name": "KALOL",
+    "file": "KALOL.pdf",
+    "block": "NW",
+    "matched_place_names": 242,
+    "runner_up_votes": 2,
+    "offset_points": [
+      10353.2,
+      3535.4
+    ],
+    "lon_min": 72.7459844,
+    "lon_max": 72.8170234,
+    "lat_min": 23.2299187,
+    "lat_max": 23.2737559,
+    "width_km": 7.27,
+    "height_km": 4.87,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KANETI": {
+    "name": "KANETI",
+    "file": "KANETI.pdf",
+    "block": "SW",
+    "matched_place_names": 78,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8064.6,
+      2243.0
+    ],
+    "lon_min": 72.6167829,
+    "lon_max": 72.651463,
+    "lat_min": 22.871722,
+    "lat_max": 22.8949158,
+    "width_km": 3.56,
+    "height_km": 2.57,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KANETI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KANJARI": {
+    "name": "KANJARI",
+    "file": "KANJARI.pdf",
+    "block": "NW",
+    "matched_place_names": 256,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4652.0,
+      8850.3
+    ],
+    "lon_min": 72.4334074,
+    "lon_max": 72.4741727,
+    "lat_min": 23.5033596,
+    "lat_max": 23.5416453,
+    "width_km": 4.16,
+    "height_km": 4.25,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KANJARI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KARAI": {
+    "name": "KARAI",
+    "file": "KARAI.pdf",
+    "block": "NE",
+    "matched_place_names": 14,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4826.7,
+      8591.0
+    ],
+    "lon_min": 72.7811498,
+    "lon_max": 72.8090245,
+    "lat_min": 23.4876873,
+    "lat_max": 23.5112873,
+    "width_km": 2.85,
+    "height_km": 2.62,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KARAI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KAROLI": {
+    "name": "KAROLI",
+    "file": "KAROLI.pdf",
+    "block": "NW",
+    "matched_place_names": 153,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8848.2,
+      7685.7
+    ],
+    "lon_min": 72.6648176,
+    "lon_max": 72.6905038,
+    "lat_min": 23.4424902,
+    "lat_max": 23.4642353,
+    "width_km": 2.62,
+    "height_km": 2.41,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KAROLI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KARSANPURA": {
+    "name": "KARSANPURA",
+    "file": "KARSANPURA.pdf",
+    "block": "NW",
+    "matched_place_names": 18,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5425.6,
+      5780.0
+    ],
+    "lon_min": 72.4750191,
+    "lon_max": 72.4895684,
+    "lat_min": 23.3467449,
+    "lat_max": 23.3644778,
+    "width_km": 1.49,
+    "height_km": 1.97,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KARSANPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KHATRAJ": {
+    "name": "KHATRAJ",
+    "file": "KHATRAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 130,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9568.2,
+      8193.6
+    ],
+    "lon_min": 72.7048286,
+    "lon_max": 72.7241266,
+    "lat_min": 23.4681216,
+    "lat_max": 23.4979293,
+    "width_km": 1.97,
+    "height_km": 3.31,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHATRAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KHODA": {
+    "name": "KHODA",
+    "file": "KHODA.pdf",
+    "block": "SW",
+    "matched_place_names": 37,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3866.3,
+      1068.7
+    ],
+    "lon_min": 72.3854289,
+    "lon_max": 72.4137619,
+    "lat_min": 22.8133988,
+    "lat_max": 22.8641108,
+    "width_km": 2.91,
+    "height_km": 5.63,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHODA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KHODIYAR": {
+    "name": "KHODIYAR",
+    "file": "KHODIYAR.pdf",
+    "block": "NE",
+    "matched_place_names": 171,
+    "runner_up_votes": 1,
+    "offset_points": [
+      545.9,
+      7741.7
+    ],
+    "lon_min": 72.5442369,
+    "lon_max": 72.566007,
+    "lat_min": 23.4462454,
+    "lat_max": 23.4824499,
+    "width_km": 2.22,
+    "height_km": 4.02,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHODIYAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KHORAJ TRAGAD": {
+    "name": "KHORAJ TRAGAD",
+    "file": "KHORAJ TRAGAD.pdf",
+    "block": "NE",
+    "matched_place_names": 214,
+    "runner_up_votes": 30,
+    "offset_points": [
+      1061.7,
+      7793.0
+    ],
+    "lon_min": 72.5727545,
+    "lon_max": 72.6084885,
+    "lat_min": 23.4485657,
+    "lat_max": 23.4840799,
+    "width_km": 3.65,
+    "height_km": 3.94,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KHORAJ TRAGAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KOTARPUR": {
+    "name": "KOTARPUR",
+    "file": "KOTARPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 46,
+    "runner_up_votes": 32,
+    "offset_points": [
+      4473.2,
+      10203.1
+    ],
+    "lon_min": 72.7624,
+    "lon_max": 72.7913396,
+    "lat_min": 23.5700101,
+    "lat_max": 23.5899632,
+    "width_km": 2.95,
+    "height_km": 2.21,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KOTARPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KOTESHWAR": {
+    "name": "KOTESHWAR",
+    "file": "KOTESHWAR.pdf",
+    "block": "NE",
+    "matched_place_names": 40,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3551.3,
+      9714.2
+    ],
+    "lon_min": 72.7111927,
+    "lon_max": 72.7306855,
+    "lat_min": 23.5455802,
+    "lat_max": 23.5725799,
+    "width_km": 1.99,
+    "height_km": 3.0,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KOTESHWAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "KOTPURA": {
+    "name": "KOTPURA",
+    "file": "KOTPURA.pdf",
+    "block": "SW",
+    "matched_place_names": 13,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2764.7,
+      1483.0
+    ],
+    "lon_min": 72.3249758,
+    "lon_max": 72.3613139,
+    "lat_min": 22.8348123,
+    "lat_max": 22.87277,
+    "width_km": 3.73,
+    "height_km": 4.21,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KOTPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "LAPKAMAN": {
+    "name": "LAPKAMAN",
+    "file": "LAPKAMAN.pdf",
+    "block": "NW",
+    "matched_place_names": 62,
+    "runner_up_votes": 2,
+    "offset_points": [
+      11203.9,
+      8571.3
+    ],
+    "lon_min": 72.7953947,
+    "lon_max": 72.8203429,
+    "lat_min": 23.4865889,
+    "lat_max": 23.5185235,
+    "width_km": 2.55,
+    "height_km": 3.54,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LAPKAMAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "LILAPUR": {
+    "name": "LILAPUR",
+    "file": "LILAPUR.pdf",
+    "block": "NW",
+    "matched_place_names": 78,
+    "runner_up_votes": 1,
+    "offset_points": [
+      11947.2,
+      8020.7
+    ],
+    "lon_min": 72.8361865,
+    "lon_max": 72.86302,
+    "lat_min": 23.4581556,
+    "lat_max": 23.4804294,
+    "width_km": 2.74,
+    "height_km": 2.47,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LILAPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "LIMBADIYA": {
+    "name": "LIMBADIYA",
+    "file": "LIMBADIYA.pdf",
+    "block": "NE",
+    "matched_place_names": 10,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5950.3,
+      8858.2
+    ],
+    "lon_min": 72.8433787,
+    "lon_max": 72.8696004,
+    "lat_min": 23.5007873,
+    "lat_max": 23.5227876,
+    "width_km": 2.68,
+    "height_km": 2.44,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LIMBADIYA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "LUNASAN": {
+    "name": "LUNASAN",
+    "file": "LUNASAN.pdf",
+    "block": "NW",
+    "matched_place_names": 53,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8786.7,
+      3911.6
+    ],
+    "lon_min": 72.6597468,
+    "lon_max": 72.6907254,
+    "lat_min": 23.2501002,
+    "lat_max": 23.2704162,
+    "width_km": 3.17,
+    "height_km": 2.25,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/LUNASAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MAGODI": {
+    "name": "MAGODI",
+    "file": "MAGODI.pdf",
+    "block": "NE",
+    "matched_place_names": 13,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8211.0,
+      5795.7
+    ],
+    "lon_min": 72.9665914,
+    "lon_max": 73.0323829,
+    "lat_min": 23.343177,
+    "lat_max": 23.3816332,
+    "width_km": 6.72,
+    "height_km": 4.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MAGODI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MAHUDARA": {
+    "name": "MAHUDARA",
+    "file": "MAHUDARA.pdf",
+    "block": "NE",
+    "matched_place_names": 36,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8253.8,
+      4206.1
+    ],
+    "lon_min": 72.9680651,
+    "lon_max": 73.0204132,
+    "lat_min": 23.2622687,
+    "lat_max": 23.2907198,
+    "width_km": 5.35,
+    "height_km": 3.16,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MAHUDARA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MAKARBA": {
+    "name": "MAKARBA",
+    "file": "MAKARBA.pdf",
+    "block": "SW",
+    "matched_place_names": 417,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10675.0,
+      1618.2
+    ],
+    "lon_min": 72.7600891,
+    "lon_max": 72.8090804,
+    "lat_min": 22.8386557,
+    "lat_max": 22.8828439,
+    "width_km": 5.03,
+    "height_km": 4.9,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MAKARBA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MANIPUR": {
+    "name": "MANIPUR",
+    "file": "MANIPUR.pdf",
+    "block": "SW",
+    "matched_place_names": 96,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8897.2,
+      871.3
+    ],
+    "lon_min": 72.6619912,
+    "lon_max": 72.6958846,
+    "lat_min": 22.8014678,
+    "lat_max": 22.8223141,
+    "width_km": 3.48,
+    "height_km": 2.31,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MANIPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MEDRA": {
+    "name": "MEDRA",
+    "file": "MEDRA.pdf",
+    "block": "NE",
+    "matched_place_names": 83,
+    "runner_up_votes": 2,
+    "offset_points": [
+      6689.2,
+      9021.0
+    ],
+    "lon_min": 72.8843006,
+    "lon_max": 72.9173676,
+    "lat_min": 23.5086594,
+    "lat_max": 23.5387784,
+    "width_km": 3.38,
+    "height_km": 3.34,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MEDRA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MEMNAGAR": {
+    "name": "MEMNAGAR",
+    "file": "MEMNAGAR.pdf",
+    "block": "SE",
+    "matched_place_names": 4,
+    "runner_up_votes": 3,
+    "offset_points": [
+      667.4,
+      328.3
+    ],
+    "lon_min": 72.607352,
+    "lon_max": 72.6347938,
+    "lat_min": 22.8018852,
+    "lat_max": 22.819428,
+    "width_km": 2.82,
+    "height_km": 1.95,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MEMNAGAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MERDA": {
+    "name": "MERDA",
+    "file": "MERDA.pdf",
+    "block": "NW",
+    "matched_place_names": 139,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5855.6,
+      6186.8
+    ],
+    "lon_min": 72.4989141,
+    "lon_max": 72.514307,
+    "lat_min": 23.3673239,
+    "lat_max": 23.3907111,
+    "width_km": 1.57,
+    "height_km": 2.6,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MERDA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MOTERA": {
+    "name": "MOTERA",
+    "file": "MOTERA.pdf",
+    "block": "NE",
+    "matched_place_names": 98,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2650.9,
+      9652.0
+    ],
+    "lon_min": 72.6613857,
+    "lon_max": 72.6968094,
+    "lat_min": 23.5426733,
+    "lat_max": 23.5745014,
+    "width_km": 3.61,
+    "height_km": 3.53,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MOTERA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MULSANA": {
+    "name": "MULSANA",
+    "file": "MULSANA.pdf",
+    "block": "NW",
+    "matched_place_names": 138,
+    "runner_up_votes": 2,
+    "offset_points": [
+      5909.6,
+      9310.7
+    ],
+    "lon_min": 72.5030983,
+    "lon_max": 72.5380393,
+    "lat_min": 23.5264154,
+    "lat_max": 23.5663804,
+    "width_km": 3.57,
+    "height_km": 4.44,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MULSANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "MUTHIYA": {
+    "name": "MUTHIYA",
+    "file": "MUTHIYA.pdf",
+    "block": "NE",
+    "matched_place_names": 226,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5412.8,
+      9960.6
+    ],
+    "lon_min": 72.8142324,
+    "lon_max": 72.8501111,
+    "lat_min": 23.5571501,
+    "lat_max": 23.5810502,
+    "width_km": 3.66,
+    "height_km": 2.65,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/MUTHIYA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NABHOI": {
+    "name": "NABHOI",
+    "file": "NABHOI.pdf",
+    "block": "NE",
+    "matched_place_names": 20,
+    "runner_up_votes": 8,
+    "offset_points": [
+      4265.1,
+      8517.4
+    ],
+    "lon_min": 72.7500796,
+    "lon_max": 72.7704832,
+    "lat_min": 23.4842537,
+    "lat_max": 23.5102394,
+    "width_km": 2.08,
+    "height_km": 2.88,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NABHOI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NANDOLI": {
+    "name": "NANDOLI",
+    "file": "NANDOLI.pdf",
+    "block": "NW",
+    "matched_place_names": 21,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10110.9,
+      11072.1
+    ],
+    "lon_min": 72.736186,
+    "lon_max": 72.759773,
+    "lat_min": 23.614563,
+    "lat_max": 23.6365198,
+    "width_km": 2.41,
+    "height_km": 2.44,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NANDOLI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NARANPURA": {
+    "name": "NARANPURA",
+    "file": "NARANPURA.pdf",
+    "block": "SW",
+    "matched_place_names": 68,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3606.1,
+      192.9
+    ],
+    "lon_min": 72.3708368,
+    "lon_max": 72.3892478,
+    "lat_min": 22.7688862,
+    "lat_max": 22.8031233,
+    "width_km": 1.89,
+    "height_km": 3.8,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NARANPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NASMED": {
+    "name": "NASMED",
+    "file": "NASMED.pdf",
+    "block": "NW",
+    "matched_place_names": 214,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7993.3,
+      9343.0
+    ],
+    "lon_min": 72.6183025,
+    "lon_max": 72.6600023,
+    "lat_min": 23.5272031,
+    "lat_max": 23.5747149,
+    "width_km": 4.26,
+    "height_km": 5.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NASMED.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NEW WADAJ": {
+    "name": "NEW WADAJ",
+    "file": "NEW WADAJ.pdf",
+    "block": "NE",
+    "matched_place_names": 10,
+    "runner_up_votes": 8,
+    "offset_points": [
+      790.6,
+      11173.3
+    ],
+    "lon_min": 72.6186861,
+    "lon_max": 72.6753053,
+    "lat_min": 23.3544242,
+    "lat_max": 23.3909371,
+    "width_km": 5.79,
+    "height_km": 4.05,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NEW WADAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "NIDHRAD": {
+    "name": "NIDHRAD",
+    "file": "NIDHRAD.pdf",
+    "block": "SW",
+    "matched_place_names": 63,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6667.4,
+      908.6
+    ],
+    "lon_min": 72.5394027,
+    "lon_max": 72.5843497,
+    "lat_min": 22.8041678,
+    "lat_max": 22.8446631,
+    "width_km": 4.61,
+    "height_km": 4.49,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/NIDHRAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "OGANAJ": {
+    "name": "OGANAJ",
+    "file": "OGANAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 5,
+    "runner_up_votes": 4,
+    "offset_points": [
+      11685.0,
+      8726.5
+    ],
+    "lon_min": 72.5003609,
+    "lon_max": 72.5400485,
+    "lat_min": 23.3022083,
+    "lat_max": 23.3542311,
+    "width_km": 4.06,
+    "height_km": 5.77,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/OGANAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "OLA": {
+    "name": "OLA",
+    "file": "OLA.pdf",
+    "block": "NW",
+    "matched_place_names": 20,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10502.9,
+      3610.5
+    ],
+    "lon_min": 72.7542769,
+    "lon_max": 72.788513,
+    "lat_min": 23.2339799,
+    "lat_max": 23.2504035,
+    "width_km": 3.5,
+    "height_km": 1.82,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/OLA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "PALSANA": {
+    "name": "PALSANA",
+    "file": "PALSANA.pdf",
+    "block": "NW",
+    "matched_place_names": 22,
+    "runner_up_votes": 3,
+    "offset_points": [
+      11222.3,
+      5827.2
+    ],
+    "lon_min": 72.795049,
+    "lon_max": 72.8240883,
+    "lat_min": 23.3466792,
+    "lat_max": 23.3786476,
+    "width_km": 2.97,
+    "height_km": 3.55,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PALSANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "PARDHOL": {
+    "name": "PARDHOL",
+    "file": "PARDHOL.pdf",
+    "block": "NE",
+    "matched_place_names": 18,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7237.0,
+      10254.2
+    ],
+    "lon_min": 72.9152501,
+    "lon_max": 72.9512128,
+    "lat_min": 23.5712035,
+    "lat_max": 23.5910236,
+    "width_km": 3.67,
+    "height_km": 2.2,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PARDHOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "PINDHARADA": {
+    "name": "PINDHARADA",
+    "file": "PINDHARADA.pdf",
+    "block": "NE",
+    "matched_place_names": 6,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5984.2,
+      660.8
+    ],
+    "lon_min": 72.8410602,
+    "lon_max": 72.8752871,
+    "lat_min": 23.0828866,
+    "lat_max": 23.1085011,
+    "width_km": 3.5,
+    "height_km": 2.84,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PINDHARADA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "PIYAJ": {
+    "name": "PIYAJ",
+    "file": "PIYAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 73,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9105.5,
+      4548.8
+    ],
+    "lon_min": 72.6776191,
+    "lon_max": 72.7139443,
+    "lat_min": 23.2824062,
+    "lat_max": 23.3186638,
+    "width_km": 3.71,
+    "height_km": 4.02,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PIYAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "PRATAPPURA": {
+    "name": "PRATAPPURA",
+    "file": "PRATAPPURA.pdf",
+    "block": "NW",
+    "matched_place_names": 16,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9865.4,
+      3911.6
+    ],
+    "lon_min": 72.7192538,
+    "lon_max": 72.7448453,
+    "lat_min": 23.2496818,
+    "lat_max": 23.2791074,
+    "width_km": 2.62,
+    "height_km": 3.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/PRATAPPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RAIPUR": {
+    "name": "RAIPUR",
+    "file": "RAIPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 73,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7381.4,
+      9188.9
+    ],
+    "lon_min": 72.9226481,
+    "lon_max": 72.9539368,
+    "lat_min": 23.5168804,
+    "lat_max": 23.5497173,
+    "width_km": 3.19,
+    "height_km": 3.64,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAIPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RAJPUR": {
+    "name": "RAJPUR",
+    "file": "RAJPUR.pdf",
+    "block": "NE",
+    "matched_place_names": 15,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7190.9,
+      1080.7
+    ],
+    "lon_min": 72.9077608,
+    "lon_max": 72.9300263,
+    "lat_min": 23.1038041,
+    "lat_max": 23.1239849,
+    "width_km": 2.28,
+    "height_km": 2.24,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAJPUR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RAMNAGAR": {
+    "name": "RAMNAGAR",
+    "file": "RAMNAGAR.pdf",
+    "block": "NW",
+    "matched_place_names": 41,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9500.2,
+      5310.7
+    ],
+    "lon_min": 72.6997458,
+    "lon_max": 72.7346104,
+    "lat_min": 23.3210831,
+    "lat_max": 23.3557579,
+    "width_km": 3.56,
+    "height_km": 3.85,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAMNAGAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RAMPAGAR ACHER": {
+    "name": "RAMPAGAR ACHER",
+    "file": "RAMPAGAR ACHER.pdf",
+    "block": "NE",
+    "matched_place_names": 42,
+    "runner_up_votes": 1,
+    "offset_points": [
+      2479.1,
+      10469.2
+    ],
+    "lon_min": 72.6522505,
+    "lon_max": 72.674357,
+    "lat_min": 23.5845025,
+    "lat_max": 23.6189715,
+    "width_km": 2.26,
+    "height_km": 3.83,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RAMPAGAR ACHER.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RANASAN": {
+    "name": "RANASAN",
+    "file": "RANASAN.pdf",
+    "block": "NE",
+    "matched_place_names": 43,
+    "runner_up_votes": 1,
+    "offset_points": [
+      5856.6,
+      9567.9
+    ],
+    "lon_min": 72.8385666,
+    "lon_max": 72.864247,
+    "lat_min": 23.5370086,
+    "lat_max": 23.553794,
+    "width_km": 2.62,
+    "height_km": 1.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RANASAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RANCHARADA": {
+    "name": "RANCHARADA",
+    "file": "RANCHARADA.pdf",
+    "block": "NW",
+    "matched_place_names": 149,
+    "runner_up_votes": 2,
+    "offset_points": [
+      9055.5,
+      10615.9
+    ],
+    "lon_min": 72.677597,
+    "lon_max": 72.7162874,
+    "lat_min": 23.5916572,
+    "lat_max": 23.6264056,
+    "width_km": 3.95,
+    "height_km": 3.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RANCHARADA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RANIP": {
+    "name": "RANIP",
+    "file": "RANIP.pdf",
+    "block": "NE",
+    "matched_place_names": 102,
+    "runner_up_votes": 1,
+    "offset_points": [
+      1484.5,
+      10468.2
+    ],
+    "lon_min": 72.5972443,
+    "lon_max": 72.6378567,
+    "lat_min": 23.5847229,
+    "lat_max": 23.612889,
+    "width_km": 4.14,
+    "height_km": 3.13,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RANIP.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "RUPAVATI": {
+    "name": "RUPAVATI",
+    "file": "RUPAVATI.pdf",
+    "block": "SW",
+    "matched_place_names": 45,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4275.2,
+      2103.4
+    ],
+    "lon_min": 72.4082673,
+    "lon_max": 72.4436106,
+    "lat_min": 22.8659749,
+    "lat_max": 22.8949657,
+    "width_km": 3.62,
+    "height_km": 3.22,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RUPAVATI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SABASPURA": {
+    "name": "SABASPURA",
+    "file": "SABASPURA.pdf",
+    "block": "NW",
+    "matched_place_names": 163,
+    "runner_up_votes": 1,
+    "offset_points": [
+      10516.4,
+      6946.4
+    ],
+    "lon_min": 72.7566193,
+    "lon_max": 72.7844864,
+    "lat_min": 23.4040605,
+    "lat_max": 23.4237278,
+    "width_km": 2.85,
+    "height_km": 2.18,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SABASPURA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SANAND": {
+    "name": "SANAND",
+    "file": "SANAND.pdf",
+    "block": "SW",
+    "matched_place_names": 899,
+    "runner_up_votes": 2,
+    "offset_points": [
+      5883.9,
+      1653.9
+    ],
+    "lon_min": 72.4965983,
+    "lon_max": 72.5896466,
+    "lat_min": 22.8421289,
+    "lat_max": 22.9141829,
+    "width_km": 9.54,
+    "height_km": 8.0,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANAND.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SANAVAD": {
+    "name": "SANAVAD",
+    "file": "SANAVAD.pdf",
+    "block": "NW",
+    "matched_place_names": 60,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9269.7,
+      9263.2
+    ],
+    "lon_min": 72.6888245,
+    "lon_max": 72.7091971,
+    "lat_min": 23.5227582,
+    "lat_max": 23.5469015,
+    "width_km": 2.08,
+    "height_km": 2.68,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANAVAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SANTEJ": {
+    "name": "SANTEJ",
+    "file": "SANTEJ.pdf",
+    "block": "NW",
+    "matched_place_names": 577,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9241.0,
+      8578.2
+    ],
+    "lon_min": 72.6869238,
+    "lon_max": 72.7596554,
+    "lat_min": 23.4874457,
+    "lat_max": 23.550743,
+    "width_km": 7.42,
+    "height_km": 7.03,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SANTEJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SHEDFA": {
+    "name": "SHEDFA",
+    "file": "SHEDFA.pdf",
+    "block": "NW",
+    "matched_place_names": 15,
+    "runner_up_votes": 1,
+    "offset_points": [
+      6919.9,
+      7873.3
+    ],
+    "lon_min": 72.5583646,
+    "lon_max": 72.5818011,
+    "lat_min": 23.452843,
+    "lat_max": 23.4665661,
+    "width_km": 2.39,
+    "height_km": 1.52,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHEDFA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SHELA": {
+    "name": "SHELA",
+    "file": "SHELA.pdf",
+    "block": "SW",
+    "matched_place_names": 106,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9123.2,
+      2037.6
+    ],
+    "lon_min": 72.6749284,
+    "lon_max": 72.718433,
+    "lat_min": 22.8607539,
+    "lat_max": 22.8882253,
+    "width_km": 4.46,
+    "height_km": 3.05,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHELA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SHERISA": {
+    "name": "SHERISA",
+    "file": "SHERISA.pdf",
+    "block": "NW",
+    "matched_place_names": 131,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9967.5,
+      5650.9
+    ],
+    "lon_min": 72.7256967,
+    "lon_max": 72.77009,
+    "lat_min": 23.3381423,
+    "lat_max": 23.3791519,
+    "width_km": 4.54,
+    "height_km": 4.55,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHERISA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SHILAJ": {
+    "name": "SHILAJ",
+    "file": "SHILAJ.pdf",
+    "block": "SW",
+    "matched_place_names": 8,
+    "runner_up_votes": 5,
+    "offset_points": [
+      9946.3,
+      -37.4
+    ],
+    "lon_min": 72.6621742,
+    "lon_max": 72.7061489,
+    "lat_min": 22.7827312,
+    "lat_max": 22.8140196,
+    "width_km": 4.51,
+    "height_km": 3.47,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SHILAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SOLA": {
+    "name": "SOLA",
+    "file": "SOLA.pdf",
+    "block": "NW",
+    "matched_place_names": 4,
+    "runner_up_votes": 4,
+    "offset_points": [
+      11738.9,
+      10452.9
+    ],
+    "lon_min": 72.5037311,
+    "lon_max": 72.5404571,
+    "lat_min": 23.3544841,
+    "lat_max": 23.3929843,
+    "width_km": 3.75,
+    "height_km": 4.27,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SOLA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SONARDA": {
+    "name": "SONARDA",
+    "file": "SONARDA.pdf",
+    "block": "NE",
+    "matched_place_names": 23,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8010.7,
+      8853.1
+    ],
+    "lon_min": 72.9572422,
+    "lon_max": 73.0040626,
+    "lat_min": 23.4992885,
+    "lat_max": 23.5257262,
+    "width_km": 4.78,
+    "height_km": 2.93,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SONARDA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "SUGAD": {
+    "name": "SUGAD",
+    "file": "SUGAD.pdf",
+    "block": "NE",
+    "matched_place_names": 80,
+    "runner_up_votes": 48,
+    "offset_points": [
+      3864.5,
+      8858.0
+    ],
+    "lon_min": 72.7281034,
+    "lon_max": 72.7607682,
+    "lat_min": 23.501697,
+    "lat_max": 23.5302809,
+    "width_km": 3.33,
+    "height_km": 3.17,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/SUGAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "TELAV": {
+    "name": "TELAV",
+    "file": "TELAV.pdf",
+    "block": "SW",
+    "matched_place_names": 44,
+    "runner_up_votes": 1,
+    "offset_points": [
+      9018.5,
+      2784.6
+    ],
+    "lon_min": 72.6694965,
+    "lon_max": 72.7024885,
+    "lat_min": 22.8989559,
+    "lat_max": 22.9321653,
+    "width_km": 3.38,
+    "height_km": 3.69,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/TELAV.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "THALTEJ": {
+    "name": "THALTEJ",
+    "file": "THALTEJ.pdf",
+    "block": "SW",
+    "matched_place_names": 11,
+    "runner_up_votes": 10,
+    "offset_points": [
+      10005.7,
+      -1084.3
+    ],
+    "lon_min": 72.4473637,
+    "lon_max": 72.5392429,
+    "lat_min": 22.7305088,
+    "lat_max": 22.8069466,
+    "width_km": 9.43,
+    "height_km": 8.48,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/THALTEJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "THOL": {
+    "name": "THOL",
+    "file": "THOL.pdf",
+    "block": "NW",
+    "matched_place_names": 753,
+    "runner_up_votes": 2,
+    "offset_points": [
+      6034.0,
+      8151.1
+    ],
+    "lon_min": 72.509524,
+    "lon_max": 72.6004573,
+    "lat_min": 23.4668784,
+    "lat_max": 23.5296802,
+    "width_km": 9.28,
+    "height_km": 6.97,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/THOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "TITODA": {
+    "name": "TITODA",
+    "file": "TITODA.pdf",
+    "block": "NE",
+    "matched_place_names": 36,
+    "runner_up_votes": 10,
+    "offset_points": [
+      942.5,
+      4016.3
+    ],
+    "lon_min": 72.5646337,
+    "lon_max": 72.6056414,
+    "lat_min": 23.2560613,
+    "lat_max": 23.2983828,
+    "width_km": 4.19,
+    "height_km": 4.7,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/TITODA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "TRAGAD": {
+    "name": "TRAGAD",
+    "file": "TRAGAD.pdf",
+    "block": "NE",
+    "matched_place_names": 125,
+    "runner_up_votes": 1,
+    "offset_points": [
+      1320.9,
+      8782.7
+    ],
+    "lon_min": 72.5874884,
+    "lon_max": 72.6093282,
+    "lat_min": 23.4990095,
+    "lat_max": 23.5237847,
+    "width_km": 2.23,
+    "height_km": 2.75,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/TRAGAD.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "UNAVA": {
+    "name": "UNAVA",
+    "file": "UNAVA.pdf",
+    "block": "NE",
+    "matched_place_names": 36,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4500.7,
+      615.3
+    ],
+    "lon_min": 72.7593049,
+    "lon_max": 72.8041052,
+    "lat_min": 23.0811722,
+    "lat_max": 23.1238707,
+    "width_km": 4.59,
+    "height_km": 4.74,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/UNAVA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "UNNALI": {
+    "name": "UNNALI",
+    "file": "UNNALI.pdf",
+    "block": "NW",
+    "matched_place_names": 98,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8382.2,
+      10868.1
+    ],
+    "lon_min": 72.6404697,
+    "lon_max": 72.665297,
+    "lat_min": 23.6049035,
+    "lat_max": 23.6286407,
+    "width_km": 2.53,
+    "height_km": 2.63,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/UNNALI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VADAVI": {
+    "name": "VADAVI",
+    "file": "VADAVI.pdf",
+    "block": "NW",
+    "matched_place_names": 393,
+    "runner_up_votes": 1,
+    "offset_points": [
+      7276.0,
+      6032.3
+    ],
+    "lon_min": 72.5772779,
+    "lon_max": 72.621448,
+    "lat_min": 23.3587193,
+    "lat_max": 23.4073391,
+    "width_km": 4.51,
+    "height_km": 5.4,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VADAVI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VADODARA": {
+    "name": "VADODARA",
+    "file": "VADODARA.pdf",
+    "block": "NE",
+    "matched_place_names": 6,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8620.4,
+      6969.7
+    ],
+    "lon_min": 72.989858,
+    "lon_max": 73.0335956,
+    "lat_min": 23.4030031,
+    "lat_max": 23.4413849,
+    "width_km": 4.47,
+    "height_km": 4.26,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VADODARA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VADSAR": {
+    "name": "VADSAR",
+    "file": "VADSAR.pdf",
+    "block": "NW",
+    "matched_place_names": 234,
+    "runner_up_votes": 2,
+    "offset_points": [
+      10052.9,
+      7510.0
+    ],
+    "lon_min": 72.7312874,
+    "lon_max": 72.779015,
+    "lat_min": 23.4328348,
+    "lat_max": 23.4669208,
+    "width_km": 4.87,
+    "height_km": 3.78,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VADSAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VAMAJ": {
+    "name": "VAMAJ",
+    "file": "VAMAJ.pdf",
+    "block": "NW",
+    "matched_place_names": 702,
+    "runner_up_votes": 15,
+    "offset_points": [
+      7468.0,
+      4386.4
+    ],
+    "lon_min": 72.5871958,
+    "lon_max": 72.6567985,
+    "lat_min": 23.274559,
+    "lat_max": 23.3331084,
+    "width_km": 7.12,
+    "height_km": 6.5,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VAMAJ.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VANKANERDA": {
+    "name": "VANKANERDA",
+    "file": "VANKANERDA.pdf",
+    "block": "NE",
+    "matched_place_names": 7,
+    "runner_up_votes": 5,
+    "offset_points": [
+      7785.9,
+      7991.4
+    ],
+    "lon_min": 72.9443387,
+    "lon_max": 72.9772741,
+    "lat_min": 23.4556216,
+    "lat_max": 23.4813643,
+    "width_km": 3.36,
+    "height_km": 2.86,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANKANERDA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VANSAJADA": {
+    "name": "VANSAJADA",
+    "file": "VANSAJADA.pdf",
+    "block": "NW",
+    "matched_place_names": 80,
+    "runner_up_votes": 3,
+    "offset_points": [
+      8700.0,
+      6097.2
+    ],
+    "lon_min": 72.6559268,
+    "lon_max": 72.6819661,
+    "lat_min": 23.3615795,
+    "lat_max": 23.3914996,
+    "width_km": 2.66,
+    "height_km": 3.32,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANSAJADA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VANSOL": {
+    "name": "VANSOL",
+    "file": "VANSOL.pdf",
+    "block": "NW",
+    "matched_place_names": 181,
+    "runner_up_votes": 1,
+    "offset_points": [
+      8557.6,
+      4388.1
+    ],
+    "lon_min": 72.6473167,
+    "lon_max": 72.6693517,
+    "lat_min": 23.2745516,
+    "lat_max": 23.300103,
+    "width_km": 2.25,
+    "height_km": 2.84,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VANSOL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VASAN": {
+    "name": "VASAN",
+    "file": "VASAN.pdf",
+    "block": "NE",
+    "matched_place_names": 15,
+    "runner_up_votes": 1,
+    "offset_points": [
+      3653.7,
+      692.5
+    ],
+    "lon_min": 72.7126756,
+    "lon_max": 72.7449777,
+    "lat_min": 23.0855842,
+    "lat_max": 23.1238028,
+    "width_km": 3.31,
+    "height_km": 4.24,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASAN.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VASNA IYAVA": {
+    "name": "VASNA IYAVA",
+    "file": "VASNA IYAVA.pdf",
+    "block": "SW",
+    "matched_place_names": 22,
+    "runner_up_votes": 2,
+    "offset_points": [
+      5431.3,
+      1216.0
+    ],
+    "lon_min": 72.4715448,
+    "lon_max": 72.508612,
+    "lat_min": 22.8203361,
+    "lat_max": 22.8571772,
+    "width_km": 3.8,
+    "height_km": 4.09,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASNA IYAVA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VASODARA": {
+    "name": "VASODARA",
+    "file": "VASODARA.pdf",
+    "block": "SW",
+    "matched_place_names": 28,
+    "runner_up_votes": 1,
+    "offset_points": [
+      4709.0,
+      2476.9
+    ],
+    "lon_min": 72.4322602,
+    "lon_max": 72.4686943,
+    "lat_min": 22.8848665,
+    "lat_max": 22.9088084,
+    "width_km": 3.74,
+    "height_km": 2.66,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASODARA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VAYANA": {
+    "name": "VAYANA",
+    "file": "VAYANA.pdf",
+    "block": "NW",
+    "matched_place_names": 71,
+    "runner_up_votes": 39,
+    "offset_points": [
+      7030.0,
+      9930.4
+    ],
+    "lon_min": 72.5652898,
+    "lon_max": 72.6011812,
+    "lat_min": 23.5575705,
+    "lat_max": 23.5910502,
+    "width_km": 3.66,
+    "height_km": 3.72,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VAYANA.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VIRA TALAVADI": {
+    "name": "VIRA TALAVADI",
+    "file": "VIRA TALAVADI.pdf",
+    "block": "NE",
+    "matched_place_names": 11,
+    "runner_up_votes": 2,
+    "offset_points": [
+      7124.1,
+      8382.8
+    ],
+    "lon_min": 72.9079921,
+    "lon_max": 72.9381017,
+    "lat_min": 23.4759392,
+    "lat_max": 23.5013571,
+    "width_km": 3.07,
+    "height_km": 2.82,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VIRA TALAVADI.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "VIROCHANNAGAR": {
+    "name": "VIROCHANNAGAR",
+    "file": "VIROCHANNAGAR.pdf",
+    "block": "NW",
+    "matched_place_names": 6,
+    "runner_up_votes": 5,
+    "offset_points": [
+      584.4,
+      9458.7
+    ],
+    "lon_min": 72.1936563,
+    "lon_max": 72.2656048,
+    "lat_min": 23.3053169,
+    "lat_max": 23.3782263,
+    "width_km": 7.35,
+    "height_km": 8.09,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VIROCHANNAGAR.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  },
+  "ZUNDAL": {
+    "name": "ZUNDAL",
+    "file": "ZUNDAL.pdf",
+    "block": "NE",
+    "matched_place_names": 377,
+    "runner_up_votes": 3,
+    "offset_points": [
+      1893.0,
+      8680.3
+    ],
+    "lon_min": 72.6190633,
+    "lon_max": 72.6738105,
+    "lat_min": 23.4933177,
+    "lat_max": 23.5209436,
+    "width_km": 5.59,
+    "height_km": 3.07,
+    "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/ZUNDAL.pdf",
+    "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+  }
+}

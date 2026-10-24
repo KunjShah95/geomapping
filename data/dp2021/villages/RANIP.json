@@ -1,0 +1,19 @@
+{
+  "name": "RANIP",
+  "file": "RANIP.pdf",
+  "block": "NE",
+  "matched_place_names": 102,
+  "runner_up_votes": 1,
+  "offset_points": [
+    1484.5,
+    10468.2
+  ],
+  "lon_min": 72.5972443,
+  "lon_max": 72.6378567,
+  "lat_min": 23.5847229,
+  "lat_max": 23.612889,
+  "width_km": 4.14,
+  "height_km": 3.13,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RANIP.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

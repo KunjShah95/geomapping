@@ -1,0 +1,19 @@
+{
+  "name": "KALI",
+  "file": "KALI.pdf",
+  "block": "NE",
+  "matched_place_names": 44,
+  "runner_up_votes": 25,
+  "offset_points": [
+    1878.2,
+    9889.9
+  ],
+  "lon_min": 72.6187687,
+  "lon_max": 72.643606,
+  "lat_min": 23.555202,
+  "lat_max": 23.5805791,
+  "width_km": 2.53,
+  "height_km": 2.82,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/KALI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

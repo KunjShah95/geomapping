@@ -1,0 +1,19 @@
+{
+  "name": "VASODARA",
+  "file": "VASODARA.pdf",
+  "block": "SW",
+  "matched_place_names": 28,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4709.0,
+    2476.9
+  ],
+  "lon_min": 72.4322602,
+  "lon_max": 72.4686943,
+  "lat_min": 22.8848665,
+  "lat_max": 22.9088084,
+  "width_km": 3.74,
+  "height_km": 2.66,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/VASODARA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

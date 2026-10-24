@@ -1,0 +1,19 @@
+{
+  "name": "TRAGAD",
+  "file": "TRAGAD.pdf",
+  "block": "NE",
+  "matched_place_names": 125,
+  "runner_up_votes": 1,
+  "offset_points": [
+    1320.9,
+    8782.7
+  ],
+  "lon_min": 72.5874884,
+  "lon_max": 72.6093282,
+  "lat_min": 23.4990095,
+  "lat_max": 23.5237847,
+  "width_km": 2.23,
+  "height_km": 2.75,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/TRAGAD.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

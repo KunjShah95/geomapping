@@ -1,0 +1,19 @@
+{
+  "name": "RUPAVATI",
+  "file": "RUPAVATI.pdf",
+  "block": "SW",
+  "matched_place_names": 45,
+  "runner_up_votes": 1,
+  "offset_points": [
+    4275.2,
+    2103.4
+  ],
+  "lon_min": 72.4082673,
+  "lon_max": 72.4436106,
+  "lat_min": 22.8659749,
+  "lat_max": 22.8949657,
+  "width_km": 3.62,
+  "height_km": 3.22,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/RUPAVATI.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}

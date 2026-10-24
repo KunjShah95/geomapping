@@ -1,0 +1,19 @@
+{
+  "name": "HUKA",
+  "file": "HUKA.pdf",
+  "block": "NE",
+  "matched_place_names": 4,
+  "runner_up_votes": 1,
+  "offset_points": [
+    7423.5,
+    10885.6
+  ],
+  "lon_min": 72.9259071,
+  "lon_max": 72.9539036,
+  "lat_min": 23.6033602,
+  "lat_max": 23.621254,
+  "width_km": 2.86,
+  "height_km": 1.99,
+  "source": "NEW DP BOOK AUDA/AUDA DP EACH VILLAGE MAP/HUKA.pdf",
+  "note": "placed by matching the extract's place names against the part sheets; the extract's own crop box carries no usable position"
+}
