@@ -1311,11 +1311,38 @@ function findRecord(query) {
   // case-insensitive match
   const ci = Object.keys(idx).find(k => k.toLowerCase() === q.toLowerCase());
   if (ci) return idx[ci].map(p => ({ lon: p[0], lat: p[1] }));
-  // unique prefix match (tolerates partial input, e.g. "461" -> "461/2" only if unambiguous)
-  const ql = q.toLowerCase();
-  const pref = Object.keys(idx).filter(k => k.toLowerCase().startsWith(ql));
-  if (pref.length === 1) return idx[pref[0]].map(p => ({ lon: p[0], lat: p[1] }));
+  // the register writes the number in Gujarati digits and with stray spaces or
+  // a leading "+"; the index is in Latin digits. Compare the two normalised.
+  const nq = normRec(q);
+  if (nq) {
+    const keys = Object.keys(idx);
+    const same = keys.filter(k => normRec(k) === nq);
+    if (same.length) return same.flatMap(k => idx[k].map(p => ({ lon: p[0], lat: p[1] })));
+    // unique prefix match, tolerating partial input (e.g. "461" -> "461/2"
+    // only if unambiguous)
+    const pref = keys.filter(k => normRec(k).indexOf(nq) === 0);
+    if (pref.length === 1) return idx[pref[0]].map(p => ({ lon: p[0], lat: p[1] }));
+  }
   return [];
+}
+
+/* Gujarati digits ૦-૯ to Latin, and the spaces/plus signs the register and the
+   plan's index each add: "＋ ૪૬૧ / ૨" and "461/2" are the same number. */
+const GU_DIGITS = '૦૧૨૩૪૫૬૭૮૯';
+function normRec(text) {
+  let out = '';
+  for (const ch of (text || '')) {
+    const d = GU_DIGITS.indexOf(ch);
+    out += d >= 0 ? String(d) : ch;
+  }
+  return out.replace(/[\s+]/g, '').toLowerCase();
+}
+
+/* A deep link carries its village and record in the URL, and those strings end
+   up in the info panel as HTML — so a link is text to display, not markup. */
+function escHtml(text) {
+  return String(text).replace(/[&<>"']/g, ch => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 }
 
 let VILLAGE_INDEX = null;
@@ -1355,7 +1382,58 @@ function findVillage(query) {
   if (key) return Object.assign({ name: key }, VILLAGE_INDEX[key]);
   const part = Object.keys(VILLAGE_INDEX).find(k => k.toLowerCase().indexOf(q) >= 0);
   if (part) return Object.assign({ name: part }, VILLAGE_INDEX[part]);
-  return null;
+  return findVillageInScript(q);
+}
+
+/* The LRMS viewer names a village in Gujarati; this index is in Latin. The
+   romanisation is regular enough to compare consonant skeletons, which also
+   tolerates the schwa the plan drops: ગણપતપુરા is GANPATPURA. Vowels are
+   compared with the schwa removed, so લાલપુર (lalapur) does not quietly become
+   લીલાપુર/LILAPUR; when the match is not unique nothing is picked at all. */
+const GU_LATIN = {
+  'અ': 'a', 'આ': 'a', 'ઇ': 'i', 'ઈ': 'i', 'ઉ': 'u', 'ઊ': 'u', 'ઋ': 'ri',
+  'એ': 'e', 'ઐ': 'ai', 'ઓ': 'o', 'ઔ': 'au',
+  'ક': 'k', 'ખ': 'kh', 'ગ': 'g', 'ઘ': 'gh', 'ઙ': 'n',
+  'ચ': 'ch', 'છ': 'chh', 'જ': 'j', 'ઝ': 'jh', 'ઞ': 'n',
+  'ટ': 't', 'ઠ': 'th', 'ડ': 'd', 'ઢ': 'dh', 'ણ': 'n',
+  'ત': 't', 'થ': 'th', 'દ': 'd', 'ધ': 'dh', 'ન': 'n',
+  'પ': 'p', 'ફ': 'ph', 'બ': 'b', 'ભ': 'bh', 'મ': 'm',
+  'ય': 'y', 'ર': 'r', 'લ': 'l', 'વ': 'v', 'શ': 'sh', 'ષ': 'sh',
+  'સ': 's', 'હ': 'h', 'ળ': 'l',
+  'ા': 'a', 'િ': 'i', 'ી': 'i', 'ુ': 'u', 'ૂ': 'u', 'ૃ': 'ri',
+  'ે': 'e', 'ૈ': 'ai', 'ો': 'o', 'ૌ': 'au', 'ં': 'n', 'ઃ': 'h', '્': '',
+};
+const GU_CONSONANT = new Set('કખગઘઙચછજઝઞટઠડઢણતથદધનપફબભમયરલવશષસહળ');
+const GU_MATRA = new Set('ાિીુૂૃેૈોૌ્ંઃ');
+
+function guLatin(text) {
+  let out = '';
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    out += (GU_LATIN[ch] !== undefined) ? GU_LATIN[ch] : ch;
+    // every consonant carries an inherent "a" unless a matra or a virama follows
+    if (GU_CONSONANT.has(ch) && !GU_MATRA.has(text[i + 1] || '')) out += 'a';
+  }
+  return out;
+}
+
+function guConsonants(text) {
+  return guLatin(text).toLowerCase().replace(/[^a-z]/g, '').replace(/[aeiou]/g, '');
+}
+
+function guVowels(text) {
+  return guLatin(text).toLowerCase().replace(/[^a-z]/g, '').replace(/[^aeiou]/g, '').replace(/a/g, '');
+}
+
+function findVillageInScript(query) {
+  if (!VILLAGE_INDEX || !/[\u0A80-\u0AFF]/.test(query || '')) return null;
+  const consonants = guConsonants(query);
+  const vowels = guVowels(query);
+  if (!consonants) return null;
+  const keys = Object.keys(VILLAGE_INDEX).filter(k =>
+    guConsonants(k) === consonants && guVowels(k) === vowels);
+  if (keys.length !== 1) return null;
+  return Object.assign({ name: keys[0] }, VILLAGE_INDEX[keys[0]]);
 }
 
 /* ---- marking a survey number ----
@@ -1515,11 +1593,13 @@ function updateHash() {
 
 /* the occurrence a link names, as an index into the marked list.
    The number in the link is 1-based, because that is how the list shows
-   it; out of range falls back to the first occurrence. */
-function occFromHash(n) {
-  const m = /[#&]occ=(\d+)/.exec(location.hash || '');
-  if (!m) return 0;
-  const i = parseInt(m[1], 10) - 1;
+   it; out of range falls back to the first occurrence. The caller passes
+   the digits it read from the link, not the live hash: marking a village
+   rewrites the address bar, so by the time the record is marked the hash
+   may no longer carry the occ the link came with. */
+function occurrenceIndex(digits, n) {
+  if (digits == null) return 0;
+  const i = parseInt(digits, 10) - 1;
   if (!isFinite(i) || i < 0 || i >= n) return 0;
   return i;
 }
@@ -2057,21 +2137,50 @@ map.on('load', () => {
   map.on('mouseenter', 'zone-fill', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'zone-fill', () => map.getCanvas().style.cursor = '');
 
-  // a deep link: #rec=461%2F2 marks that record on load
-  const m = /[#&]rec=([^&]+)/.exec(location.hash || '');
-  if (m) {
-    const q = decodeURIComponent(m[1]);
-    document.getElementById('recSearch').value = q;
-    loadIndex().then(() => {
-      const hits = findRecord(q);
-      if (hits.length) {
-        // the link may name the occurrence too: #rec=461%2F2&occ=57
-        const occ = occFromHash(hits.length);
-        markRecords(hits, q, occ, { fly: true });
-        document.getElementById('recInfo').innerHTML =
-          '<b>' + q + '</b> — ' + hits.length.toLocaleString() +
-          ' occurrence' + (hits.length === 1 ? '' : 's') +
-          ' in the plan, marked on the map.';
+  // a deep link opens the map at a village and/or a record:
+  //   #village=ઉસ્માનાબાદ    frames that village (Latin or Gujarati name)
+  //   #rec=461%2F2&occ=57     marks that record, optionally its occurrence
+  const hash = location.hash || '';
+  const villageHash = /[#&]village=([^&]+)/.exec(hash);
+  const recordHash = /[#&]rec=([^&]+)/.exec(hash);
+  const occHash = /[#&]occ=(\d+)/.exec(hash);
+  if (villageHash || recordHash) {
+    Promise.all([loadIndex(), loadVillages(), loadVillageUnits()]).then(() => {
+      const info = document.getElementById('recInfo');
+      let framed = false;
+      if (villageHash) {
+        const vq = decodeURIComponent(villageHash[1].replace(/\+/g, ' '));
+        const village = findVillage(vq);
+        const unit = village ? null : findVillageUnit(vq);
+        const place = village || unit;
+        if (place && place.bbox) {
+          map.fitBounds([[place.bbox[0], place.bbox[1]], [place.bbox[2], place.bbox[3]]],
+                        { padding: 60, maxZoom: 15.5, duration: 0 });
+          framed = true;
+          if (village) {
+            markRecords(village.pts, village.name);
+            info.innerHTML = '<b>' + village.name + '</b> — ' + village.n.toLocaleString() +
+              ' survey records in the plan, marked on the map.';
+          } else {
+            showUnitBoundaries(unit.name);
+            info.innerHTML = '<b>' + unit.name + '</b> — ' + unit.type + ' boundary in the plan.';
+          }
+        } else {
+          info.innerHTML = 'No village called <b>' + escHtml(vq) + '</b> is on this map.';
+        }
+      }
+      if (recordHash) {
+        const q = decodeURIComponent(recordHash[1]);
+        document.getElementById('recSearch').value = q;
+        const hits = findRecord(q);
+        if (hits.length) {
+          // the link may name the occurrence too: #rec=461%2F2&occ=57
+          const occ = occurrenceIndex(occHash && occHash[1], hits.length);
+          markRecords(hits, q, occ, { fly: !framed });
+          info.innerHTML = '<b>' + escHtml(q) + '</b> — ' + hits.length.toLocaleString() +
+            ' occurrence' + (hits.length === 1 ? '' : 's') +
+            ' in the plan, marked on the map.';
+        }
       }
     });
   }
