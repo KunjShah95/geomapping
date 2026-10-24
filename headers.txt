@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Age: 128
+Cache-Control: public, max-age=0, must-revalidate
+Content-Length: 259709
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Content-Type: text/html; charset=utf-8
+Date: Thu, 22 Oct 2026 10:20:38 GMT
+Etag: "rq16o84lxp5kah"
+Link: </.well-known/api-catalog>; rel="api-catalog", <https://kunjshah.in/openapi.json>; rel="service-desc"; type="application/openapi+json", <https://kunjshah.in/.well-known/mcp/server-card.json>; rel="mcp-server-card", <https://kunjshah.in/llms.txt>; rel="alternate"; type="text/markdown", <https://kunjshah.in/llms-full.txt>; rel="alternate"; type="text/markdown", <https://kunjshah.in/ai.txt>; rel="alternate"; type="text/markdown", <https://kunjshah.in/.well-known/ai.txt>; rel="alternate"; type="text/markdown", <https://kunjshah.in/pricing.md>; rel="pricing", <https://kunjshah.in/services.md>; rel="service", <https://kunjshah.in/rss.xml>; rel="alternate"; type="application/rss+xml", <https://kunjshah.in/sitemap.xml>; rel="sitemap"
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+X-Content-Type-Options: nosniff
+X-Matched-Path: /
+X-Nextjs-Prerender: 1
+X-Nextjs-Stale-Time: 300
+X-Vercel-Cache: HIT
+X-Vercel-Id: bom1::iad1::pnr5k-1792664568298-8c39a01f1644
+

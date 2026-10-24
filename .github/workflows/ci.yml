@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check dev server syntax
+        run: node --check tools/serve.js
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Python tools
+        run: python -m compileall -q tools
+
+      - name: Check the viewer script
+        run: |
+          python - <<'PY'
+          import re, subprocess, sys
+          html = open('web/index.html', encoding='utf-8').read()
+          m = re.search(r'<script>([\s\S]*?)</script>\s*</body>', html)
+          if not m:
+              print('could not find the viewer script block'); sys.exit(1)
+          open('/tmp/_viewer.js', 'w', encoding='utf-8').write(m.group(1))
+          print('viewer script extracted')
+          PY
+          node --check /tmp/_viewer.js
+
+      - name: Validate generated JSON
+        run: |
+          python - <<'PY'
+          import json, glob, os
+          for p in ['data/bounds.json', 'data/dp2021/bounds.json',
+                    'data/dp2021/legend.json', 'data/dp2021/label_stats.json',
+                    'data/dp2021/boundary_stats.json',
+                    'data/dp2021/boundary_join_summary.json']:
+            if not os.path.exists(p):
+                print('skip (not built)', p); continue
+            with open(p, encoding='utf-8') as f:
+              json.load(f)
+            print('ok', p)
+          PY

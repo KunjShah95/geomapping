@@ -1,0 +1,69 @@
+# secrets
+.env
+.env.local
+.env.*.local
+
+# large generated artefacts
+work/source.jpeg
+work/source.rgb
+work/*.zip
+
+# tiles are a build artefact; keep if you deploy them, ignore if you rebuild
+# tiles/
+
+node_modules/
+__pycache__/
+
+# rollback copies and tool scratch from the 2026-10-22/23 ground-correction rebuilds
+work/backup*/
+tiles_dp2021_pre_correction/
+tiles_dp2021_affine/
+tiles_dp2021_v2/
+tiles_dp2021_v3/
+.playwright-mcp/
+.rea/
+satellite/
+
+# personal GitHub profile dump, not project data
+gh.json
+
+# ---------------------------------------------------------------- JSON not needed in git
+# The viewer loads only the bucketed layers (data/dp2021/{plots,parcels,zones,details}/)
+# and the small indexes. The whole-layer files below are pipeline intermediates: rebuilt
+# by tools/dp_*.py, too large for git (zones.geojson is 160+ MB, over GitHub's 100 MB
+# limit), and handed to the client separately if they want the raw vectors.
+data/dp2021/zones.geojson
+data/dp2021/parcels.geojson
+data/dp2021/plots.geojson
+data/dp2021/plots_overview.geojson
+data/dp2021/parcel_index.json
+data/dp2021/records.ndjson
+data/dp2021/records_bounded.ndjson
+data/dp2021/record_parcels.ndjson
+# polygonize's snapshot of the closed-ring layer (regenerated on every boundary run)
+data/dp2021/*.closed_rings.*
+# Google Earth exports (KML/KMZ, 275 MB): regenerate with tools/dp_export_kml.py
+data/dp2021/google_earth/
+# reports from the withdrawn satellite measurement (rooftop-prone; see PROJECT-GUIDE §5)
+data/dp2021/zone_offsets.json
+data/dp2021/zone_satellite.json
+data/dp2021/record_checks.json
+
+# work/: scratch, logs and measurements. Ignore its JSON, except the files the build
+# needs to reproduce the delivered map:
+work/**/*.json
+work/**/*.geojson
+work/**/*.ndjson
+!work/geopdf_views.json
+!work/dp_ground_correction.json
+!work/dp_ground_warp.json
+!work/georef_osm/
+!work/georef_osm/field.json
+!work/georef_osm/field_raw.json
+!work/georef_osm_warp/
+!work/georef_osm_warp/field.json
+# (work/osm/roads.json, 53 MB, stays ignored: re-download with the Overpass query in
+#  tools/dp_osm_offsets.py's docstring)
+
+# the GitHub Pages build output (tools/build_site.js); CI rebuilds it
+dist/

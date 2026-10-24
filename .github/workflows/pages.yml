@@ -1,0 +1,70 @@
+name: Pages
+
+# Publishes the DP 2021 viewer to https://kunjshah95.github.io/geomapping/
+#
+# The repository root is not publishable: it holds the client's source PDFs,
+# two superseded tile pyramids and the pipeline intermediates, well over the
+# 1 GB GitHub Pages cap. tools/build_site.js owns the allowlist and assembles
+# dist/ (viewer shell + glyphs + tiles_dp2021 + the data the viewer fetches),
+# which is the only thing uploaded.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'tiles_dp2021/**'
+      - 'data/dp2021/**'
+      - 'tools/build_site.js'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# one deploy at a time; never cancel one halfway through a live site
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Assemble the site
+        run: node tools/build_site.js --out dist
+
+      - name: Check the viewer script
+        run: |
+          python - <<'PY'
+          import re
+          html = open('dist/index.html', encoding='utf-8').read()
+          m = re.search(r'<script>([\s\S]*?)</script>\s*</body>', html)
+          assert m, 'could not find the viewer script block'
+          open('/tmp/_viewer.js', 'w', encoding='utf-8').write(m.group(1))
+          PY
+          node --check /tmp/_viewer.js
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,42 @@
+{
+ "id": "osm-affine-937w",
+ "model": "affine in plan TM metres: corrected = M @ (m - centre) + centre + t",
+ "centre_m": [
+  509623.17,
+  463587.621
+ ],
+ "M": [
+  [
+   1.0001082850184928,
+   -0.00027039178046145006
+  ],
+  [
+   -0.0013162173216534627,
+   1.0006707736393787
+  ]
+ ],
+ "t_m": [
+  -84.9415338665033,
+  -23.782573579353397
+ ],
+ "summary": {
+  "shift_at_centre_m": [
+   -84.9,
+   -23.8
+  ],
+  "rotation_deg": -0.0299,
+  "scale_x": 1.000109,
+  "scale_y": 1.000671
+ },
+ "fit": {
+  "windows": 937,
+  "before_median_m": 90.5,
+  "before_p90_m": 100.6,
+  "after_median_m": 8.5,
+  "after_p90_m": 23.9,
+  "held_out_median_m": 8.9,
+  "held_out_p90_m": 24.0
+ },
+ "reference": "OSM roads (ODbL) via Overpass, measured by tools/dp_osm_offsets.py",
+ "note": "Residual after correction is OSM's own error plus the plan's local drawing differences; it is not georeference error alone."
+}
