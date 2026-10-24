@@ -184,7 +184,7 @@
 
   /* ---------------- the set-out (markout) sheet ---------------- */
   #markout {
-    top: 12px; right: 70px; width: min(470px, 46vw); max-height: 78vh; overflow: auto;
+    top: 12px; right: 70px; width: min(680px, calc(100vw - 150px)); max-height: 78vh; overflow: auto;
     padding: 10px 12px;
   }
   #markout:not(.on) { display: none; }
@@ -196,14 +196,15 @@
   #moMeta b { color: var(--ink); font-weight: 600; }
   #moScroll { overflow-x: auto; }
   #moTable { width: 100%; border-collapse: collapse;
-             font: 11px/1.45 ui-monospace, Menlo, Consolas, monospace; }
+             font: 10.5px/1.45 ui-monospace, Menlo, Consolas, monospace; }
   #moTable th { text-align: right; font-weight: 600; color: #666; border-bottom: 1px solid var(--line);
-                padding: 2px 4px; font-size: 9.5px; text-transform: uppercase; letter-spacing: .03em;
+                padding: 2px 3px; font-size: 9.5px; text-transform: uppercase; letter-spacing: .03em;
                 white-space: nowrap; }
   #moTable th:first-child, #moTable td:first-child { text-align: left; }
-  #moTable td { padding: 2px 4px; border-bottom: 1px solid #f2f2f2; text-align: right; white-space: nowrap; }
+  #moTable td { padding: 2px 3px; border-bottom: 1px solid #f2f2f2; text-align: right; white-space: nowrap; }
   #moTable td.i { font-weight: 700; color: var(--accent); }
   #moTable .sh { color: #8a8a8a; background: #fafafa; }
+  #moTable .ll { color: #3d3d3d; }
   #moTable tr:hover td { background: #fafafa; }
   #moSummary { margin-top: 8px; font-size: 11.5px; line-height: 1.6; color: #333; }
   #moSummary b { color: var(--ink); }
@@ -215,7 +216,7 @@
   .printHead { display: none; }
 
   @media (max-width: 1080px) {
-    #markout { right: 70px; width: min(430px, calc(100vw - 92px)); max-height: 62vh; }
+    #markout { right: 70px; width: min(640px, calc(100vw - 92px)); max-height: 62vh; }
   }
   /* phones: the drawers and the result sheet become bottom sheets */
   @media (max-width: 760px) {
@@ -245,6 +246,9 @@
      out. So the print view is the card itself, laid out on a page, with
      the map and the panels out of the way. */
   @media print {
+    /* the corner table is wide now that it carries lat/lon as well, so the
+       field document prints landscape and a long plot repeats its header */
+    @page { size: A4 landscape; margin: 10mm; }
     html, body { height: auto; background: #fff; }
     #map, #panel, #legend, #readout, #status, #plotBadge,
     #topbar, #fabs, #sheet,
@@ -259,6 +263,8 @@
     }
     #markout.on #moScroll { overflow: visible; }
     #markout.on #moTable { font-size: 9.5pt; }
+    #markout.on #moTable thead { display: table-header-group; }
+    #markout.on #moTable tr { break-inside: avoid; }
     #markout.on h2 { font-size: 12pt; margin: 0 0 6px; }
     .printHead { display: block; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1.5px solid #333; }
     .printHead .phTitle { font-size: 15pt; font-weight: 700; }
@@ -1436,6 +1442,17 @@ function findVillageInScript(query) {
   return Object.assign({ name: keys[0] }, VILLAGE_INDEX[keys[0]]);
 }
 
+/* What the map can say about a village. The index keeps a village's first 500
+   points, not all of them, so a village with 1,029 records draws 500: the note
+   says how many the plan holds and how many are actually on the map. */
+function villageNote(v) {
+  const drawn = Math.min(v.n, (v.pts || []).length);
+  const lead = '<b>' + v.name + '</b> — ' + v.n.toLocaleString() +
+    ' survey records in the plan';
+  if (drawn >= v.n) return lead + ', marked on the map.';
+  return lead + '; the first ' + drawn.toLocaleString() + ' are marked on the map.';
+}
+
 /* ---- marking a survey number ----
    A survey number is not a place. The same number is on 115 plots because
    the numbers restart in each village, so a marked number is a SET of
@@ -1582,11 +1599,18 @@ function fillOccurrenceDetails() {
   }
 }
 
-/* the link that points at one particular occurrence */
+/* the link that reproduces what is marked. A village's marks are not a record,
+   so they are linked as a village: #rec=<village name> would be read back as a
+   survey number and find nothing. */
 function updateHash() {
   if (!markedLabel) return;
-  let h = '#rec=' + encodeURIComponent(markedLabel);
-  if (activeOcc > 0) h += '&occ=' + (activeOcc + 1);
+  let h;
+  if (VILLAGE_INDEX && VILLAGE_INDEX[markedLabel]) {
+    h = '#village=' + encodeURIComponent(markedLabel);
+  } else {
+    h = '#rec=' + encodeURIComponent(markedLabel);
+    if (activeOcc > 0) h += '&occ=' + (activeOcc + 1);
+  }
   try { history.replaceState(null, '', h); }
   catch (e) { location.hash = h; }
 }
@@ -1636,8 +1660,7 @@ async function runSearch() {
     const v = findVillage(q);
     if (v) {
       markRecords(v.pts, v.name);
-      info.innerHTML = '<b>' + v.name + '</b> — ' + v.n.toLocaleString() +
-        ' survey records in the plan, marked on the map.';
+      info.innerHTML = villageNote(v);
       return;
     }
     info.innerHTML = 'Nothing found for <b>' + q + '</b>. The index holds ' +
@@ -1792,7 +1815,12 @@ function showSetOutEmpty(meta) {
     setOutHeadline(m, 'this spot');
 
   document.getElementById('moTable').innerHTML = '';
+  const at = Array.isArray(m.record) && m.record.length === 2
+    ? 'Record position <b>' + m.record[1].toFixed(8) + ', ' +
+      m.record[0].toFixed(8) + '</b> (lat, lon).<br>'
+    : '';
   document.getElementById('moSummary').innerHTML =
+    at +
     '<b>No set-out for this spot.</b><br>' +
     'The plan&rsquo;s own plot boundaries were recovered from the vector sheets, ' +
     'and this record sits outside every boundary that was recovered &mdash; ' +
@@ -1841,6 +1869,8 @@ function renderSetOut() {
     rows += '<tr><td class="i">' + c.i + '</td>' +
             '<td>' + c.e.toFixed(3) + '</td>' +
             '<td>' + c.n.toFixed(3) + '</td>' +
+            '<td class="ll">' + c.lat.toFixed(8) + '</td>' +
+            '<td class="ll">' + c.lon.toFixed(8) + '</td>' +
             (sheet ? '<td class="sh">' + c.se.toFixed(3) + '</td>' +
                      '<td class="sh">' + c.sn.toFixed(3) + '</td>' : '') +
             '<td>' + c.az.toFixed(3) + '&deg;</td>' +
@@ -1849,6 +1879,8 @@ function renderSetOut() {
   }
   document.getElementById('moTable').innerHTML =
     '<thead><tr><th>corner</th><th>easting</th><th>northing</th>' +
+    '<th class="ll" title="WGS 84 latitude of the corner on the ground, in decimal degrees">latitude</th>' +
+    '<th class="ll" title="WGS 84 longitude of the corner on the ground, in decimal degrees">longitude</th>' +
     (sheet ? '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet E</th>' +
              '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet N</th>' : '') +
     '<th>azimuth</th><th>length</th><th>reduced bearing</th></tr></thead>' +
@@ -1867,14 +1899,20 @@ function renderSetOut() {
     ? ' <span style="color:#888">(from ' + so.vertices_drawn +
       ' drawn points, ' + so.reduced + ' of them on the straight)</span>'
     : '';
-  document.getElementById('moSummary').innerHTML = [
+  const lines = [
     areaLine,
     'Perimeter <b>' + so.perimeter_m.toFixed(3) + ' m</b>',
-    'Corners <b>' + so.n + '</b>' + drawn,
-    'Grid <b>' + AudaMarkout.CRS.name + '</b> &mdash; CM ' + AudaMarkout.CRS.lon0 +
+    'Corners <b>' + so.n + '</b>' + drawn
+  ];
+  // the record the surveyor clicked: where it sits inside this plot
+  if (Array.isArray(m.record) && m.record.length === 2) {
+    lines.push('Record position <b>' + m.record[1].toFixed(8) + ', ' +
+               m.record[0].toFixed(8) + '</b> (lat, lon)');
+  }
+  lines.push('Grid <b>' + AudaMarkout.CRS.name + '</b> &mdash; CM ' + AudaMarkout.CRS.lon0 +
       '&deg;, k&#8320; ' + AudaMarkout.CRS.k0 + ', FE/FN ' +
-      AudaMarkout.CRS.FE + '/' + AudaMarkout.CRS.FN
-  ].join('<br>');
+      AudaMarkout.CRS.FE + '/' + AudaMarkout.CRS.FN);
+  document.getElementById('moSummary').innerHTML = lines.join('<br>');
 
   const w = document.getElementById('printWhen');
   if (w) w.textContent = 'Printed ' + new Date().toLocaleString() +
@@ -2003,7 +2041,9 @@ document.getElementById('moNote').innerHTML =
   'The corners are the plan&rsquo;s own drawn boundary, in the grid the sheets were ' +
   'drawn in. <b>Easting/northing</b> are on the ground: the printed sheets place the ' +
   'plan about 85&nbsp;m east of where it belongs, and the map corrects that. ' +
-  '<b>Sheet E/N</b> are the numbers the printed sheet itself would give. The ' +
+  '<b>Sheet E/N</b> are the numbers the printed sheet itself would give. ' +
+  '<b>Latitude/longitude</b> are those same ground corners in WGS&nbsp;84 decimal ' +
+  'degrees &mdash; what a handheld GPS shows. The ' +
   '<b>shape</b> is the plan&rsquo;s; the corrected <b>position</b> agrees with ' +
   'OSM roads to about 6&nbsp;m (median). Peg from the edges and the bearings, and ' +
   'treat the coordinates as a starting point rather than a finished survey.';
@@ -2159,8 +2199,7 @@ map.on('load', () => {
           framed = true;
           if (village) {
             markRecords(village.pts, village.name);
-            info.innerHTML = '<b>' + village.name + '</b> — ' + village.n.toLocaleString() +
-              ' survey records in the plan, marked on the map.';
+            info.innerHTML = villageNote(village);
           } else {
             showUnitBoundaries(unit.name);
             info.innerHTML = '<b>' + unit.name + '</b> — ' + unit.type + ' boundary in the plan.';
