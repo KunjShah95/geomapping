@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDA Revised Development Plan 2022 — raster plan overlay (LEGACY)</title>
+<!--
+  LEGACY VIEWER - the 2022 scan-based map, kept for reference only.
+
+  The client reported this map as unusable: the georeference sat 53 m (median)
+  off real roads, the scan capped the resolution at 2.57 m/px so plot numbers
+  were unreadable, and the number layer was OCR with 26k fragments and
+  read errors.
+
+  It still works against the tiles and data it was built for, which are still
+  on disk:
+      tiles/            the old z11-z16 JPEG pyramid (10,126 tiles)
+      data/bounds.json  the old extent and accuracy note
+      data/plots.geojson the old OCR'd numbers
+
+  The current map is at /web/index.html.
+-->
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"
+      integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"
+        integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
+<script src="/config.js"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; connect-src 'self' https://tile.openstreetmap.org https://server.arcgisonline.com https://demotiles.maplibre.org https://unpkg.com; font-src 'self' https://demotiles.maplibre.org https://unpkg.com; worker-src 'self' blob:;">
+<style>
+  html, body, #map { margin: 0; height: 100%; width: 100%; }
+  #panel {
+    position: absolute; top: 10px; left: 10px; z-index: 10;
+    background: rgba(255,255,255,.94); padding: 12px 14px; border-radius: 8px;
+    font: 13px/1.45 system-ui, sans-serif; box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    max-width: 320px;
+  }
+  #panel h1 { font-size: 14px; margin: 0 0 8px; }
+  #panel label { display: block; margin: 7px 0 2px; font-weight: 600; }
+  #panel input[type=range] { width: 100%; }
+  #readout {
+    position: absolute; bottom: 10px; left: 10px; z-index: 10;
+    background: rgba(0,0,0,.72); color: #fff; padding: 7px 11px; border-radius: 6px;
+    font: 12px ui-monospace, Menlo, Consolas, monospace;
+  }
+  #legend {
+    position: absolute; bottom: 10px; right: 10px; z-index: 10;
+    background: rgba(255,255,255,.94); padding: 9px 12px; border-radius: 8px;
+    font: 12px/1.5 system-ui, sans-serif; box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .sw { display: inline-block; width: 13px; height: 13px; vertical-align: -2px;
+        margin-right: 6px; border: 1px solid rgba(0,0,0,.35); }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="panel">
+  <h1>AUDA Revised Development Plan 2022 <em style="font-weight:400">(legacy)</em></h1>
+  <label><input type="checkbox" id="showPlan" checked> Plan overlay</label>
+  <label>Opacity <span id="opv">100%</span></label>
+  <input type="range" id="op" min="0" max="100" value="100">
+  <label><input type="checkbox" id="showMarks" checked> Landmark markers</label>
+  <label><input type="checkbox" id="showSat" checked> Satellite basemap</label>
+  <label><input type="checkbox" id="showNumbers" checked> Plot numbers <span id="numCount"></span></label>
+  <label>Min OCR confidence <span id="numConf">0.60</span></label>
+  <input type="range" id="numConfRange" min="0.4" max="0.95" step="0.05" value="0.60">
+  <div style="margin-top:9px;font-size:11px;color:#555">
+    Tiles: <code>/tiles/{z}/{x}/{y}.jpg</code><br>
+    z11–z16 · 2.57 m/px · 10,126 tiles<br>
+    <span id="envStatus">env: …</span><br>
+    <span id="resNote"></span><br>
+    <span id="accNote">accuracy: …</span>
+  </div>
+</div>
+<div id="readout">lon/lat —</div>
+
+<div id="legend">
+  <div><span class="sw" style="background:#f5e93a"></span>Residential</div>
+  <div><span class="sw" style="background:#ef8a1f"></span>Commercial / mixed</div>
+  <div><span class="sw" style="background:#d9342b"></span>Industrial</div>
+  <div><span class="sw" style="background:#a86fd6"></span>Institutional / public</div>
+  <div><span class="sw" style="background:#0071fe"></span>Mixed land use</div>
+  <div><span class="sw" style="background:#2fa84f"></span>Agricultural</div>
+  <div><span class="sw" style="background:#4a975e"></span>Green / undeveloped</div>
+  <div><span class="sw" style="background:#7fc9a8"></span>Open / vacant</div>
+  <div><span class="sw" style="background:#8fd4f0"></span>Water</div>
+</div>
+
+<script>
+const FALLBACK_BOUNDS = {
+  raster_source: { bounds: [72.178109, 22.763306, 72.860675, 23.357406], minzoom: 11, maxzoom: 16 },
+  map_view: { fitBounds: [[72.178109, 22.763306], [72.860675, 23.357406]], minZoom: 11, maxZoom: 18 }
+};
+let BOUNDS = FALLBACK_BOUNDS.map_view.fitBounds;
+let SRC_BOUNDS = FALLBACK_BOUNDS.raster_source.bounds;
+let PLAN_MINZOOM = FALLBACK_BOUNDS.raster_source.minzoom;
+let PLAN_MAXZOOM = FALLBACK_BOUNDS.raster_source.maxzoom;
+let MAP_MINZOOM = FALLBACK_BOUNDS.map_view.minZoom;
+let MAP_MAXZOOM = FALLBACK_BOUNDS.map_view.maxZoom;
+
+const ENV = (typeof window !== 'undefined' && window.ENV) || {};
+const GOOGLE_API_KEY = ENV.GOOGLE_API_KEY || '';
+{
+  const el = document.getElementById('envStatus');
+  if (el) {
+    const n = Object.keys(ENV).length;
+    el.textContent = n === 0
+      ? 'env: not injected - serve with: node --env-file=.env tools/serve.js'
+      : GOOGLE_API_KEY ? 'env: 1 key - Google key loaded' : 'env: ' + n + ' key(s), no Google key';
+  }
+}
+
+function applyBounds(b) {
+  if (!b || !b.raster_source || !b.map_view) throw new Error('bounds.json missing keys');
+  BOUNDS = b.map_view.fitBounds;
+  SRC_BOUNDS = b.raster_source.bounds;
+  PLAN_MINZOOM = b.raster_source.minzoom;
+  PLAN_MAXZOOM = b.raster_source.maxzoom;
+  MAP_MINZOOM = b.map_view.minZoom;
+  MAP_MAXZOOM = b.map_view.maxZoom;
+  map.setMinZoom(MAP_MINZOOM);
+  map.setMaxZoom(MAP_MAXZOOM);
+  map.fitBounds(BOUNDS, { padding: 40 });
+  const src = map.getSource('plan');
+  if (src && src.setBounds) src.setBounds(SRC_BOUNDS);
+  const acc = document.getElementById('accNote');
+  const res = document.getElementById('resNote');
+  if (res && b.resolution) {
+    res.textContent = 'resolution: ' + b.resolution.m_per_px.toFixed(2) + ' m/px, native z'
+      + b.resolution.native_zoom;
+  }
+  window.__boundsLoaded = true;
+}
+
+let boundsData = null;
+fetch('/data/bounds.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(b => {
+    boundsData = b;
+    return new Promise(res => (map.isStyleLoaded() ? res() : map.once('load', res)));
+  })
+  .then(() => applyBounds(boundsData))
+  .catch(e => {
+    const acc = document.getElementById('accNote');
+    if (acc) acc.textContent = 'extent: ' + e.message + ' - using built-in fallback';
+  });
+
+fetch('/data/accuracy.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(a => {
+    const el = document.getElementById('accNote');
+    if (!el) return;
+    if (!a) { el.textContent = 'accuracy: not measured'; return; }
+    el.textContent = 'accuracy: ' + a.offset_median_m + ' m median (p90 ' + a.offset_p90_m + ' m)';
+    el.title = a.caveat;
+  })
+  .catch(() => {
+    const el = document.getElementById('accNote');
+    if (el) el.textContent = 'accuracy: not measured';
+  });
+
+const MARKS = [
+  ['Ahmedabad Airport', 23.0774, 72.6327],
+  ['Sardar Patel Stadium', 23.0380, 72.4777],
+  ['Kankaria Lake', 22.9786, 72.6466],
+  ['Sarkhej Lake', 22.9723, 72.4997],
+  ['Sabarmati Ashram', 23.0535, 72.5714],
+  ['Ahmedabad Jn', 23.0223, 72.5713],
+  ['Sanand', 22.9833, 72.3833],
+  ['Gandhinagar', 23.2156, 72.6369]
+];
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+    sources: {
+      osm: { type: 'raster', tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+             tileSize: 256, attribution: '© OpenStreetMap contributors', maxzoom: 19 },
+      sat: { type: 'raster',
+             tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+             tileSize: 256, maxzoom: 19 },
+      plan: { type: 'raster', tiles: ['/tiles/{z}/{x}/{y}.jpg'], tileSize: 256,
+              minzoom: PLAN_MINZOOM, maxzoom: PLAN_MAXZOOM, bounds: SRC_BOUNDS },
+      plots: { type: 'geojson', data: '/data/plots.geojson', tolerance: 0.01 }
+    },
+    layers: [
+      { id: 'bg', type: 'background', paint: { 'background-color': '#e8e4dc' } },
+      { id: 'osm', type: 'raster', source: 'osm', paint: { 'raster-opacity': 1 } },
+      { id: 'sat', type: 'raster', source: 'sat', layout: { visibility: 'visible' },
+        paint: { 'raster-opacity': 0.85 } },
+      { id: 'plan', type: 'raster', source: 'plan', paint: { 'raster-opacity': 1 } },
+      { id: 'plot-labels', type: 'symbol', source: 'plots', minzoom: 13.5,
+        layout: {
+          'text-field': ['get', 't'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 13.5, 9, 15, 11.5, 17, 15, 19, 20],
+          'text-font': ['Noto Sans Regular'],
+          'text-allow-overlap': false, 'text-optional': true, 'text-padding': 2
+        },
+        paint: { 'text-color': '#5a0010', 'text-halo-color': '#ffffff',
+                 'text-halo-width': 1.8, 'text-halo-blur': 0.3 } },
+      { id: 'plot-hover', type: 'circle', source: 'plots',
+        filter: ['==', ['get', 't'], ''],
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13.5, 5, 18, 11],
+                 'circle-color': '#ff003c', 'circle-opacity': 0.9,
+                 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2 } }
+    ]
+  },
+  bounds: BOUNDS,
+  fitBoundsOptions: { padding: 40 },
+  maxZoom: MAP_MAXZOOM,
+  minZoom: MAP_MINZOOM
+});
+
+map.addControl(new maplibregl.NavigationControl(), 'top-right');
+map.addControl(new maplibregl.ScaleControl({ maxWidth: 140, unit: 'metric' }), 'bottom-right');
+window.map = map;
+
+const pts = MARKS.map(m => ({
+  type: 'Feature',
+  properties: { name: m[0] },
+  geometry: { type: 'Point', coordinates: [m[2], m[1]] }
+}));
+map.on('load', () => {
+  map.addSource('marks', { type: 'geojson', data: { type: 'FeatureCollection', features: pts } });
+  map.addLayer({ id: 'mark-hit', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 18, 'circle-opacity': 0 } });
+  map.addLayer({ id: 'mark-glow', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 13, 'circle-color': 'rgba(255,0,60,0.28)', 'circle-blur': 0.35 } });
+  map.addLayer({ id: 'mark-dot', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 6.5, 'circle-color': '#ff003c',
+                          'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2.5 } });
+  map.addLayer({ id: 'mark-leader', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 1.4, 'circle-color': '#ffffff' } });
+  map.addLayer({ id: 'mark-lbl', type: 'symbol', source: 'marks',
+                 layout: { 'text-field': ['get', 'name'], 'text-size': 15,
+                           'text-offset': [0, 2.4], 'text-anchor': 'top',
+                           'text-allow-overlap': true, 'text-ignore-placement': true,
+                           'text-font': ['Noto Sans Bold'] },
+                 paint: { 'text-color': '#7a0016', 'text-halo-color': '#ffffff',
+                          'text-halo-width': 2.6, 'text-halo-blur': 0.4 } });
+
+  const MARK_LAYERS = ['mark-glow', 'mark-dot', 'mark-leader', 'mark-lbl'];
+  const vis = () => (document.getElementById('showMarks').checked ? 'visible' : 'none');
+  for (const id of MARK_LAYERS) map.setLayoutProperty(id, 'visibility', vis());
+
+  map.on('click', 'mark-hit', (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    new maplibregl.Popup({ offset: 16, closeButton: true })
+      .setLngLat(f.geometry.coordinates)
+      .setHTML('<strong>' + f.properties.name + '</strong><br>' +
+                '<span style="color:#666;font-size:12px">control point for georeference check</span>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'mark-hit', () => (map.getCanvas().style.cursor = 'pointer'));
+  map.on('mouseleave', 'mark-hit', () => (map.getCanvas().style.cursor = ''));
+
+  document.getElementById('showPlan').onchange = e =>
+    map.setLayoutProperty('plan', 'visibility', e.target.checked ? 'visible' : 'none');
+  document.getElementById('showSat').onchange = e =>
+    map.setLayoutProperty('sat', 'visibility', e.target.checked ? 'visible' : 'none');
+  document.getElementById('showMarks').onchange = e => {
+    for (const id of MARK_LAYERS)
+      map.setLayoutProperty(id, 'visibility', e.target.checked ? 'visible' : 'none');
+  };
+  const op = document.getElementById('op'), opv = document.getElementById('opv');
+  op.oninput = () => {
+    map.setPaintProperty('plan', 'raster-opacity', op.value / 100);
+    opv.textContent = op.value + '%';
+  };
+  document.getElementById('showNumbers').onchange = e =>
+    map.setLayoutProperty('plot-labels', 'visibility', e.target.checked ? 'visible' : 'none');
+  const nc = document.getElementById('numConfRange');
+  const ncv = document.getElementById('numConf');
+  const applyConf = () => {
+    ncv.textContent = Number(nc.value).toFixed(2);
+    map.setFilter('plot-labels', ['>=', ['get', 's'], Number(nc.value)]);
+  };
+  nc.oninput = applyConf;
+  applyConf();
+
+  let hovered = null;
+  map.on('mousemove', 'plot-labels', (e) => {
+    const f = e.features && e.features[0];
+    const t = f ? f.properties.t : null;
+    if (t === hovered) return;
+    hovered = t;
+    map.setFilter('plot-hover', ['==', ['get', 't'], t === null ? '\u0000none' : t]);
+    map.getCanvas().style.cursor = t ? 'pointer' : '';
+  });
+
+  map.addLayer({ id: 'plot-hit', type: 'circle', source: 'plots',
+                 paint: { 'circle-radius': 14, 'circle-opacity': 0 } });
+  map.on('click', 'plot-hit', (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const p = f.properties || {};
+    const coords = (f.geometry && f.geometry.coordinates) || [0, 0];
+    const lon = Number(coords[0]);
+    const lat = Number(coords[1]);
+    const conf = Number(p.s);
+    const confClass = conf >= 0.85 ? '#0a7a28' : conf >= 0.7 ? '#a06a00' : '#b00020';
+    const confWord = conf >= 0.85 ? 'high' : conf >= 0.7 ? 'medium' : 'low';
+    new maplibregl.Popup({ offset: 14, maxWidth: '300px' })
+      .setLngLat(coords)
+      .setHTML(
+        '<div style="font:13px/1.5 system-ui,sans-serif;min-width:210px">' +
+        '<div style="font-size:19px;font-weight:700;color:#5a0010">' + (p.t || '—') + '</div>' +
+        '<div style="display:flex;align-items:center;gap:7px;margin:7px 0 4px">' +
+        '<span style="width:15px;height:15px;border:1px solid rgba(0,0,0,.35);background:' +
+        (p.c || '#888') + '"></span><strong>' + (p.z || '—') + '</strong></div>' +
+        '<div style="font-size:11px;color:#666;border-top:1px solid #eee;padding-top:6px">' +
+        'OCR confidence <span style="color:' + confClass + '">' + (isNaN(conf) ? '—' : conf.toFixed(2)) +
+        ' (' + confWord + ')</span><br>' +
+        (isNaN(lat) ? '—' : lat.toFixed(5)) + ', ' + (isNaN(lon) ? '—' : lon.toFixed(5)) +
+        (p.px != null ? '<br>source px ' + p.px + ', ' + p.py : '') +
+        '</div></div>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'plot-hit', () => (map.getCanvas().style.cursor = 'pointer'));
+  map.on('mouseleave', 'plot-hit', () => (map.getCanvas().style.cursor = ''));
+
+  fetch('/data/plots.geojson')
+    .then(r => r.ok ? r.json() : null)
+    .then(g => {
+      const el = document.getElementById('numCount');
+      if (el && g) el.textContent = '(' + g.features.length.toLocaleString() + ')';
+    })
+    .catch(() => {});
+
+  window.__ready = true;
+});
+
+const ro = document.getElementById('readout');
+map.on('mousemove', e => {
+  ro.textContent = `lon ${e.lngLat.lng.toFixed(5)}  lat ${e.lngLat.lat.toFixed(5)}  z ${map.getZoom().toFixed(2)}`;
+});
+</script>
+</body>
+</html>

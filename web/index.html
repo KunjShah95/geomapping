@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDA DP 2021 Map</title>
+<meta name="theme-color" content="#7a0016">
+<!-- these three sit next to index.html in both layouts: /web/ on the dev server,
+     the site root on GitHub Pages. Keep them relative. -->
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"
+      integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"
+        integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
+<script src="markout.js"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; connect-src 'self' https://tile.openstreetmap.org https://server.arcgisonline.com https://wayback.maptiles.arcgis.com https://unpkg.com; font-src 'self' https://unpkg.com; worker-src 'self' blob:;">
+<style>
+  :root {
+    --ink: #1b1b1b;
+    --paper: rgba(255,255,255,.95);
+    --line: rgba(0,0,0,.12);
+    --accent: #7a0016;
+  }
+  html, body, #map { margin: 0; height: 100%; width: 100%; }
+  body, #map { font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
+
+  .card {
+    position: absolute; z-index: 10;
+    background: var(--paper);
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.18), 0 1px 3px rgba(0,0,0,.12);
+  }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .x { border: 0; background: transparent; font-size: 22px; line-height: 1; width: 36px; height: 36px;
+       border-radius: 50%; cursor: pointer; color: #555; flex: 0 0 auto; }
+  .x:hover { background: #f1f1f1; }
+  .meta { font-size: 12px; color: #555; line-height: 1.55; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .meta code { font-size: 10.5px; background: #f2f2f2; padding: 1px 3px; border-radius: 3px; }
+
+  /* ---------------- the top bar: brand + search ---------------- */
+  #topbar { position: absolute; z-index: 20; top: 12px; left: 12px; width: min(420px, calc(100vw - 24px));
+            display: flex; gap: 8px; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 7px; height: 46px; padding: 0 12px 0 10px;
+           border-radius: 23px; background: var(--accent); color: #fff; font-weight: 700;
+           font-size: 13px; letter-spacing: .01em; white-space: nowrap;
+           box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .brand svg { width: 22px; height: 22px; }
+  .search { flex: 1 1 auto; display: flex; align-items: center; height: 46px; padding: 0 5px 0 14px;
+            border-radius: 23px; background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .search svg { width: 18px; height: 18px; color: #777; flex: 0 0 auto; }
+  .search input { flex: 1 1 auto; min-width: 0; border: 0; outline: 0; background: transparent;
+                  font: 14px system-ui, -apple-system, "Segoe UI", sans-serif; padding: 0 8px; height: 100%; }
+  .search input::-webkit-search-cancel-button { cursor: pointer; }
+  #recGo { border: 0; background: var(--accent); color: #fff; height: 36px; padding: 0 14px;
+           border-radius: 18px; font-weight: 600; cursor: pointer; }
+  #recGo:hover { filter: brightness(1.12); }
+
+  /* ---------------- the floating action buttons ---------------- */
+  #fabs { position: absolute; z-index: 15; top: 12px; right: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .fab { width: 46px; height: 46px; border-radius: 50%; border: 0; background: #fff; cursor: pointer;
+         display: grid; place-items: center; color: #333;
+         box-shadow: 0 4px 18px rgba(0,0,0,.18), 0 1px 3px rgba(0,0,0,.12); }
+  .fab svg { width: 22px; height: 22px; }
+  .fab:hover { background: #f6f6f6; }
+  .fab[aria-pressed="true"], .fab[aria-expanded="true"] { background: var(--accent); color: #fff; }
+  .fab.busy svg { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .maplibregl-ctrl-geolocate { display: none !important; }
+
+  /* ---------------- drawers: layers and legend ---------------- */
+  .drawer { top: 12px; right: 70px; width: 320px; max-height: calc(100vh - 24px); overflow: auto;
+            padding: 6px 16px 14px; display: none; }
+  .drawer.open { display: block; }
+  .drawerHead { display: flex; align-items: center; justify-content: space-between;
+                position: sticky; top: -6px; background: var(--paper); padding: 6px 0 4px; z-index: 1; }
+  .drawerHead h2 { font-size: 15px; margin: 0; }
+  .drawer section { padding: 10px 0; border-top: 1px solid var(--line); }
+  .drawer section:first-of-type { border-top: 0; }
+  .drawer h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: #777;
+               margin: 0 0 8px; font-weight: 700; }
+
+  .baseGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .base { border: 0; background: none; padding: 0; cursor: pointer; font-size: 12px; color: #444;
+          display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .thumb { width: 100%; aspect-ratio: 1; border-radius: 10px; border: 2px solid transparent;
+           background: #ece7dd center / cover no-repeat; box-shadow: inset 0 0 0 1px var(--line); }
+  .thumb.osm { background-image: url(https://tile.openstreetmap.org/12/2873/1778.png); }
+  .thumb.sat { background-image: url(https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/12/1778/2873); }
+  .thumb.none { background-image: repeating-linear-gradient(45deg, #ece7dd 0 6px, #e2dccf 6px 12px); }
+  .base.on .thumb { border-color: var(--accent); }
+  .base.on { color: var(--accent); font-weight: 700; }
+  .imgRow { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            margin-top: 10px; font-size: 13px; }
+  .imgRow select { flex: 0 1 60%; min-width: 0; font: inherit; padding: 5px 6px;
+                   border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  .imgNote { margin: 4px 0 0; font-size: 11px; color: #888; line-height: 1.35; }
+
+  .tgl { display: flex; align-items: center; gap: 10px; padding: 7px 0; cursor: pointer; font-size: 13px; }
+  .tgl .lbl { flex: 1 1 auto; line-height: 1.3; }
+  .tgl .lbl small { display: block; color: #888; font-size: 11px; }
+  .tgl .lbl small span { color: #888; }
+  .tgl input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .tgl .sw { flex: 0 0 auto; width: 36px; height: 20px; border-radius: 10px; background: #c9c9c9;
+             position: relative; transition: background .15s; }
+  .tgl .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+                    border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.3);
+                    transition: transform .15s; }
+  .tgl input:checked + .sw { background: var(--accent); }
+  .tgl input:checked + .sw::after { transform: translateX(16px); }
+  .tgl input:focus-visible + .sw { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .opRow { display: flex; align-items: center; gap: 10px; padding: 2px 0 6px; font-size: 12px; color: #666; }
+  .opRow input { flex: 1 1 auto; accent-color: var(--accent); }
+  #opv { min-width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
+  .btn { width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line);
+         background: #fff; cursor: pointer; font-weight: 600; margin-top: 8px; }
+  .btn:hover { background: #f4f4f4; }
+
+  #legend .row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; line-height: 1.35; padding: 3px 0; }
+  #legend .sw { width: 16px; height: 16px; flex: 0 0 16px; border-radius: 3px; border: 1px solid rgba(0,0,0,.3); }
+
+  /* ---------------- the result sheet ---------------- */
+  #sheet { top: 70px; left: 12px; width: min(420px, calc(100vw - 24px)); max-height: calc(100vh - 140px);
+           overflow: auto; padding: 4px 16px 14px; display: none; }
+  #sheet.open { display: block; }
+  #sheet .grab { display: none; }
+  .sheetHead { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 2px;
+               position: sticky; top: -4px; background: var(--paper); z-index: 1; }
+  .sheetHead h2 { font-size: 15px; margin: 0; }
+  #recInfo { font-size: 12.5px; }
+  #recDetail { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 9px; font-size: 12.5px; }
+
+  #readout {
+    position: absolute; z-index: 9; bottom: 10px; left: 12px; padding: 5px 10px; border-radius: 6px;
+    background: rgba(20,20,20,.72); color: #fff;
+    font: 11px ui-monospace, Menlo, Consolas, monospace;
+  }
+  #status { position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+            z-index: 30; padding: 7px 14px; border-radius: 20px; font-size: 12.5px;
+            background: rgba(20,20,20,.86); color: #fff; display: none; }
+  .popup-num { font-size: 21px; font-weight: 700; color: var(--accent); line-height: 1.1; }
+  .popup-meta { font-size: 11px; color: #666; border-top: 1px solid #eee; margin-top: 6px;
+                padding-top: 5px; }
+  .popup-row { display: flex; justify-content: space-between; gap: 10px; }
+  .popup-row b { color: #333; font-weight: 600; }
+  .maplibregl-popup-content { padding: 10px 12px; border-radius: 10px; }
+  #plotBadge {
+    position: absolute; z-index: 11; left: 50%; transform: translateX(-50%);
+    bottom: 12px; padding: 7px 14px; border-radius: 20px;
+    background: rgba(230, 0, 126, .94); color: #fff; font-size: 12.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.3); display: none; max-width: 70vw;
+  }
+  #plotBadge b { font-weight: 700; }
+  #zoomHint { position: absolute; z-index: 12; left: 50%; transform: translateX(-50%); bottom: 44px;
+              display: none; border: 0; cursor: pointer; padding: 8px 16px; border-radius: 20px;
+              background: #00838f; color: #fff; font-weight: 600; font-size: 12.5px;
+              box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+  @media (max-width: 760px) { #zoomHint { bottom: 24px; } }
+
+  #sheet .occHead button { border: 1px solid var(--line); background: #fff; border-radius: 6px;
+                           cursor: pointer; height: 30px; padding: 0 9px; font-size: 12px; }
+  #sheet .occHead button:hover { background: #f4f4f4; }
+  #occList { max-height: none; }
+
+  /* ---------------- marking: the occurrences of one survey number ----------------
+     The numbers repeat across the district - "461" is on 115 plots, because
+     they restart in each village - so a marked number is a SET of places.
+     The list says which is which; the map says which one is in hand. */
+  #occBox { margin-top: 7px; }
+  .occHead { display: flex; align-items: center; gap: 4px; }
+  .occHead button { width: auto; margin: 0; padding: 2px 6px; font-size: 11px; }
+  .occHead .occPos { flex: 1 1 auto; text-align: center; font-size: 11.5px; font-weight: 600; }
+  #occList { max-height: 172px; overflow: auto; margin-top: 5px; border-top: 1px solid var(--line); }
+  .occ { display: flex; gap: 6px; align-items: baseline; padding: 3px 4px; cursor: pointer;
+         border-radius: 4px; font-size: 11.5px; line-height: 1.4; }
+  .occ:hover { background: #f3f3f3; }
+  .occ.on { background: #fde7ef; }
+  .occ .n { font-weight: 700; color: var(--accent); min-width: 17px; }
+  .occ .w { flex: 1 1 auto; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .occ .p { color: #999; font: 10.5px ui-monospace, Menlo, Consolas, monospace; }
+
+  /* ---------------- the set-out (markout) sheet ---------------- */
+  #markout {
+    top: 12px; right: 70px; width: min(470px, 46vw); max-height: 78vh; overflow: auto;
+    padding: 10px 12px;
+  }
+  #markout:not(.on) { display: none; }
+  #markout h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+                color: #666; margin: 0 0 7px; display: flex; align-items: center; gap: 8px; }
+  #markout h2 span { flex: 1 1 auto; }
+  #markout h2 button { width: auto; margin: 0; padding: 0 7px; font-size: 15px; line-height: 1.3; }
+  #moMeta { font-size: 11.5px; line-height: 1.55; color: #333; margin-bottom: 8px; }
+  #moMeta b { color: var(--ink); font-weight: 600; }
+  #moScroll { overflow-x: auto; }
+  #moTable { width: 100%; border-collapse: collapse;
+             font: 11px/1.45 ui-monospace, Menlo, Consolas, monospace; }
+  #moTable th { text-align: right; font-weight: 600; color: #666; border-bottom: 1px solid var(--line);
+                padding: 2px 4px; font-size: 9.5px; text-transform: uppercase; letter-spacing: .03em;
+                white-space: nowrap; }
+  #moTable th:first-child, #moTable td:first-child { text-align: left; }
+  #moTable td { padding: 2px 4px; border-bottom: 1px solid #f2f2f2; text-align: right; white-space: nowrap; }
+  #moTable td.i { font-weight: 700; color: var(--accent); }
+  #moTable .sh { color: #8a8a8a; background: #fafafa; }
+  #moTable tr:hover td { background: #fafafa; }
+  #moSummary { margin-top: 8px; font-size: 11.5px; line-height: 1.6; color: #333; }
+  #moSummary b { color: var(--ink); }
+  #moNote { margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line);
+            font-size: 10.5px; color: #777; line-height: 1.55; }
+  .moBtns { display: flex; gap: 5px; margin-top: 9px; }
+  .moBtns button { margin: 0; padding: 4px 6px; font-size: 11px; }
+  .moChk { display: flex; align-items: center; gap: 5px; font-size: 11.5px; margin-top: 5px; font-weight: 400; }
+  .printHead { display: none; }
+
+  @media (max-width: 1080px) {
+    #markout { right: 70px; width: min(430px, calc(100vw - 92px)); max-height: 62vh; }
+  }
+  /* phones: the drawers and the result sheet become bottom sheets */
+  @media (max-width: 760px) {
+    #topbar { top: 10px; left: 10px; width: calc(100vw - 20px); }
+    .brand span { display: none; }
+    .brand { padding: 0 12px; }
+    #fabs { top: 66px; right: 10px; }
+    .drawer, #sheet {
+      top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 72vh;
+      border-radius: 18px 18px 0 0; padding-bottom: max(14px, env(safe-area-inset-bottom));
+      z-index: 25;
+    }
+    #sheet .grab, .drawer .grab { display: block; width: 40px; height: 4px; border-radius: 2px;
+                                  background: #ccc; margin: 6px auto 2px; }
+    #sheet { max-height: 60vh; }
+    #readout { display: none; }
+    #status { top: 66px; }
+    #plotBadge { bottom: auto; top: 66px; }
+    .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group { display: none; }
+    #markout { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 70vh;
+               border-radius: 18px 18px 0 0; z-index: 26; }
+  }
+  .drawer .grab { display: none; }
+
+  /* ---------------- printing the set-out sheet ----------------
+     The sheet is a field document: it gets printed, signed and carried
+     out. So the print view is the card itself, laid out on a page, with
+     the map and the panels out of the way. */
+  @media print {
+    html, body { height: auto; background: #fff; }
+    #map, #panel, #legend, #readout, #status, #plotBadge,
+    #topbar, #fabs, #sheet,
+    .maplibregl-ctrl, .maplibregl-popup, .maplibregl-canvas-container { display: none !important; }
+    /* the viewer controls are not part of the field document */
+    .no-print, #moClose { display: none !important; }
+    #markout { display: none !important; }
+    #markout.on {
+      display: block !important; position: static; width: auto; max-height: none;
+      overflow: visible; box-shadow: none; border: 0; border-radius: 0;
+      background: #fff; padding: 0;
+    }
+    #markout.on #moScroll { overflow: visible; }
+    #markout.on #moTable { font-size: 9.5pt; }
+    #markout.on h2 { font-size: 12pt; margin: 0 0 6px; }
+    .printHead { display: block; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1.5px solid #333; }
+    .printHead .phTitle { font-size: 15pt; font-weight: 700; }
+    .printHead .phSub { font-size: 10pt; color: #444; margin-top: 2px; }
+    .printHead .phWhen { font-size: 9pt; color: #666; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<header id="topbar">
+  <div class="brand" title="AUDA Development Plan 2021">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 5.5v15.5l6-2.5 6 2.5 6-2.5V3l-6 2.5z"/><path d="M9 3v15.5M15 5.5V21"/></svg>
+    <span>AUDA DP 2021</span>
+  </div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="recSearch" type="search" placeholder="Survey no. or village" autocomplete="off"
+           aria-label="Search a survey number or a village" enterkeyhint="search">
+    <button id="recGo" type="button">Search</button>
+  </div>
+</header>
+
+<nav id="fabs" aria-label="Map tools">
+  <button id="fabLayers" class="fab" title="Layers" aria-label="Layers" aria-expanded="false" aria-controls="panel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
+  </button>
+  <button id="fabBase" class="fab" title="Satellite view" aria-label="Satellite view" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+  </button>
+  <button id="fabLegend" class="fab" title="Land-use legend" aria-label="Land-use legend" aria-expanded="false" aria-controls="legend">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="5" height="4" rx="1"/><rect x="3" y="10" width="5" height="4" rx="1"/><rect x="3" y="16" width="5" height="4" rx="1"/><path d="M11 6h10M11 12h10M11 18h10"/></svg>
+  </button>
+  <button id="fabLocate" class="fab" title="My location" aria-label="My location">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+  </button>
+</nav>
+
+<aside id="panel" class="card drawer" aria-label="Layers">
+  <div class="grab"></div>
+  <div class="drawerHead"><h2>Layers</h2><button class="x" data-close="panel" aria-label="Close">&times;</button></div>
+
+  <section>
+    <h3>Base map</h3>
+    <div class="baseGrid">
+      <button class="base on" data-base="osm"><span class="thumb osm"></span>Street</button>
+      <button class="base" data-base="sat"><span class="thumb sat"></span>Satellite</button>
+      <button class="base" data-base="none"><span class="thumb none"></span>None</button>
+    </div>
+    <select id="basemap" hidden>
+      <option value="osm" selected>Street map (OpenStreetMap)</option>
+      <option value="sat">Satellite (Esri World Imagery)</option>
+      <option value="none">None</option>
+    </select>
+    <label class="imgRow">Satellite date
+      <select id="imageryDate" aria-label="Satellite imagery capture date">
+        <option value="live">Latest (Esri live)</option>
+      </select>
+    </label>
+    <p class="imgNote" id="imageryNote"></p>
+  </section>
+
+  <section>
+    <h3>Development plan</h3>
+    <label class="tgl"><span class="lbl">DP 2021 plan</span>
+      <input type="checkbox" id="showPlan" checked><span class="sw"></span></label>
+    <div class="opRow">Opacity <input type="range" id="op" min="0" max="100" value="100" aria-label="Plan opacity"><span id="opv">100%</span></div>
+    <label class="tgl"><span class="lbl">Land-use zones <small id="zoneCount"></small></span>
+      <input type="checkbox" id="showBounds" checked><span class="sw"></span></label>
+    <label class="tgl"><span class="lbl">Plot boundaries <small id="parcelCount"></small></span>
+      <input type="checkbox" id="showParcels" checked><span class="sw"></span></label>
+    <label class="tgl"><span class="lbl">Village / TP scheme boundaries <small id="unitCount"></small></span>
+      <input type="checkbox" id="showUnits"><span class="sw"></span></label>
+  </section>
+
+  <section>
+    <h3>Labels</h3>
+    <label class="tgl"><span class="lbl">Survey numbers <small>vector copy of the sheet's own <span id="numCount"></span></small></span>
+      <input type="checkbox" id="showNumbers"><span class="sw"></span></label>
+    <label class="tgl"><span class="lbl">Place names <small>vector copy of the sheet's own</small></span>
+      <input type="checkbox" id="showPlaces"><span class="sw"></span></label>
+    <label class="tgl"><span class="lbl">Landmarks</span>
+      <input type="checkbox" id="showMarks"><span class="sw"></span></label>
+  </section>
+
+  <section>
+    <h3>About this map</h3>
+    <div class="meta" id="meta">reading bounds…</div>
+    <button id="copyCfg" class="btn">Copy layer config</button>
+  </section>
+</aside>
+
+<aside id="legend" class="card drawer" aria-label="Land-use legend">
+  <div class="grab"></div>
+  <div class="drawerHead"><h2>Land use</h2><button class="x" data-close="legend" aria-label="Close">&times;</button></div>
+  <div class="meta" style="margin-bottom:6px">Colours from the plan sheet itself.</div>
+  <div id="legendRows"></div>
+</aside>
+
+<section id="sheet" class="card" aria-live="polite" aria-label="Search result">
+  <div class="grab"></div>
+  <div class="sheetHead"><h2 id="sheetTitle">Result</h2><button class="x" id="sheetClose" aria-label="Close">&times;</button></div>
+  <div class="meta" id="recInfo">Exact numbers, read from the sheet.</div>
+
+  <div id="occBox" style="display:none">
+    <div class="occHead">
+      <button id="occPrev" title="previous occurrence (left arrow)">&#9664;</button>
+      <span class="occPos" id="occPos"></span>
+      <button id="occNext" title="next occurrence (right arrow)">&#9654;</button>
+      <button id="occZoom" title="zoom to the occurrence in hand">zoom</button>
+      <button id="occLink" title="copy a link to this occurrence">link</button>
+    </div>
+    <div id="occList"></div>
+  </div>
+
+  <div id="recDetail" class="meta" style="display:none"></div>
+</section>
+
+<div id="markout" class="card">
+  <div class="printHead">
+    <div class="phTitle">AUDA Second Revised Development Plan 2021</div>
+    <div class="phSub">Survey set-out (markout) sheet &mdash; boundary from the plan's own drawing</div>
+    <div class="phWhen" id="printWhen"></div>
+  </div>
+  <h2><span>Survey set-out (markout)</span><button id="moClose" title="close">&times;</button></h2>
+  <div id="moMeta"></div>
+  <div id="moScroll"><table id="moTable"></table></div>
+  <div id="moSummary"></div>
+  <div class="moBtns no-print">
+    <button id="moCsv">CSV</button>
+    <button id="moJson">JSON</button>
+    <button id="moPrint">Print sheet</button>
+  </div>
+  <label class="moChk no-print"><input type="checkbox" id="moShow" checked> Show the set-out on the map</label>
+  <label class="moChk no-print"><input type="checkbox" id="moAz"> Show azimuths on the map</label>
+  <div id="moNote"></div>
+</div>
+
+<div id="readout">lon/lat —</div>
+<div id="status"></div>
+<div id="plotBadge"></div>
+<button id="zoomHint" type="button">Zoom in to see plot boundaries</button>
+
+<script>
+/* ------------------------------------------------------------------
+   Where the site root is.
+
+   The same file is served two ways:
+     dev server   http://127.0.0.1:8777/web/index.html   (tiles at /tiles_dp2021)
+     GitHub Pages https://<user>.github.io/geomapping/   (tiles at /geomapping/tiles_dp2021)
+
+   So no URL in this file may start with '/': every one goes through U(),
+   which prefixes the site root. Assets that sit beside index.html (icon,
+   manifest, markout.js, glyphs/) stay relative and need no help.
+   ------------------------------------------------------------------ */
+const SITE = (() => {
+  const p = location.pathname;
+  if (/\/web\/[^/]*$/.test(p)) return p.replace(/web\/[^/]*$/, '');  // dev server
+  return p.replace(/[^/]*$/, '');                                    // Pages: /<repo>/
+})();
+const U = p => SITE + String(p).replace(/^\/+/, '');
+
+/* ------------------------------------------------------------------
+   The map's configuration comes from data/dp2021/bounds.json, which is
+   generated from the source PDFs. Nothing here hardcodes an extent: the
+   fallback is only used if that fetch fails.
+   ------------------------------------------------------------------ */
+const FALLBACK = {
+  lon_min: 72.173812, lon_max: 72.869898,
+  lat_min: 22.757385, lat_max: 23.364034,
+  tiles: '/tiles_dp2021/{z}/{x}/{y}.webp',
+  minzoom: 11, maxzoom: 17
+};
+let CFG = {
+  ...FALLBACK,
+  raster_source: { tiles: [U(FALLBACK.tiles)], bounds: [FALLBACK.lon_min, FALLBACK.lat_min, FALLBACK.lon_max, FALLBACK.lat_max], minzoom: FALLBACK.minzoom, maxzoom: FALLBACK.maxzoom }
+};
+
+const MARKS = [
+  ['Ahmedabad Airport', 23.0774, 72.6327],
+  ['Sardar Patel Stadium', 23.0380, 72.4777],
+  ['Kankaria Lake', 22.9786, 72.6466],
+  ['Sarkhej Lake', 22.9723, 72.4997],
+  ['Sabarmati Ashram', 23.0535, 72.5714],
+  ['Ahmedabad Jn', 23.0223, 72.5713],
+  ['Sanand', 22.9833, 72.3833],
+  ['Gandhinagar', 23.2156, 72.6369]
+];
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    glyphs: new URL('glyphs/{fontstack}/{range}.pbf', location.href).href.replace(/%7B/g, '{').replace(/%7D/g, '}'),
+    sources: {
+      osm: { type: 'raster', tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+             tileSize: 256, attribution: '© OpenStreetMap contributors', maxzoom: 19 },
+      sat: { type: 'raster',
+             tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+             tileSize: 256, attribution: 'Esri World Imagery', maxzoom: 19 },
+      plan: { type: 'raster', tiles: CFG.raster_source.tiles, tileSize: 256,
+              minzoom: CFG.raster_source.minzoom, maxzoom: CFG.raster_source.maxzoom,
+              bounds: CFG.raster_source.bounds },
+      plots: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      records: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      recActive: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      selected: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      places: { type: 'geojson', data: U('/data/dp2021/labels.geojson') },
+      zones: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      zonehl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      parcels: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      parcelhl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      units: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      markoutEdges: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      markoutCorners: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      markoutEdgeLbl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
+      markoutAzLbl: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } }
+    },
+    layers: [
+      { id: 'bg', type: 'background', paint: { 'background-color': '#ece7dd' } },
+      { id: 'osm', type: 'raster', source: 'osm', layout: { visibility: 'visible' } },
+      { id: 'sat', type: 'raster', source: 'sat', paint: { 'raster-opacity': 0.9 }, layout: { visibility: 'none' } },
+      { id: 'plan', type: 'raster', source: 'plan', paint: { 'raster-opacity': 1 } },
+      { id: 'plot-hit', type: 'circle', source: 'plots', minzoom: 13.5,
+        paint: { 'circle-radius': 11, 'circle-opacity': 0 } },
+      { id: 'plot-labels', type: 'symbol', source: 'plots', minzoom: 14.6,
+        layout: {
+          'visibility': 'none',
+          'text-field': ['get', 't'],
+          'text-size': ['interpolate', ['linear'], ['zoom'],
+                        14.6, 9, 16, 11, 17.5, 13, 19, 17],
+          'text-font': ['Noto Sans Regular'],
+          'text-allow-overlap': false,
+          'text-optional': true,
+          'text-padding': 2
+        },
+        paint: {
+          'text-color': '#3d1a00',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 1.6,
+          'text-halo-blur': 0.2
+        } },      { id: 'plot-hover', type: 'circle', source: 'plots',
+        filter: ['==', ['get', 't'], '\u0000none'],
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14.6, 6, 18, 12],
+                 'circle-color': '#ff003c', 'circle-opacity': 0.85,
+                 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } },
+      { id: 'place-labels', type: 'symbol', source: 'places',
+        filter: ['all', ['==', ['get', 'k'], 'place'], ['>=', ['get', 'sz'], 13]],
+        layout: {
+          'visibility': 'none',
+          'text-field': ['get', 't'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 10, 10, 14, 13],
+          'text-font': ['Noto Sans Bold'],
+          'text-allow-overlap': false,
+          'text-optional': true,
+          'text-transform': 'uppercase',
+          'text-letter-spacing': 0.05
+        },
+        paint: { 'text-color': '#4a1000', 'text-halo-color': '#fff',
+                 'text-halo-width': 2, 'text-halo-blur': 0.3 } },
+      { id: 'sel-halo', type: 'circle', source: 'selected',
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, 26, 17, 48],
+                 'circle-color': 'rgba(0, 255, 255, 0.22)',
+                 'circle-stroke-color': '#00ffff', 'circle-stroke-width': 2.5 } },
+      { id: 'sel-ring', type: 'circle', source: 'selected',
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, 10, 17, 18],
+                 'circle-color': 'rgba(0, 255, 255, 0.55)',
+                 'circle-stroke-color': '#008b8b', 'circle-stroke-width': 2.5 } },
+      { id: 'sel-label', type: 'symbol', source: 'selected',
+        layout: { 'text-field': ['get', 't'], 'text-font': ['Noto Sans Bold'],
+                  'text-size': 16, 'text-offset': [0, 2.8],
+                  'text-anchor': 'top', 'text-allow-overlap': true, 'text-ignore-placement': true },
+        paint: { 'text-color': '#006064', 'text-halo-color': '#fff', 'text-halo-width': 2.5 } },
+      { id: 'zone-fill', type: 'fill', source: 'zones', minzoom: 13,
+        layout: { visibility: 'none' },
+        paint: { 'fill-color': '#7e57c2', 'fill-opacity': 0.16 } },
+      { id: 'zone-outline', type: 'line', source: 'zones', minzoom: 13,
+        layout: { visibility: 'none' },
+        paint: { 'line-color': '#5e35b1', 'line-width': 0.7, 'line-opacity': 0.55 } },
+      { id: 'zone-hl-fill', type: 'fill', source: 'zonehl',
+        paint: { 'fill-color': '#00e5ff', 'fill-opacity': 0.38 } },
+      { id: 'zone-hl-outline', type: 'line', source: 'zonehl',
+        paint: { 'line-color': '#00b8d4', 'line-width': 3 } },
+      /* the plan's own plot boundaries, extracted from the vector PDF.
+         The highlight is drawn white-cased then magenta on top, so it reads
+         against the plan's own black boundary lines and against any of the
+         plan's fill colours. */
+      { id: 'parcel-fill', type: 'fill', source: 'parcels', minzoom: 13,
+        layout: { visibility: 'none' },
+        paint: { 'fill-color': '#00e5ff', 'fill-opacity': 0.04 } },
+      /* cyan is not in the plan's legend, so the extracted boundary never
+         blends into a zone colour; the white casing lifts it off the plan's
+         own black line */
+      { id: 'parcel-casing', type: 'line', source: 'parcels', minzoom: 14,
+        layout: { visibility: 'none', 'line-join': 'round' },
+        paint: { 'line-color': '#ffffff', 'line-opacity': 0.75,
+                 'line-width': ['interpolate', ['linear'], ['zoom'], 14, 1.6, 16, 3, 18, 5] } },
+      { id: 'parcel-line', type: 'line', source: 'parcels', minzoom: 13,
+        layout: { visibility: 'none', 'line-join': 'round' },
+        paint: { 'line-color': '#00b8d4', 'line-opacity': 0.95,
+                 'line-width': ['interpolate', ['linear'], ['zoom'], 13, 0.5, 15, 1.1, 16, 1.6, 18, 2.8] } },
+      { id: 'parcel-hl-casing', type: 'line', source: 'parcelhl',
+        paint: { 'line-color': '#ffffff', 'line-width': 5.0, 'line-opacity': 0.85 } },
+      { id: 'parcel-hl-fill', type: 'fill', source: 'parcelhl',
+        paint: { 'fill-color': '#ffeb3b', 'fill-opacity': 0.22 } },
+      { id: 'parcel-hl-line', type: 'line', source: 'parcelhl',
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: { 'line-color': '#e6007e', 'line-width': 2.6,
+                 'line-opacity': 1.0 } },
+      /* the plan's own village and scheme boundaries */
+      { id: 'unit-line', type: 'line', source: 'units', minzoom: 10,
+        layout: { visibility: 'none' },
+        paint: { 'line-color': '#6a1b9a', 'line-width': 1.6, 'line-opacity': 0.8,
+                 'line-dasharray': [3, 2] } },
+      /* ---- the set-out: the plot's own corners, its edges and their lengths ----
+         Drawn on top of everything, because the sheet is the point of it. */
+      { id: 'markout-edge-casing', type: 'line', source: 'markoutEdges',
+        paint: { 'line-color': '#ffffff', 'line-width': 6, 'line-opacity': 0.9 } },
+      { id: 'markout-edge', type: 'line', source: 'markoutEdges',
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: { 'line-color': '#0b3d91', 'line-width': 2.4, 'line-opacity': 1 } },
+      { id: 'markout-corner', type: 'circle', source: 'markoutCorners',
+        paint: { 'circle-radius': 5, 'circle-color': '#ffffff',
+                 'circle-stroke-color': '#0b3d91', 'circle-stroke-width': 2.4 } },
+      { id: 'markout-corner-lbl', type: 'symbol', source: 'markoutCorners',
+        layout: { 'text-field': ['get', 'i'], 'text-size': 11,
+                  'text-offset': [0, -1.2], 'text-anchor': 'bottom',
+                  'text-allow-overlap': true, 'text-ignore-placement': true,
+                  'text-font': ['Noto Sans Bold'] },
+        paint: { 'text-color': '#0b3d91', 'text-halo-color': '#fff', 'text-halo-width': 2.2 } },
+      /* the length of each edge, below the line: every dimension has to be
+         readable, because a dimension that is quietly dropped is a dimension
+         the surveyor has to guess at */
+      { id: 'markout-edge-lbl', type: 'symbol', source: 'markoutEdgeLbl',
+        layout: { 'text-field': ['get', 'd'], 'text-size': 11,
+                  'text-offset': [0, 1.0], 'text-anchor': 'top',
+                  'text-allow-overlap': true, 'text-ignore-placement': true,
+                  'text-font': ['Noto Sans Regular'] },
+        paint: { 'text-color': '#0b3d91', 'text-halo-color': '#fff',
+                 'text-halo-width': 2.4, 'text-halo-blur': 0.2 } },
+      /* and the azimuth of the edge, above the line, so the two never
+         collide with each other */
+      { id: 'markout-az-lbl', type: 'symbol', source: 'markoutAzLbl',
+        layout: { 'visibility': 'none',
+                  'text-field': ['get', 'a'], 'text-size': 10,
+                  'text-offset': [0, -1.0], 'text-anchor': 'bottom',
+                  'text-allow-overlap': true, 'text-ignore-placement': true,
+                  'text-font': ['Noto Sans Regular'] },
+        paint: { 'text-color': '#8a2b00', 'text-halo-color': '#fff', 'text-halo-width': 2.2 } },
+      /* ---- the marked occurrences of a survey number ----
+         The numbers repeat across the district, so a marked number is a set
+         of places: a small numbered target on every occurrence, and the one
+         in hand picked out in full. */
+      { id: 'rec-hit', type: 'circle', source: 'records',
+        paint: { 'circle-radius': 16, 'circle-opacity': 0 } },
+      { id: 'rec-halo', type: 'circle', source: 'records',
+        paint: { 'circle-radius': 11, 'circle-color': '#ffffff', 'circle-opacity': 0.92 } },
+      { id: 'rec-ring', type: 'circle', source: 'records',
+        paint: { 'circle-radius': 8.5, 'circle-color': 'rgba(255,0,60,0.16)',
+                 'circle-stroke-color': '#ff003c', 'circle-stroke-width': 2.4 } },
+      { id: 'rec-num', type: 'symbol', source: 'records',
+        layout: { 'text-field': ['get', 'occ'], 'text-size': 10.5,
+                  'text-font': ['Noto Sans Bold'],
+                  'text-allow-overlap': false, 'text-optional': true },
+        paint: { 'text-color': '#b0002a' } },
+      { id: 'rec-active-glow', type: 'circle', source: 'recActive',
+        paint: { 'circle-radius': 30, 'circle-color': 'rgba(255,0,60,0.15)', 'circle-blur': 0.4 } },
+      { id: 'rec-active-ring', type: 'circle', source: 'recActive',
+        paint: { 'circle-radius': 16, 'circle-color': 'rgba(255,255,255,0.96)',
+                 'circle-stroke-color': '#ff003c', 'circle-stroke-width': 3.2 } },
+      { id: 'rec-active-dot', type: 'circle', source: 'recActive',
+        paint: { 'circle-radius': 4.5, 'circle-color': '#ff003c' } },
+      { id: 'rec-active-label', type: 'symbol', source: 'recActive',
+        layout: { 'text-field': ['get', 't'], 'text-size': 15,
+                  'text-offset': [0, -2.0], 'text-anchor': 'bottom',
+                  'text-allow-overlap': true, 'text-ignore-placement': true,
+                  'text-font': ['Noto Sans Bold'] },
+        paint: { 'text-color': '#b0002a', 'text-halo-color': '#fff', 'text-halo-width': 2.6 } }
+    ]
+  },
+  bounds: [[CFG.lon_min, CFG.lat_min], [CFG.lon_max, CFG.lat_max]],
+  fitBoundsOptions: { padding: 40 },
+  minZoom: CFG.minzoom,
+  maxZoom: CFG.maxzoom + 1
+});
+
+map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
+map.addControl(new maplibregl.ScaleControl({ maxWidth: 140, unit: 'metric' }), 'bottom-right');
+window.map = map;
+
+/* ---------------- bounds / config ---------------- */
+let APP_CONFIG = null;
+fetch(U('/data/dp2021/bounds.json'))
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(b => {
+    CFG = b;
+    // the local ground warp, for the set-out sheet's plan coordinates
+    const gw = b.ground_correction && b.ground_correction.warp;
+    if (gw && gw.url) fetch(U(gw.url)).then(r => r.ok ? r.json() : null)
+      .then(w => { GROUND_WARP = w; }).catch(() => {});
+    APP_CONFIG = b.app_config;
+    const src = map.getSource('plan');
+    // bounds.json stores site-absolute tile URLs ('/tiles_dp2021/...'); rebase
+    // them onto wherever this copy of the viewer is actually served from.
+    if (src && src.setTiles) src.setTiles(b.raster_source.tiles.map(U));
+    if (src && src.setBounds) src.setBounds(b.raster_source.bounds);
+    if (APP_CONFIG && APP_CONFIG.MapTilerUrl)
+      APP_CONFIG.MapTilerUrl = new URL(U(APP_CONFIG.MapTilerUrl), location.href).href;
+    map.setMinZoom(b.map_view.minZoom);
+    map.setMaxZoom(b.map_view.maxZoom);
+    map.fitBounds(b.map_view.fitBounds, { padding: 40 });
+
+    const a = b.accuracy || {};
+    const r = b.resolution || {};
+    const gnd = a.plan_to_ground;
+    const gc = a.ground_correction;
+    document.getElementById('meta').innerHTML = [
+      `<b>Source</b> ${b.source}`,
+      `<b>Extent</b> ${b.lon_min.toFixed(4)}, ${b.lat_min.toFixed(4)} → ` +
+        `${b.lon_max.toFixed(4)}, ${b.lat_max.toFixed(4)}`,
+      `<b>Resolution</b> ${r.m_per_px} m/px at z${b.raster_source.maxzoom}` +
+        (r.text_legible_from_zoom != null
+          ? ` · numbers legible from z${r.text_legible_from_zoom}` : ''),
+      gnd ? `<b>On the ground</b> ${gnd.offset_median_m} m median, ${gnd.offset_p90_m} m p90 ` +
+            `vs ${gnd.reference} (${gnd.n_windows} windows)` : '',
+      gc ? `<b>Ground correction</b> the sheets' printed corners were ` +
+           `${Math.abs(gc.shift_at_centre_m[0])} m ${gc.shift_at_centre_m[0] < 0 ? 'east' : 'west'}, ` +
+           `${Math.abs(gc.shift_at_centre_m[1])} m ${gc.shift_at_centre_m[1] < 0 ? 'north' : 'south'} of the ground; corrected` : '',
+      a.sheet_fit_rms_m != null ? `<b>Sheet fit</b> ±${a.sheet_fit_rms_m} m (the four sheets against their own corners)` : '',
+      `<b>Tiles</b> ${(b.tiles.count || 0).toLocaleString()} · z${b.raster_source.minzoom}–z${b.raster_source.maxzoom}`,
+      b.plots ? `<b>Survey numbers</b> ${b.plots.count.toLocaleString()} (read from the vector sheet, not OCR)` : '',
+      `<b>CRS</b> ${b.crs}`
+    ].filter(Boolean).join('<br>');
+  })
+  .catch(e => {
+    document.getElementById('meta').innerHTML =
+      `<b>Source</b> bounds.json not loaded (${e.message}). Using the built-in extent.`;
+  });
+
+/* ---------------- plot numbers, loaded as map tiles ----------------
+   211,630 survey numbers is 30 MB of GeoJSON - far too much for a browser
+   to load at once. They are bucketed by z15 tile, and only the buckets in
+   view are fetched. Below z15 the type is not legible anyway.            */
+const BUCKET_Z = 15;
+const bucketCache = new Map();
+let bucketPending = 0;
+
+function lon2px(lon, z) { return (lon + 180) / 360 * (256 * Math.pow(2, z)); }
+function lat2py(lat, z) {
+  const la = lat * Math.PI / 180;
+  return (1 - Math.log(Math.tan(la) + 1 / Math.cos(la)) / Math.PI) / 2 * (256 * Math.pow(2, z));
+}
+
+function visibleBuckets() {
+  const b = map.getBounds();
+  const z = BUCKET_Z;
+  const x0 = Math.floor(lon2px(b.getWest(), z) / 256);
+  const x1 = Math.floor(lon2px(b.getEast(), z) / 256);
+  const y0 = Math.floor(lat2py(b.getNorth(), z) / 256);
+  const y1 = Math.floor(lat2py(b.getSouth(), z) / 256);
+  const out = [];
+  for (let x = x0; x <= x1; x++)
+    for (let y = y0; y <= y1; y++) out.push([x, y]);
+  return out;
+}
+
+function refreshPlots() {
+  if (map.getZoom() < 14.2) {
+    map.getSource('plots').setData({ type: 'FeatureCollection', features: [] });
+    return;
+  }
+  const need = visibleBuckets();
+  let pending = 0;
+  for (const [x, y] of need) {
+    const key = x + '/' + y;
+    if (bucketCache.has(key)) continue;
+    bucketCache.set(key, null);              // reserve
+    pending++;
+    bucketPending++;
+    fetch(U(`/data/dp2021/plots/${BUCKET_Z}/${x}/${y}.geojson`))
+      .then(r => r.ok ? r.json() : { type: 'FeatureCollection', features: [] })
+      .then(g => bucketCache.set(key, g.features || []))
+      .catch(() => bucketCache.set(key, []))
+      .finally(() => {
+        bucketPending--;
+        if (bucketPending === 0) publishPlots();
+      });
+  }
+  if (pending === 0) publishPlots();
+}
+
+function publishPlots() {
+  const feats = [];
+  for (const [x, y] of visibleBuckets()) {
+    const f = bucketCache.get(x + '/' + y);
+    if (f) feats.push(...f);
+  }
+  const src = map.getSource('plots');
+  if (src) src.setData({ type: 'FeatureCollection', features: feats });
+  const el = document.getElementById('numCount');
+  if (el) el.textContent = '(' + feats.length.toLocaleString() + ')';
+}
+
+/* ---------------- plot boundaries (zones), loaded as map tiles ---------------- */
+const ZONE_BUCKET_Z = 15;
+const zoneBucketCache = new Map();
+let zoneBucketPending = 0;
+
+function refreshZones() {
+  if (map.getZoom() < 13) {
+    const s = map.getSource('zones');
+    if (s) s.setData({ type: 'FeatureCollection', features: [] });
+    return;
+  }
+  const need = visibleBuckets();
+  let pending = 0;
+  for (const [x, y] of need) {
+    const key = x + '/' + y;
+    if (zoneBucketCache.has(key)) continue;
+    zoneBucketCache.set(key, null);
+    pending++;
+    zoneBucketPending++;
+    fetch(U(`/data/dp2021/zones/${ZONE_BUCKET_Z}/${x}/${y}.geojson`))
+      .then(r => r.ok ? r.json() : { type: 'FeatureCollection', features: [] })
+      .then(g => zoneBucketCache.set(key, g.features || []))
+      .catch(() => zoneBucketCache.set(key, []))
+      .finally(() => {
+        zoneBucketPending--;
+        if (zoneBucketPending === 0) publishZones();
+      });
+  }
+  if (pending === 0) publishZones();
+}
+
+function publishZones() {
+  const feats = [];
+  for (const [x, y] of visibleBuckets()) {
+    const f = zoneBucketCache.get(x + '/' + y);
+    if (f) feats.push(...f);
+  }
+  const src = map.getSource('zones');
+  if (src) src.setData({ type: 'FeatureCollection', features: feats });
+  const el = document.getElementById('zoneCount');
+  if (el) el.textContent = '(' + feats.length.toLocaleString() + ' in view)';
+}
+
+function pointInPolygon(pt, ring) {
+  // ray casting; ring: array of [lon,lat]
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0], yi = ring[i][1];
+    const xj = ring[j][0], yj = ring[j][1];
+    const intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
+      (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function fmtArea(m2) {
+  if (m2 == null) return '—';
+  if (m2 >= 1e6) return (m2 / 1e6).toFixed(2) + ' km²';
+  if (m2 >= 10000) return (m2 / 10000).toFixed(2) + ' ha';
+  return Math.round(m2).toLocaleString() + ' m²';
+}
+
+/* the badge that says which plot is selected, and how big it is */
+function showPlotBadge(parcel, survey) {
+  const b = document.getElementById('plotBadge');
+  if (!b) return;
+  if (!parcel || !parcel.properties) { b.style.display = 'none'; return; }
+  const p = parcel.properties;
+  const bits = [];
+  if (p.survey) bits.push('survey <b>' + p.survey + '</b>');
+  if (p.area_m2 != null) bits.push('area <b>' + fmtArea(p.area_m2) + '</b>');
+  b.innerHTML = 'Plot boundary — ' + (bits.join(' · ') || 'the plan\'s own outline');
+  b.style.display = 'block';
+}
+
+function zoneTileKey(lon, lat) {
+  const n = Math.pow(2, ZONE_BUCKET_Z);
+  const x = Math.floor((lon + 180) / 360 * n);
+  const la = lat * Math.PI / 180;
+  const y = Math.floor((1 - Math.log(Math.tan(la) + 1 / Math.cos(la)) / Math.PI) / 2 * n);
+  return x + '/' + y;
+}
+
+async function highlightZoneForPoint(lon, lat) {
+  const key = zoneTileKey(lon, lat);
+  if (!zoneBucketCache.has(key)) {
+    const parts = key.split('/');
+    try {
+      const r = await fetch(U(`/data/dp2021/zones/${ZONE_BUCKET_Z}/${parts[0]}/${parts[1]}.geojson`));
+      const g = r.ok ? await r.json() : { features: [] };
+      zoneBucketCache.set(key, g.features || []);
+    } catch (e) {
+      zoneBucketCache.set(key, []);
+    }
+  }
+  const f = zoneBucketCache.get(key);
+  if (!f) { highlightZone(null); return; }
+  for (const feat of f) {
+    const g = feat.geometry;
+    if (!g) continue;
+    const rings = g.type === 'Polygon' ? [g.coordinates[0]] :
+      (g.type === 'MultiPolygon' ? g.coordinates.map(p => p[0]) : []);
+    for (const ring of rings) {
+      if (pointInPolygon([lon, lat], ring)) { highlightZone(feat); return; }
+    }
+  }
+  highlightZone(null);
+}
+
+function highlightZone(feat) {
+  const src = map.getSource('zonehl');
+  if (!src) return;
+  if (!feat) { src.setData({ type: 'FeatureCollection', features: [] }); return; }
+  src.setData({ type: 'FeatureCollection', features: [feat] });
+}
+
+/* ---------------- plot boundaries (parcels) and the plan's unit boundaries ----
+   These are the plan's own geometry, extracted from the vector PDF: the
+   parcels the survey numbers are printed in, and the village / TP-scheme
+   boundaries the plan itself draws. Both are bucketed by z15 tile, so the
+   viewer only loads what is in view.                                       */
+const PARCEL_BUCKET_Z = 15;
+const parcelBucketCache = new Map();
+let parcelPending = 0;
+
+/* the plot boundaries only load from z13; say so rather than look empty */
+function updateZoomHint() {
+  const el = document.getElementById('zoomHint');
+  if (!el) return;
+  const want = document.getElementById('showParcels').checked;
+  el.style.display = want && map.getZoom() < 13 ? 'block' : 'none';
+}
+
+function refreshParcels() {
+  const src = map.getSource('parcels');
+  if (!src) return;
+  if (map.getZoom() < 13) {
+    src.setData({ type: 'FeatureCollection', features: [] });
+    return;
+  }
+  const need = visibleBuckets();
+  for (const [x, y] of need) {
+    const key = x + '/' + y;
+    if (parcelBucketCache.has(key)) continue;
+    parcelBucketCache.set(key, null);
+    parcelPending++;
+    fetch(U(`/data/dp2021/parcels/${PARCEL_BUCKET_Z}/${x}/${y}.geojson`))
+      .then(r => r.ok ? r.json() : { type: 'FeatureCollection', features: [] })
+      .then(g => parcelBucketCache.set(key, g.features || []))
+      .catch(() => parcelBucketCache.set(key, []))
+      .finally(() => {
+        parcelPending--;
+        if (parcelPending === 0) publishParcels();
+      });
+  }
+  publishParcels();
+}
+
+function publishParcels() {
+  const src = map.getSource('parcels');
+  if (!src) return;
+  const feats = [];
+  for (const [x, y] of visibleBuckets()) {
+    const f = parcelBucketCache.get(x + '/' + y);
+    if (f) feats.push(...f);
+  }
+  src.setData({ type: 'FeatureCollection', features: feats });
+  const el = document.getElementById('parcelCount');
+  if (el) el.textContent = '(' + feats.length.toLocaleString() + ' in view)';
+}
+
+/* the unit boundaries are few enough to load whole */
+let UNITS = null;
+function loadUnits() {
+  if (UNITS) return Promise.resolve(UNITS);
+  return fetch(U('/data/dp2021/units.geojson'))
+    .then(r => r.ok ? r.json() : { features: [] })
+    .then(g => {
+      UNITS = g.features || [];
+      const src = map.getSource('units');
+      if (src) src.setData({ type: 'FeatureCollection', features: UNITS });
+      const el = document.getElementById('unitCount');
+      if (el) el.textContent = '(' + UNITS.length.toLocaleString() + ')';
+      return UNITS;
+    })
+    .catch(() => { UNITS = []; return UNITS; });
+}
+
+function parcelTileKey(lon, lat) {
+  const n = Math.pow(2, PARCEL_BUCKET_Z);
+  const x = Math.floor((lon + 180) / 360 * n);
+  const la = lat * Math.PI / 180;
+  const y = Math.floor((1 - Math.log(Math.tan(la) + 1 / Math.cos(la)) / Math.PI) / 2 * n);
+  return x + '/' + y;
+}
+
+/* Find the plot boundary that contains a point, and return it.
+   The highlight layer is not touched here, so a caller that wants to
+   highlight several plots at once can set the layer itself. */
+async function findParcelForPoint(lon, lat) {
+  const key = parcelTileKey(lon, lat);
+  if (!parcelBucketCache.has(key) || parcelBucketCache.get(key) === null) {
+    const parts = key.split('/');
+    try {
+      const r = await fetch(U(`/data/dp2021/parcels/${PARCEL_BUCKET_Z}/${parts[0]}/${parts[1]}.geojson`));
+      const g = r.ok ? await r.json() : { features: [] };
+      parcelBucketCache.set(key, g.features || []);
+    } catch (e) {
+      parcelBucketCache.set(key, []);
+    }
+  }
+  const f = parcelBucketCache.get(key);
+  if (!f) return null;
+  // the SMALLEST containing parcel is the plot the number is printed in
+  let best = null, bestA = Infinity;
+  for (const feat of f) {
+    const g = feat.geometry;
+    if (!g) continue;
+    // a Polygon's coordinates ARE the rings; a MultiPolygon's are polys of
+    // rings, and only the outer ring is tested
+    const rings = g.type === 'MultiPolygon'
+      ? g.coordinates.map(p => p[0]) : g.coordinates;
+    for (const ring of rings) {
+      if (!ring || ring.length < 3) continue;
+      if (pointInPolygon([lon, lat], ring)) {
+        const a = feat.properties && feat.properties.area_m2;
+        if (a != null && a < bestA) { bestA = a; best = feat; }
+        else if (best === null) best = feat;
+      }
+    }
+  }
+  return best;
+}
+
+async function highlightParcelForPoint(lon, lat) {
+  const best = await findParcelForPoint(lon, lat);
+  const src = map.getSource('parcelhl');
+  if (!src) return best;
+  src.setData({ type: 'FeatureCollection', features: best ? [best] : [] });
+  return best;
+}
+
+/* ---------------- legend ---------------- */
+fetch(U('/data/dp2021/legend.json'))
+  .then(r => r.ok ? r.json() : null)
+  .then(l => {
+    if (!l) return;
+    const box = document.getElementById('legendRows');
+    box.innerHTML = l.entries.map(e =>
+      `<div class="row"><span class="sw" style="background:${e.color}"></span>${e.label}</div>`
+    ).join('');
+  })
+  .catch(() => {});
+
+/* ---------------- landmarks ---------------- */
+map.on('load', () => {
+  const pts = MARKS.map(m => ({
+    type: 'Feature',
+    properties: { name: m[0] },
+    geometry: { type: 'Point', coordinates: [m[2], m[1]] }
+  }));
+  map.addSource('marks', { type: 'geojson', data: { type: 'FeatureCollection', features: pts } });
+  map.addLayer({ id: 'mark-hit', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 18, 'circle-opacity': 0 } });
+  map.addLayer({ id: 'mark-glow', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 13, 'circle-color': 'rgba(255,0,60,.28)', 'circle-blur': .35 } });
+  map.addLayer({ id: 'mark-dot', type: 'circle', source: 'marks',
+                 paint: { 'circle-radius': 6.5, 'circle-color': '#ff003c',
+                          'circle-stroke-color': '#fff', 'circle-stroke-width': 2.5 } });
+  map.addLayer({ id: 'mark-lbl', type: 'symbol', source: 'marks',
+                 layout: { 'text-field': ['get', 'name'], 'text-size': 14,
+                           'text-offset': [0, 2.2], 'text-anchor': 'top',
+                           'text-allow-overlap': true, 'text-ignore-placement': true,
+                           'text-font': ['Noto Sans Bold'] },
+                 paint: { 'text-color': '#006064', 'text-halo-color': '#fff',
+                          'text-halo-width': 2.6, 'text-halo-blur': .4 } });
+
+  const MARK_LAYERS = ['mark-glow', 'mark-dot', 'mark-lbl'];
+  const vis = () => (document.getElementById('showMarks').checked ? 'visible' : 'none');
+  for (const id of MARK_LAYERS) map.setLayoutProperty(id, 'visibility', vis());
+  map.on('click', 'mark-hit', e => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    new maplibregl.Popup({ offset: 16 })
+      .setLngLat(f.geometry.coordinates)
+      .setHTML('<strong>' + f.properties.name + '</strong><br>' +
+               '<span style="color:#666;font-size:12px">control point for the georeference check</span>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'mark-hit', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'mark-hit', () => map.getCanvas().style.cursor = '');
+
+  /* ---- plot number hover / click ---- */
+  // Survey numbers repeat across the district - "461" is on 115 different
+  // plots - so the ring is filtered on the position as well as the text, or
+  // hovering one number lights up a hundred of them.
+  let hovered = null;
+  const plotRing = (t, lo, la) => {
+    if (t === null) return ['==', ['get', 't'], '\u0000none'];
+    return ['all', ['==', ['get', 't'], t],
+                    ['==', ['get', 'lo'], lo],
+                    ['==', ['get', 'la'], la]];
+  };
+  const onHover = e => {
+    const fs = e.features && e.features;
+    let best = null, bestD = Infinity;
+    for (const f of fs || []) {
+      const c = f.geometry && f.geometry.coordinates;
+      if (!c) continue;
+      const p = map.project(c);
+      const d = (p.x - e.point.x) ** 2 + (p.y - e.point.y) ** 2;
+      if (d < bestD) { bestD = d; best = f; }
+    }
+    const t = best ? best.properties.t : null;
+    const lo = best ? best.properties.lo : null;
+    const la = best ? best.properties.la : null;
+    const key = t === null ? null : t + '|' + lo + '|' + la;
+    if (key === hovered) return;
+    hovered = key;
+    map.setFilter('plot-hover', plotRing(t, lo, la));
+    map.getCanvas().style.cursor = t ? 'pointer' : '';
+  };
+  map.on('mousemove', 'plot-hit', onHover);
+  map.on('mousemove', 'plot-labels', onHover);
+  map.on('click', 'plot-hit', e => {
+    const fs = e.features && e.features;
+    if (!fs || !fs.length) return;
+    // The survey numbers sit a few pixels apart, so the hit circle catches
+    // several of them. Take the one actually under the pointer, not the first
+    // in render order.
+    let best = null, bestD = Infinity;
+    for (const f of fs) {
+      const c = f.geometry && f.geometry.coordinates;
+      if (!c) continue;
+      const p = map.project(c);
+      const d = (p.x - e.point.x) ** 2 + (p.y - e.point.y) ** 2;
+      if (d < bestD) { bestD = d; best = f; }
+    }
+    if (!best) return;
+    const p = best.properties || {};
+    const c = best.geometry.coordinates;
+    /* The marked occurrences ARE the plan's own numbers, so a click on one
+       reaches this handler and the rec-hit handler both. The occurrence
+       owns that click: it steps through the occurrences and it carries the
+       record's own detail - village, scheme, land use, sheet - which this
+       handler does not have. Writing the sheet here as well would strip
+       those headings off, and which of the two landed last would decide
+       what the surveyor reads.
+
+       Both handlers are dispatched from the same click, so the occurrence's
+       claim is known one turn of the event loop later. Waiting for it
+       means the order the two handlers happen to run in cannot matter. */
+    setTimeout(() => {
+      if (occClaim && occClaim.x === e.point.x && occClaim.y === e.point.y) return;
+      // highlight the containing plot boundary (contrasting with the yellow plan)
+      highlightZoneForPoint(c[0], c[1]);
+      // and the plan's own plot boundary, if it has been extracted
+      highlightParcelForPoint(c[0], c[1]).then(parcel => {
+        showPlotBadge(parcel, p.t);
+        // the set-out sheet of that plot, in the grid the sheets were drawn in
+        showSetOut(parcel, { survey: p.t });
+        const extra = parcel && parcel.properties
+          ? '<div class="popup-meta">plot boundary from the vector plan<br>' +
+            'area ' + fmtArea(parcel.properties.area_m2) +
+            (parcel.properties.survey ? ' · survey ' + parcel.properties.survey : '') +
+            '</div>'
+          : '<div class="popup-meta">no plot boundary was recovered around this ' +
+            'number, so there is no set-out to give</div>';
+        new maplibregl.Popup({ offset: 14, maxWidth: '320px' })
+          .setLngLat(c)
+          .setHTML(
+            '<div style="font:13px/1.5 system-ui,sans-serif;min-width:210px">' +
+            '<div class="popup-num">' + (p.t || '—') + '</div>' +
+            '<div class="popup-meta">survey number, read from the plan sheet<br>' +
+            c[1].toFixed(5) + ', ' + c[0].toFixed(5) +
+            '<br>source: DP 2021 sheet, vector text</div>' + extra + '</div>')
+          .addTo(map);
+      });
+      // the record's full detail: plot, village, scheme, land use
+      lookupRecordDetail(p.t, c[0], c[1]).then(showRecordDetail);
+      // highlight clicked record
+      map.getSource('selected').setData({ type: 'FeatureCollection', features: [{
+        type: 'Feature', properties: { t: p.t || '' }, geometry: { type: 'Point', coordinates: c }
+      }] });
+    }, 0);
+  });
+  map.on('mouseenter', 'plot-hit', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'plot-hit', () => map.getCanvas().style.cursor = '');
+
+  /* ---- controls ---- */
+  document.getElementById('basemap').onchange = e => {
+    const v = e.target.value;
+    map.setLayoutProperty('sat', 'visibility', v === 'sat' ? 'visible' : 'none');
+    map.setLayoutProperty('osm', 'visibility', v === 'osm' ? 'visible' : 'none');
+  };
+
+  /* satellite date: dated Esri Wayback captures (data/dp2021/imagery.json).
+     Defaults to the plan's own era, so the overlay is compared with the
+     ground as it was when the plan was in force, not after later rebuilding. */
+  const LIVE_SAT = map.getSource('sat').tiles.slice();
+  fetch(U('/data/dp2021/imagery.json')).then(r => r.ok ? r.json() : null).then(im => {
+    if (!im || !im.releases) return;
+    const dsel = document.getElementById('imageryDate');
+    const note = document.getElementById('imageryNote');
+    const byId = {};
+    for (const r of im.releases.slice().reverse()) {
+      byId[r.id] = r;
+      dsel.add(new Option(r.label + (r.id === im.default ? ' · plan era' : ''), r.id));
+    }
+    const apply = id => {
+      const r = byId[id];
+      map.getSource('sat').setTiles(r ? [r.tiles] : LIVE_SAT);
+      note.textContent = r
+        ? `Captured ${r.capture} · ${r.provider || ''} ${r.res_m ? r.res_m + ' m' : ''} · Esri Wayback`
+        : 'Most recent Esri imagery; capture date varies by area.';
+    };
+    dsel.onchange = () => apply(dsel.value);
+    dsel.value = im.default;
+    apply(im.default);
+  }).catch(() => {});
+  document.getElementById('showPlan').onchange = e =>
+    map.setLayoutProperty('plan', 'visibility', e.target.checked ? 'visible' : 'none');
+  document.getElementById('showNumbers').onchange = e =>
+    map.setLayoutProperty('plot-labels', 'visibility', e.target.checked ? 'visible' : 'none');
+  document.getElementById('showPlaces').onchange = e =>
+    map.setLayoutProperty('place-labels', 'visibility', e.target.checked ? 'visible' : 'none');
+  document.getElementById('showBounds').onchange = e => {
+    const v = e.target.checked ? 'visible' : 'none';
+    map.setLayoutProperty('zone-fill', 'visibility', v);
+    map.setLayoutProperty('zone-outline', 'visibility', v);
+    if (e.target.checked) refreshZones();
+    else {
+      const s = map.getSource('zones'); if (s) s.setData({ type: 'FeatureCollection', features: [] });
+      const h = map.getSource('zonehl'); if (h) h.setData({ type: 'FeatureCollection', features: [] });
+    }
+  };
+  // initial state
+  if (document.getElementById('showParcels').checked) {
+    for (const id of ['parcel-fill', 'parcel-casing', 'parcel-line'])
+      map.setLayoutProperty(id, 'visibility', 'visible');
+  }
+  updateZoomHint();
+  map.on('zoomend', updateZoomHint);
+  if (document.getElementById('showBounds').checked) {
+    map.setLayoutProperty('zone-fill', 'visibility', 'visible');
+    map.setLayoutProperty('zone-outline', 'visibility', 'visible');
+  }
+  document.getElementById('showParcels').onchange = e => {
+    const v = e.target.checked ? 'visible' : 'none';
+    map.setLayoutProperty('parcel-fill', 'visibility', v);
+    map.setLayoutProperty('parcel-casing', 'visibility', v);
+    map.setLayoutProperty('parcel-line', 'visibility', v);
+    updateZoomHint();
+    if (e.target.checked) refreshParcels();
+    else {
+      const s = map.getSource('parcels'); if (s) s.setData({ type: 'FeatureCollection', features: [] });
+      const h = map.getSource('parcelhl'); if (h) h.setData({ type: 'FeatureCollection', features: [] });
+    }
+  };
+  document.getElementById('showUnits').onchange = e => {
+    const v = e.target.checked ? 'visible' : 'none';
+    map.setLayoutProperty('unit-line', 'visibility', v);
+    if (e.target.checked) loadUnits();
+    else {
+      const s = map.getSource('units'); if (s) s.setData({ type: 'FeatureCollection', features: [] });
+    }
+  };
+  document.getElementById('showMarks').onchange = e => {
+    for (const id of MARK_LAYERS)
+      map.setLayoutProperty(id, 'visibility', e.target.checked ? 'visible' : 'none');
+  };
+  const op = document.getElementById('op'), opv = document.getElementById('opv');
+  op.oninput = () => {
+    map.setPaintProperty('plan', 'raster-opacity', op.value / 100);
+    opv.textContent = op.value + '%';
+  };
+  document.getElementById('copyCfg').onclick = () => {
+    const cfg = APP_CONFIG || { MapTilerUrl: CFG.raster_source.tiles[0],
+      BottomLeft: [CFG.lat_min, CFG.lon_min], TopRight: [CFG.lat_max, CFG.lon_max],
+      ZoomBounds: [CFG.raster_source.minzoom, CFG.raster_source.maxzoom] };
+    const text = JSON.stringify(cfg, null, 2);
+    const st = document.getElementById('status');
+    const done = () => { st.style.display = 'block'; st.textContent = 'config copied to the clipboard';
+                         setTimeout(() => st.style.display = 'none', 2200); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => window.prompt('Copy this:', text));
+    } else {
+      window.prompt('Copy this:', text);
+    }
+  };
+
+  refreshPlots();
+  if (document.getElementById('showBounds').checked) refreshZones();
+  if (document.getElementById('showParcels').checked) refreshParcels();
+  const onViewChange = () => {
+    refreshPlots();
+    if (document.getElementById('showBounds').checked) refreshZones();
+    if (document.getElementById('showParcels').checked) refreshParcels();
+  };
+  map.on('moveend', onViewChange);
+  map.on('zoomend', onViewChange);
+  window.__ready = true;
+});
+
+/* ---------------- find a survey record ----------------
+   The numbers are the plan's own text, so a record is found by looking the
+   number up and flying to it. Survey numbers repeat across the district -
+   "461" is on 115 plots, because the numbers restart in each village - so
+   every occurrence is marked, and one of them is the one in hand. */
+let NUMBER_INDEX = null;
+let markedRecords = [];
+let activeOcc = -1;
+let markedLabel = '';
+/* Every selection starts a fetch for the plot boundary and a fetch for the
+   record's detail. They can land in either order, and a fast step through
+   the occurrences can start three of them. The token says which one is
+   still wanted: an answer that arrives after a newer selection has been
+   made is dropped, so the panel and the sheet always belong to the
+   occurrence actually in hand. */
+let selectToken = 0;
+
+/* Which click the set-out sheet belongs to. A marked occurrence is also one
+   of the plan's own numbers, so a single click reaches the rec-hit handler
+   (which steps through the occurrences and carries the record's detail) and
+   the plot-hit handler (which sets out the plot under the pointer). The
+   occurrence claims the click; the plot handler stands aside. Both handlers
+   are dispatched from the same click, so the claim is made in one and read
+   in the other - the order they happen to run in cannot decide what the
+   sheet says. */
+let occClaim = null;      // { x, y } - the click a marked occurrence took
+
+function loadIndex() {
+  if (NUMBER_INDEX) return Promise.resolve(NUMBER_INDEX);
+  return fetch(U('/data/dp2021/number_index.json'))
+    .then(r => r.ok ? r.json() : {})
+    .then(j => { NUMBER_INDEX = j; return j; })
+    .catch(() => { NUMBER_INDEX = {}; return {}; });
+}
+
+function findRecord(query) {
+  if (!query) return [];
+  const q = query.trim();
+  const idx = NUMBER_INDEX || {};
+  if (idx[q]) return idx[q].map(p => ({ lon: p[0], lat: p[1] }));
+  // case-insensitive match
+  const ci = Object.keys(idx).find(k => k.toLowerCase() === q.toLowerCase());
+  if (ci) return idx[ci].map(p => ({ lon: p[0], lat: p[1] }));
+  // unique prefix match (tolerates partial input, e.g. "461" -> "461/2" only if unambiguous)
+  const ql = q.toLowerCase();
+  const pref = Object.keys(idx).filter(k => k.toLowerCase().startsWith(ql));
+  if (pref.length === 1) return idx[pref[0]].map(p => ({ lon: p[0], lat: p[1] }));
+  return [];
+}
+
+let VILLAGE_INDEX = null;
+function loadVillages() {
+  if (VILLAGE_INDEX) return Promise.resolve(VILLAGE_INDEX);
+  return fetch(U('/data/dp2021/village_index.json'))
+    .then(r => r.ok ? r.json() : {})
+    .then(j => { VILLAGE_INDEX = j; return j; })
+    .catch(() => { VILLAGE_INDEX = {}; return {}; });
+}
+
+/* the plan's OWN village and scheme boundaries, by name */
+let VILLAGE_UNITS = null;
+function loadVillageUnits() {
+  if (VILLAGE_UNITS) return Promise.resolve(VILLAGE_UNITS);
+  return fetch(U('/data/dp2021/village_units.json'))
+    .then(r => r.ok ? r.json() : {})
+    .then(j => { VILLAGE_UNITS = j; return j; })
+    .catch(() => { VILLAGE_UNITS = {}; return {}; });
+}
+
+function findVillageUnit(query) {
+  const q = (query || '').trim().toLowerCase();
+  if (!q || !VILLAGE_UNITS) return null;
+  const keys = Object.keys(VILLAGE_UNITS);
+  const exact = keys.find(k => k.toLowerCase() === q);
+  if (exact) return { name: exact, ...VILLAGE_UNITS[exact] };
+  const part = keys.find(k => k.toLowerCase().indexOf(q) >= 0);
+  if (part) return { name: part, ...VILLAGE_UNITS[part] };
+  return null;
+}
+
+function findVillage(query) {
+  const q = (query || '').trim().toLowerCase();
+  if (!q || !VILLAGE_INDEX) return null;
+  const key = Object.keys(VILLAGE_INDEX).find(k => k.toLowerCase() === q);
+  if (key) return Object.assign({ name: key }, VILLAGE_INDEX[key]);
+  const part = Object.keys(VILLAGE_INDEX).find(k => k.toLowerCase().indexOf(q) >= 0);
+  if (part) return Object.assign({ name: part }, VILLAGE_INDEX[part]);
+  return null;
+}
+
+/* ---- marking a survey number ----
+   A survey number is not a place. The same number is on 115 plots because
+   the numbers restart in each village, so a marked number is a SET of
+   places. The map shows all of them; the list says which is which; and
+   one of them - the occurrence in hand - is picked out in full. */
+function markRecords(list, label, activeIndex, opts) {
+  markedLabel = label;
+  occClaim = null;          // a new marked set invalidates any old claim
+  markedRecords = list.map((p, i) => {
+    const lon = (p.lon !== undefined) ? p.lon : p[0];
+    const lat = (p.lat !== undefined) ? p.lat : p[1];
+    return {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [lon, lat] },
+      properties: { t: label, occ: i + 1 }
+    };
+  });
+  map.getSource('records').setData({ type: 'FeatureCollection', features: markedRecords });
+  if (markedRecords.length) {
+    const b = markedRecords.map(f => f.geometry.coordinates);
+    // the coordinates are [lon, lat]; MapLibre's fitBounds wants
+    // [[swLng, swLat], [neLng, neLat]] - so the longitude is the FIRST
+    // element of each pair, not the second
+    const lons = b.map(c => c[0]);
+    const lats = b.map(c => c[1]);
+    const w = Math.max(0.0006, (Math.max(...lons) - Math.min(...lons)) * 1.4);
+    const s = Math.max(0.0006, (Math.max(...lats) - Math.min(...lats)) * 1.4);
+    map.fitBounds([[Math.min(...lons) - w, Math.min(...lats) - s],
+                   [Math.max(...lons) + w, Math.max(...lats) + s]],
+                  { padding: 60, maxZoom: 17.5, duration: 0 });
+  }
+  selectOccurrence(activeIndex != null ? activeIndex : 0,
+                   Object.assign({ fly: false }, opts || {}));
+}
+
+/* the occurrence in hand */
+function selectOccurrence(i, opts) {
+  const o = opts || {};
+  if (!markedRecords.length) return;
+  activeOcc = Math.max(0, Math.min(markedRecords.length - 1, i));
+  const token = ++selectToken;
+  const f = markedRecords[activeOcc];
+  const c = f.geometry.coordinates;
+  map.getSource('recActive').setData({ type: 'FeatureCollection', features: [f] });
+  renderOccurrences();
+  highlightZoneForPoint(c[0], c[1]);
+  // the plot the record sits in, and the set-out of that plot
+  Promise.all([
+    findParcelForPoint(c[0], c[1]),
+    lookupRecordDetail(f.properties.t, c[0], c[1])
+  ]).then(([parcel, d]) => {
+    if (token !== selectToken) return;     // a newer occurrence was picked
+    const src = map.getSource('parcelhl');
+    if (src) src.setData({ type: 'FeatureCollection', features: parcel ? [parcel] : [] });
+    showPlotBadge(parcel, f.properties.t);
+    // the sheet's own headings come from the record's detail, so they are
+    // gathered once here rather than patched in later
+    const meta = { survey: f.properties.t, record: c };
+    if (d) {
+      if (d.v) meta.village = d.v;
+      if (d.s) meta.scheme = d.s;
+      if (d.z) meta.zone = d.z;
+      if (d.b) meta.block = d.b;
+    }
+    showSetOut(parcel, meta, { explain: true });
+    showRecordDetail(d);
+  });
+  if (o.fly) map.flyTo({ center: c, zoom: Math.max(map.getZoom(), 16.4), duration: 700 });
+  updateHash();
+}
+
+/* step through the occurrences of one number, wrapping round at the ends */
+function stepOccurrence(d) {
+  if (!markedRecords.length) return;
+  const n = markedRecords.length;
+  const i = (activeOcc < 0 ? 0 : activeOcc) + d;
+  selectOccurrence(((i % n) + n) % n, { fly: true });
+}
+
+/* the link that points at one particular occurrence, for a colleague */
+function copyOccurrenceLink() {
+  if (!markedRecords.length) return;
+  updateHash();
+  const url = location.href;
+  const st = document.getElementById('status');
+  const done = () => {
+    st.style.display = 'block';
+    st.textContent = 'link to this occurrence copied';
+    setTimeout(() => { st.style.display = 'none'; }, 2400);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(() => window.prompt('Copy this link:', url));
+  } else {
+    window.prompt('Copy this link:', url);
+  }
+}
+
+/* the list of occurrences, with the village and the land use of each */
+const OCC_LIST_LIMIT = 400;
+
+function renderOccurrences() {
+  const box = document.getElementById('occBox');
+  const list = document.getElementById('occList');
+  const n = markedRecords.length;
+  box.style.display = n ? 'block' : 'none';
+  document.getElementById('occPos').textContent =
+    n ? (activeOcc + 1) + ' of ' + n.toLocaleString() : '';
+  let html = '';
+  for (let i = 0; i < Math.min(n, OCC_LIST_LIMIT); i++) {
+    const f = markedRecords[i];
+    const c = f.geometry.coordinates;
+    html += '<div class="occ' + (i === activeOcc ? ' on' : '') + '" data-i="' + i + '">' +
+            '<span class="n">' + f.properties.occ + '</span>' +
+            '<span class="w" data-w="' + i + '">&nbsp;</span>' +
+            '<span class="p">' + c[1].toFixed(4) + ', ' + c[0].toFixed(4) + '</span>' +
+            '</div>';
+  }
+  if (n > OCC_LIST_LIMIT) {
+    html += '<div class="occ" style="cursor:default"><span class="n">…</span>' +
+            '<span class="w">' + (n - OCC_LIST_LIMIT).toLocaleString() +
+            ' more occurrences not listed</span></div>';
+  }
+  list.innerHTML = html;
+  fillOccurrenceDetails();
+}
+
+/* the village and the land use of each occurrence live in the per-tile
+   detail buckets, so this costs one fetch per tile, not one per row */
+function fillOccurrenceDetails() {
+  const limit = Math.min(markedRecords.length, OCC_LIST_LIMIT);
+  for (let i = 0; i < limit; i++) {
+    const f = markedRecords[i];
+    const c = f.geometry.coordinates;
+    lookupRecordDetail(f.properties.t, c[0], c[1]).then(d => {
+      const cell = document.querySelector('#occList .occ[data-i="' + i + '"] .w');
+      if (!cell) return;
+      const bits = [];
+      if (d && d.v) bits.push(d.v);
+      if (d && d.z) bits.push(d.z);
+      const text = bits.join(' · ') || '—';
+      cell.textContent = text;
+      cell.title = text;
+    });
+  }
+}
+
+/* the link that points at one particular occurrence */
+function updateHash() {
+  if (!markedLabel) return;
+  let h = '#rec=' + encodeURIComponent(markedLabel);
+  if (activeOcc > 0) h += '&occ=' + (activeOcc + 1);
+  try { history.replaceState(null, '', h); }
+  catch (e) { location.hash = h; }
+}
+
+/* the occurrence a link names, as an index into the marked list.
+   The number in the link is 1-based, because that is how the list shows
+   it; out of range falls back to the first occurrence. */
+function occFromHash(n) {
+  const m = /[#&]occ=(\d+)/.exec(location.hash || '');
+  if (!m) return 0;
+  const i = parseInt(m[1], 10) - 1;
+  if (!isFinite(i) || i < 0 || i >= n) return 0;
+  return i;
+}
+
+async function runSearch() {
+  const q = document.getElementById('recSearch').value;
+  const info = document.getElementById('recInfo');
+  await Promise.all([loadIndex(), loadVillages(), loadVillageUnits()]);
+  {
+    const hits = findRecord(q);
+    if (hits.length) {
+      markRecords(hits, q.trim());
+      info.innerHTML = '<b>' + q.trim() + '</b> — ' + hits.length.toLocaleString() +
+        ' occurrence' + (hits.length === 1 ? '' : 's') +
+        ' in the plan, marked on the map.';
+      return;
+    }
+    // the plan's own village / scheme boundary, before the loose place-name
+    // match: it is the plan's own answer, not a guess
+    const vu = findVillageUnit(q);
+    if (vu) {
+      const b = vu.bbox;
+      if (b) {
+        // the bbox is [minLon, minLat, maxLon, maxLat]; MapLibre's fitBounds
+        // wants [[swLng, swLat], [neLng, neLat]]
+        map.fitBounds([[b[0], b[1]], [b[2], b[3]]],
+                      { padding: 60, maxZoom: 15.5, duration: 0 });
+      }
+      showUnitBoundaries(vu.name);
+      info.innerHTML = '<b>' + vu.name + '</b> — ' + vu.type + ' boundary in the plan' +
+        (vu.n ? ', holding ' + vu.n.toLocaleString() + ' survey records' : '') + '.';
+      return;
+    }
+    const v = findVillage(q);
+    if (v) {
+      markRecords(v.pts, v.name);
+      info.innerHTML = '<b>' + v.name + '</b> — ' + v.n.toLocaleString() +
+        ' survey records in the plan, marked on the map.';
+      return;
+    }
+    info.innerHTML = 'Nothing found for <b>' + q + '</b>. The index holds ' +
+      Object.keys(NUMBER_INDEX || {}).length.toLocaleString() +
+      ' distinct numbers and ' + Object.keys(VILLAGE_INDEX || {}).length +
+      ' villages.';
+  }
+}
+
+/* show every unit boundary that carries a given name */
+async function showUnitBoundaries(name) {
+  const units = await loadUnits();
+  const feats = units.filter(f => f.properties && f.properties.name === name);
+  const src = map.getSource('units');
+  if (src && feats.length) {
+    src.setData({ type: 'FeatureCollection', features: feats });
+    map.setLayoutProperty('unit-line', 'visibility', 'visible');
+  }
+  return feats;
+}
+
+/* ---------------- the record detail panel ----------------
+   Everything the plan says about one record: the number, the plot it is in,
+   the plot's area, the plan's own village and scheme, and the land use.
+   The details are bucketed by z15 tile, so only the tile under the pointer
+   is fetched.                                                            */
+const DETAIL_BUCKET_Z = 15;
+const detailCache = new Map();
+
+function detailTileKey(lon, lat) {
+  const n = Math.pow(2, DETAIL_BUCKET_Z);
+  const x = Math.floor((lon + 180) / 360 * n);
+  const la = lat * Math.PI / 180;
+  const y = Math.floor((1 - Math.log(Math.tan(la) + 1 / Math.cos(la)) / Math.PI) / 2 * n);
+  return x + '/' + y;
+}
+
+async function fetchDetailTile(lon, lat) {
+  const key = detailTileKey(lon, lat);
+  if (detailCache.has(key)) return detailCache.get(key);
+  const parts = key.split('/');
+  const p = fetch(U(`/data/dp2021/details/${DETAIL_BUCKET_Z}/${parts[0]}/${parts[1]}.json`))
+    .then(r => r.ok ? r.json() : [])
+    .catch(() => []);
+  detailCache.set(key, p);
+  return p;
+}
+
+async function lookupRecordDetail(t, lon, lat) {
+  const items = await fetchDetailTile(lon, lat);
+  if (!items || !items.length) return null;
+  // match on the number AND the position: the numbers repeat across the
+  // district, so the text alone is not enough
+  const exact = items.find(d => d.t === t && Math.abs(d.lo - lon) < 1e-6 &&
+                                    Math.abs(d.la - lat) < 1e-6);
+  if (exact) return exact;
+  const byText = items.filter(d => d.t === t);
+  if (byText.length === 1) return byText[0];
+  // the nearest of the same number
+  let best = null, bd = Infinity;
+  for (const d of byText) {
+    const dd = (d.lo - lon) ** 2 + (d.la - lat) ** 2;
+    if (dd < bd) { bd = dd; best = d; }
+  }
+  return best;
+}
+
+function showRecordDetail(d) {
+  const box = document.getElementById('recDetail');
+  if (!d) { box.style.display = 'none'; return; }
+  const rows = [];
+  if (d.pid != null) rows.push(['plot', '#' + d.pid]);
+  if (d.a != null) rows.push(['plot area', fmtArea(d.a)]);
+  if (d.v) rows.push(['village (plan boundary)', d.v]);
+  if (d.s) rows.push(['TP scheme', d.s]);
+  if (d.z) rows.push(['land use', d.z]);
+  if (d.b) rows.push(['sheet', d.b]);
+  if (!rows.length) { box.style.display = 'none'; return; }
+  box.innerHTML = rows.map(r =>
+    '<div><b>' + r[0] + '</b> ' + r[1] + '</div>').join('');
+  box.style.display = 'block';
+}
+
+/* ---------------- the survey set-out (markout) sheet ----------------
+   A set-out sheet is a field document: the corners of one plot, in the
+   plan's own projected metres, with the bearing and the distance of
+   every edge. It is computed here, in the browser, by web/markout.js -
+   the same module that tools/dp_check_markout.js verifies against
+   pyproj, to the millimetre. So the sheet on the screen and the sheet
+   that was checked cannot drift apart.
+
+   The corner list is reduced from the drawn outline first. The plan
+   draws a plot boundary as a polyline with a vertex every few
+   centimetres along a straight edge, and a set-out sheet that lists 51
+   points for a five-sided plot is a drawing, not a set-out. */
+let GROUND_WARP = null;     // data/dp2021/ground_warp.json, when the build has one
+let SETOUT = null;          // { so, parcel }
+let SETOUT_META = {};       // what the sheet says about the plot
+const MO_LAYERS = ['markout-edge-casing', 'markout-edge', 'markout-corner',
+                   'markout-corner-lbl', 'markout-edge-lbl'];
+const MO_AZ_LAYER = 'markout-az-lbl';
+
+/* the outer ring of a parcel feature, as [lon, lat] */
+function parcelRing(parcel) {
+  if (!parcel || !parcel.geometry) return null;
+  const g = parcel.geometry;
+  let ring = null;
+  if (g.type === 'Polygon' && g.coordinates && g.coordinates[0]) ring = g.coordinates[0];
+  else if (g.type === 'MultiPolygon' && g.coordinates && g.coordinates[0]) ring = g.coordinates[0][0];
+  if (!ring || ring.length < 3) return null;
+  return ring;
+}
+
+/* compute the set-out of a plot and show it.
+   A parcel with no usable boundary closes the sheet rather than leaving a
+   stale one up - unless the caller wants the absence explained, which is
+   what happens when the surveyor picks an occurrence: 6,014 of the 211,630
+   records - about one in thirty-five - sit outside every plot boundary the
+   vector sheets gave up, and that is worth saying out loud rather than
+   showing an empty box. */
+function showSetOut(parcel, meta, opts) {
+  const o = opts || {};
+  const ring = parcelRing(parcel);
+  const so = ring ? AudaMarkout.setOut(ring) : null;
+  if (so && CFG.ground_correction) AudaMarkout.addSheetCoords(so, CFG.ground_correction, GROUND_WARP);
+  if (!so) {
+    if (o.explain) showSetOutEmpty(meta);
+    else hideSetOut();
+    return false;
+  }
+  const p = (parcel && parcel.properties) || {};
+  SETOUT = { so: so, parcel: parcel };
+  SETOUT_META = Object.assign({
+    pid: p.pid, area: p.area_m2, block: p.block, survey: p.survey
+  }, meta || {});
+  renderSetOut();
+  renderSetOutMap(so);
+  document.getElementById('markout').classList.add('on');
+  return true;
+}
+
+/* no set-out here, and the reason why */
+function showSetOutEmpty(meta) {
+  const m = meta || {};
+  SETOUT = null;
+  SETOUT_META = {};
+  for (const id of ['markoutEdges', 'markoutCorners', 'markoutEdgeLbl', 'markoutAzLbl']) {
+    const s = map.getSource(id);
+    if (s) s.setData({ type: 'FeatureCollection', features: [] });
+  }
+  document.getElementById('moMeta').innerHTML =
+    setOutHeadline(m, 'this spot');
+
+  document.getElementById('moTable').innerHTML = '';
+  document.getElementById('moSummary').innerHTML =
+    '<b>No set-out for this spot.</b><br>' +
+    'The plan&rsquo;s own plot boundaries were recovered from the vector sheets, ' +
+    'and this record sits outside every boundary that was recovered &mdash; ' +
+    '6,014 of the 211,630 records are like that, about one in thirty-five.<br>' +
+    'Step to the next occurrence, or click a plot boundary on the map to set ' +
+    'that one out.';
+  const w = document.getElementById('printWhen');
+  if (w) w.textContent = 'Printed ' + new Date().toLocaleString() +
+    ' from the AUDA Second Revised Development Plan 2021 viewer.';
+  document.getElementById('markout').classList.add('on');
+}
+function hideSetOut() {
+  SETOUT = null;
+  SETOUT_META = {};
+  const card = document.getElementById('markout');
+  if (card) card.classList.remove('on');
+  for (const id of ['markoutEdges', 'markoutCorners', 'markoutEdgeLbl', 'markoutAzLbl']) {
+    const s = map.getSource(id);
+    if (s) s.setData({ type: 'FeatureCollection', features: [] });
+  }
+}
+
+/* the sheet's headline: what the plan says this plot is */
+function setOutHeadline(m, fallback) {
+  const bits = [];
+  if (m.survey) bits.push('survey <b>' + m.survey + '</b>');
+  if (m.pid != null) bits.push('plot <b>#' + m.pid + '</b>');
+  if (m.village) bits.push('village <b>' + m.village + '</b>');
+  if (m.scheme) bits.push('scheme <b>' + m.scheme + '</b>');
+  if (m.zone) bits.push('land use <b>' + m.zone + '</b>');
+  if (m.block) bits.push('sheet <b>' + m.block + '</b>');
+  return bits.join(' &middot; ') || (fallback || 'the plan&rsquo;s own plot boundary');
+}
+
+/* the sheet itself */
+function renderSetOut() {
+  if (!SETOUT) return;
+  const so = SETOUT.so, m = SETOUT_META;
+
+  document.getElementById('moMeta').innerHTML = setOutHeadline(m);
+
+  // ground coordinates first; the sheet's own printed numbers beside them
+  const sheet = so.corners.length > 0 && so.corners[0].se != null;
+  let rows = '';
+  for (const c of so.corners) {
+    rows += '<tr><td class="i">' + c.i + '</td>' +
+            '<td>' + c.e.toFixed(3) + '</td>' +
+            '<td>' + c.n.toFixed(3) + '</td>' +
+            (sheet ? '<td class="sh">' + c.se.toFixed(3) + '</td>' +
+                     '<td class="sh">' + c.sn.toFixed(3) + '</td>' : '') +
+            '<td>' + c.az.toFixed(3) + '&deg;</td>' +
+            '<td>' + c.len.toFixed(3) + '</td>' +
+            '<td>' + c.bearing + '</td></tr>';
+  }
+  document.getElementById('moTable').innerHTML =
+    '<thead><tr><th>corner</th><th>easting</th><th>northing</th>' +
+    (sheet ? '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet E</th>' +
+             '<th class="sh" title="the number the printed plan sheet gives, before the ground correction">sheet N</th>' : '') +
+    '<th>azimuth</th><th>length</th><th>reduced bearing</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody>';
+
+  // the area the plan itself recorded, and how far the sheet's own
+  // geometry is from it - both are worth saying out loud
+  let areaLine = 'Area <b>' + AudaMarkout.fmtArea(so.area_m2) + '</b>';
+  if (m.area != null && m.area > 0) {
+    const d = (so.area_m2 - m.area) / m.area * 100;
+    areaLine += ' &mdash; the plan&rsquo;s own figure ' +
+      AudaMarkout.fmtArea(m.area) + ' (' +
+      (d >= 0 ? '+' : '&minus;') + Math.abs(d).toFixed(2) + '%)';
+  }
+  const drawn = so.reduced
+    ? ' <span style="color:#888">(from ' + so.vertices_drawn +
+      ' drawn points, ' + so.reduced + ' of them on the straight)</span>'
+    : '';
+  document.getElementById('moSummary').innerHTML = [
+    areaLine,
+    'Perimeter <b>' + so.perimeter_m.toFixed(3) + ' m</b>',
+    'Corners <b>' + so.n + '</b>' + drawn,
+    'Grid <b>' + AudaMarkout.CRS.name + '</b> &mdash; CM ' + AudaMarkout.CRS.lon0 +
+      '&deg;, k&#8320; ' + AudaMarkout.CRS.k0 + ', FE/FN ' +
+      AudaMarkout.CRS.FE + '/' + AudaMarkout.CRS.FN
+  ].join('<br>');
+
+  const w = document.getElementById('printWhen');
+  if (w) w.textContent = 'Printed ' + new Date().toLocaleString() +
+    ' from the AUDA Second Revised Development Plan 2021 viewer.';
+}
+
+/* the set-out drawn on the map: the edges, the corners, and the
+   dimension on each edge */
+function renderSetOutMap(so) {
+  const edges = [], corners = [], edgeLbl = [], azLbl = [];
+  const n = so.corners.length;
+  for (let i = 0; i < n; i++) {
+    const c = so.corners[i], nx = so.corners[(i + 1) % n];
+    const a = [c.lon, c.lat], b = [nx.lon, nx.lat];
+    edges.push({ type: 'Feature', properties: { i: c.i },
+                 geometry: { type: 'LineString', coordinates: [a, b] } });
+    corners.push({ type: 'Feature', properties: { i: c.i, e: c.e, n: c.n },
+                   geometry: { type: 'Point', coordinates: a } });
+    // the length of the edge, at its middle
+    edgeLbl.push({ type: 'Feature', properties: { d: c.len.toFixed(2) + ' m' },
+                   geometry: { type: 'Point', coordinates: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] } });
+    // the azimuth of the edge, a third of the way along it.
+    // NOTE: a MapLibre symbol draws text on a canvas - HTML entities are
+    // not decoded there, so the degree sign is the character itself.
+    azLbl.push({ type: 'Feature', properties: { a: c.az.toFixed(1) + '°' },
+                 geometry: { type: 'Point',
+                             coordinates: [a[0] + (b[0] - a[0]) * 0.33,
+                                           a[1] + (b[1] - a[1]) * 0.33] } });
+  }
+  setSource('markoutEdges', edges);
+  setSource('markoutCorners', corners);
+  setSource('markoutEdgeLbl', edgeLbl);
+  setSource('markoutAzLbl', azLbl);
+}
+
+function setSource(id, features) {
+  const s = map.getSource(id);
+  if (s) s.setData({ type: 'FeatureCollection', features: features });
+}
+
+/* the two checkboxes on the sheet */
+function applySetOutVisibility() {
+  const show = document.getElementById('moShow').checked;
+  for (const id of MO_LAYERS) {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', show ? 'visible' : 'none');
+  }
+  const az = show && document.getElementById('moAz').checked;
+  if (map.getLayer(MO_AZ_LAYER))
+    map.setLayoutProperty(MO_AZ_LAYER, 'visibility', az ? 'visible' : 'none');
+}
+
+/* ---- the exports ---- */
+function setOutFilename(ext) {
+  const m = SETOUT_META || {};
+  const bits = ['auda-markout'];
+  if (m.survey) bits.push(String(m.survey).replace(/[^\w.-]+/g, '_'));
+  if (m.pid != null) bits.push('plot-' + m.pid);
+  return bits.join('_') + '.' + ext;
+}
+
+function download(filename, text, mime) {
+  const blob = new Blob([text], { type: (mime || 'text/plain') + ';charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
+}
+
+function exportSetOutCsv() {
+  if (!SETOUT) return;
+  download(setOutFilename('csv'), AudaMarkout.toCsv(SETOUT.so, SETOUT_META), 'text/csv');
+}
+
+function exportSetOutJson() {
+  if (!SETOUT) return;
+  const so = SETOUT.so;
+  const out = {
+    title: 'AUDA Second Revised Development Plan 2021 - survey set-out (markout)',
+    survey: SETOUT_META.survey || null,
+    plot_id: SETOUT_META.pid != null ? SETOUT_META.pid : null,
+    village: SETOUT_META.village || null,
+    tp_scheme: SETOUT_META.scheme || null,
+    land_use: SETOUT_META.zone || null,
+    sheet: SETOUT_META.block || null,
+    crs: {
+      name: AudaMarkout.CRS.name,
+      central_meridian: AudaMarkout.CRS.lon0,
+      latitude_of_origin: AudaMarkout.CRS.lat0,
+      scale_factor: AudaMarkout.CRS.k0,
+      false_easting: AudaMarkout.CRS.FE,
+      false_northing: AudaMarkout.CRS.FN,
+      datum: 'WGS_1984',
+      units: 'metre'
+    },
+    ground_correction: CFG.ground_correction ? CFG.ground_correction.id : null,
+    corners: so.corners.map(c => ({
+      corner: c.i,
+      easting_m: c.e,
+      northing_m: c.n,
+      sheet_easting_m: c.se != null ? c.se : null,
+      sheet_northing_m: c.sn != null ? c.sn : null,
+      azimuth_to_next_deg: c.az,
+      length_to_next_m: c.len,
+      cumulative_m: c.cum,
+      reduced_bearing_to_next: c.bearing,
+      interior_angle_deg: c.interior,
+      latitude: c.lat,
+      longitude: c.lon
+    })),
+    area_m2: so.area_m2,
+    perimeter_m: so.perimeter_m,
+    corner_count: so.n,
+    vertices_drawn: so.vertices_drawn,
+    vertices_on_straight: so.reduced,
+    plan_area_m2: SETOUT_META.area != null ? SETOUT_META.area : null,
+    generated: new Date().toISOString()
+  };
+  download(setOutFilename('json'), JSON.stringify(out, null, 2), 'application/json');
+}
+
+/* the honest caveat, on the sheet and on the printout */
+document.getElementById('moNote').innerHTML =
+  'The corners are the plan&rsquo;s own drawn boundary, in the grid the sheets were ' +
+  'drawn in. <b>Easting/northing</b> are on the ground: the printed sheets place the ' +
+  'plan about 85&nbsp;m east of where it belongs, and the map corrects that. ' +
+  '<b>Sheet E/N</b> are the numbers the printed sheet itself would give. The ' +
+  '<b>shape</b> is the plan&rsquo;s; the corrected <b>position</b> agrees with ' +
+  'OSM roads to about 6&nbsp;m (median). Peg from the edges and the bearings, and ' +
+  'treat the coordinates as a starting point rather than a finished survey.';
+
+map.on('load', () => {
+  document.getElementById('recGo').onclick = runSearch;
+  document.getElementById('recSearch').addEventListener('keydown', e => {
+    if (e.key === 'Enter') runSearch();
+  });
+
+  /* ---- the occurrence controls ----
+     The occurrences of one number are a ring, not a queue: stepping past
+     the last one comes back to the first, because the surveyor is walking
+     a village and the list is a set, not a sequence. */
+  document.getElementById('occPrev').onclick = () => stepOccurrence(-1);
+  document.getElementById('occNext').onclick = () => stepOccurrence(1);
+  document.getElementById('occZoom').onclick = () => selectOccurrence(activeOcc, { fly: true });
+  document.getElementById('occLink').onclick = copyOccurrenceLink;
+  document.getElementById('occList').addEventListener('click', e => {
+    const row = e.target && e.target.closest ? e.target.closest('.occ') : null;
+    if (!row || row.dataset.i === undefined) return;
+    selectOccurrence(parseInt(row.dataset.i, 10), { fly: true });
+  });
+
+  /* the arrow keys step through the occurrences, but only when the caret
+     is not in a text box - and they are caught before MapLibre sees them,
+     so the map does not pan out from under the surveyor as well */
+  document.addEventListener('keydown', e => {
+    if (!markedRecords.length) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' ||
+              t.tagName === 'SELECT' || t.isContentEditable)) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); stepOccurrence(-1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); stepOccurrence(1); }
+  }, true);
+
+  /* ---- the set-out sheet's own controls ---- */
+  document.getElementById('moClose').onclick = () => hideSetOut();
+  document.getElementById('moShow').onchange = applySetOutVisibility;
+  document.getElementById('moAz').onchange = applySetOutVisibility;
+  document.getElementById('moCsv').onclick = exportSetOutCsv;
+  document.getElementById('moJson').onclick = exportSetOutJson;
+  document.getElementById('moPrint').onclick = () => window.print();
+
+  /* ---- click a plot boundary ---- */
+  map.on('click', 'parcel-line', e => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const p = f.properties || {};
+    const src = map.getSource('parcelhl');
+    if (src) src.setData({ type: 'FeatureCollection', features: [f] });
+    // and the set-out of that plot: the sheet the surveyor actually needs
+    showSetOut(f, { survey: p.survey });
+    const rows = [];
+    if (p.pid != null) rows.push('plot #' + p.pid);
+    if (p.area_m2 != null) rows.push('area ' + fmtArea(p.area_m2));
+    if (p.survey) rows.push('survey ' + p.survey);
+    if (p.numbers) rows.push(p.numbers + ' number(s)');
+    if (p.block) rows.push('sheet ' + p.block);
+    new maplibregl.Popup({ offset: 12, maxWidth: '300px' })
+      .setLngLat(f.geometry.coordinates[0])
+      .setHTML('<div style="font:13px/1.5 system-ui,sans-serif;min-width:180px">' +
+               '<div class="popup-num">' + (p.survey || 'plot') + '</div>' +
+               '<div class="popup-meta">plot boundary, from the vector plan<br>' +
+               rows.join('<br>') + '</div></div>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'parcel-line', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'parcel-line', () => map.getCanvas().style.cursor = '');
+
+  /* ---- click the highlighted plot boundary: the same set-out again ---- */
+  map.on('click', 'parcel-hl-line', e => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    showSetOut(f, { survey: (f.properties || {}).survey });
+  });
+  map.on('mouseenter', 'parcel-hl-line', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'parcel-hl-line', () => map.getCanvas().style.cursor = '');
+
+  /* ---- click a village / scheme boundary ---- */
+  map.on('click', 'unit-line', e => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const p = f.properties || {};
+    const rows = [];
+    if (p.type) rows.push('type: ' + p.type);
+    if (p.area_km2) rows.push('area: ' + p.area_km2 + ' km²');
+    if (p.records) rows.push(p.records.toLocaleString() + ' survey records');
+    if (p.place_names) rows.push(p.place_names + ' place names');
+    new maplibregl.Popup({ offset: 12 })
+      .setLngLat(f.geometry.coordinates[0])
+      .setHTML('<div style="font:13px/1.5 system-ui,sans-serif;min-width:180px">' +
+               '<div class="popup-num" style="font-size:16px">' +
+               (p.name || '(unnamed)') + '</div>' +
+               '<div class="popup-meta">boundary drawn by the plan itself<br>' +
+               rows.join('<br>') + '</div></div>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'unit-line', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'unit-line', () => map.getCanvas().style.cursor = '');
+
+  map.on('click', 'rec-hit', e => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const rc = f.geometry.coordinates;
+    /* This is an occurrence of the number that is already marked, so it is
+       a step through the list rather than a fresh lookup: select it, and
+       the plot it sits in opens as a set-out sheet. */
+    const idx = (f.properties.occ || 1) - 1;
+    // claim the click: this occurrence, and its record's detail, own the
+    // sheet - the plan's own number under the pointer must not overwrite it
+    occClaim = { x: e.point.x, y: e.point.y };
+    if (idx >= 0 && idx < markedRecords.length) selectOccurrence(idx, { fly: true });
+    new maplibregl.Popup({ offset: 14 })
+      .setLngLat(f.geometry.coordinates)
+      .setHTML('<div style="font:13px/1.5 system-ui,sans-serif">' +
+               '<div class="popup-num">' + f.properties.t + '</div>' +
+               '<div class="popup-meta">survey number, read from the DP 2021 sheet<br>' +
+               f.geometry.coordinates[1].toFixed(5) + ', ' + f.geometry.coordinates[0].toFixed(5) +
+               '</div></div>')
+      .addTo(map);
+  });
+  map.on('mouseenter', 'rec-hit', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'rec-hit', () => map.getCanvas().style.cursor = '');
+
+  map.on('click', 'zone-fill', e => {
+    const f = e.features && e.features[0];
+    if (f) highlightZone(f);
+  });
+  map.on('mouseenter', 'zone-fill', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'zone-fill', () => map.getCanvas().style.cursor = '');
+
+  // a deep link: #rec=461%2F2 marks that record on load
+  const m = /[#&]rec=([^&]+)/.exec(location.hash || '');
+  if (m) {
+    const q = decodeURIComponent(m[1]);
+    document.getElementById('recSearch').value = q;
+    loadIndex().then(() => {
+      const hits = findRecord(q);
+      if (hits.length) {
+        // the link may name the occurrence too: #rec=461%2F2&occ=57
+        const occ = occFromHash(hits.length);
+        markRecords(hits, q, occ, { fly: true });
+        document.getElementById('recInfo').innerHTML =
+          '<b>' + q + '</b> — ' + hits.length.toLocaleString() +
+          ' occurrence' + (hits.length === 1 ? '' : 's') +
+          ' in the plan, marked on the map.';
+      }
+    });
+  }
+});
+
+const ro = document.getElementById('readout');
+map.on('mousemove', e => {
+  ro.textContent = `lon ${e.lngLat.lng.toFixed(5)}  lat ${e.lngLat.lat.toFixed(5)}  z ${map.getZoom().toFixed(2)}`;
+});
+
+/* ---------------- the app shell: drawers, result sheet, base map, locate ----------------
+   Everything above drives the map through the same element ids it always
+   had; this only decides which panel is open. */
+(() => {
+  const $ = id => document.getElementById(id);
+  const drawers = { panel: $('fabLayers'), legend: $('fabLegend') };
+  const narrow = () => window.matchMedia('(max-width: 760px)').matches;
+
+  function setDrawer(id, open) {
+    for (const [d, fab] of Object.entries(drawers)) {
+      const on = d === id ? open : false;
+      $(d).classList.toggle('open', on);
+      fab.setAttribute('aria-expanded', String(on));
+    }
+    // on a phone the drawers and the sheet share the bottom of the screen
+    if (open && narrow()) $('sheet').classList.remove('open');
+  }
+  for (const [d, fab] of Object.entries(drawers))
+    fab.onclick = () => setDrawer(d, !$(d).classList.contains('open'));
+  document.querySelectorAll('[data-close]').forEach(b =>
+    b.onclick = () => setDrawer(b.dataset.close, false));
+
+  /* the result sheet opens whenever there is something in it */
+  const sheet = $('sheet');
+  function openSheet() {
+    sheet.classList.add('open');
+    if (narrow()) setDrawer(null, false);
+  }
+  $('sheetClose').onclick = () => sheet.classList.remove('open');
+  $('recGo').addEventListener('click', openSheet);
+  $('recSearch').addEventListener('keydown', e => { if (e.key === 'Enter') openSheet(); });
+  const shown = el => el.style.display !== 'none';
+  new MutationObserver(() => {
+    if (shown($('occBox')) || shown($('recDetail'))) openSheet();
+    $('sheetTitle').textContent = shown($('recDetail')) ? 'Plot details' : 'Result';
+  }).observe(sheet, { subtree: true, attributes: true, attributeFilter: ['style'] });
+
+  /* base map: the thumbnails and the quick satellite button both drive the
+     original <select>, so its change handler stays the one source of truth */
+  const sel = $('basemap');
+  function setBase(v) {
+    sel.value = v;
+    sel.dispatchEvent(new Event('change'));
+    document.querySelectorAll('.base').forEach(b => b.classList.toggle('on', b.dataset.base === v));
+    const sat = v === 'sat';
+    $('fabBase').setAttribute('aria-pressed', String(sat));
+    $('fabBase').title = sat ? 'Street map' : 'Satellite view';
+  }
+  document.querySelectorAll('.base').forEach(b => b.onclick = () => setBase(b.dataset.base));
+  $('fabBase').onclick = () => setBase(sel.value === 'sat' ? 'osm' : 'sat');
+
+  /* my location */
+  const geo = new maplibregl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true }, trackUserLocation: false, showAccuracyCircle: true
+  });
+  map.addControl(geo, 'bottom-right');
+  const loc = $('fabLocate');
+  function say(text) {
+    const st = $('status');
+    st.textContent = text; st.style.display = 'block';
+    setTimeout(() => st.style.display = 'none', 3000);
+  }
+  loc.onclick = () => {
+    if (!('geolocation' in navigator)) return say('location is not available in this browser');
+    loc.classList.add('busy');
+    if (!geo.trigger()) { loc.classList.remove('busy'); say('location is not available yet'); }
+  };
+  geo.on('geolocate', e => {
+    loc.classList.remove('busy');
+    const { longitude: lon, latitude: lat } = e.coords;
+    const inside = lon >= CFG.lon_min && lon <= CFG.lon_max && lat >= CFG.lat_min && lat <= CFG.lat_max;
+    if (!inside) say('you are outside the AUDA plan area');
+  });
+  geo.on('error', () => { loc.classList.remove('busy'); say('could not get your location'); });
+
+  /* the set-out sheet takes the same corner as the drawers: it wins. On a
+     phone it also takes the bottom of the screen from the result sheet, and
+     gives it back when it closes */
+  let sheetParked = false;
+  new MutationObserver(() => {
+    const on = $('markout').classList.contains('on');
+    if (on) {
+      setDrawer(null, false);
+      if (narrow() && sheet.classList.contains('open')) { sheet.classList.remove('open'); sheetParked = true; }
+    } else if (sheetParked) {
+      sheet.classList.add('open'); sheetParked = false;
+    }
+  }).observe($('markout'), { attributes: true, attributeFilter: ['class'] });
+
+  $('zoomHint').onclick = () => map.easeTo({ zoom: 14.5 });
+
+  /* Escape closes whatever is open, innermost first */
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if ($('panel').classList.contains('open') || $('legend').classList.contains('open')) setDrawer(null, false);
+    else sheet.classList.remove('open');
+  });
+
+  /* the legend starts open on a wide screen, where there is room for it */
+  if (!narrow()) setDrawer('legend', true);
+
+  /* installable, and the plan tiles keep working offline once seen */
+  if ('serviceWorker' in navigator && location.protocol !== 'file:')
+    navigator.serviceWorker.register(U('/sw.js')).catch(() => {});
+})();
+</script>
+</body>
+</html>

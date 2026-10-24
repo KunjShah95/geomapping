@@ -1,0 +1,10 @@
+Map label glyphs (MapLibre/Mapbox SDF PBF ranges) for the AUDA DP 2021 viewer.
+
+Fontstacks: "Noto Sans Regular", "Noto Sans Bold" - all 256 ranges (0-255 .. 65280-65535),
+including Devanagari (2304-2559) and Gujarati (2560-2815) for the planned label toggle.
+
+Source: MapLibre demo tiles glyph set, https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf
+        (repository https://github.com/maplibre/demotiles, BSD-3-Clause)
+Fonts:  Noto Sans, Copyright Google / The Noto Project Authors,
+        licensed under the SIL Open Font License, Version 1.1 (https://openfontlicense.org).
+Mirrored 2026-10-23 so the viewer has no runtime dependency on demotiles.maplibre.org.
