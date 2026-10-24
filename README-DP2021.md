@@ -5,6 +5,9 @@ quadrants, 145 per-village extracts and 159 per-sheet pages — into a
 slippy-map raster tile pyramid that drapes onto a MapLibre basemap, with an
 exact survey-number layer beside it.
 
+**Live map:** https://kunjshah95.github.io/geomapping/ (GitHub Pages, deployed by
+`.github/workflows/pages.yml` from the allowlist in `tools/build_site.js`).
+
 This replaces the earlier pipeline, which was built from a 323 MB scan of the
 RDP 2022 sheet. That map is kept on disk (`tiles/`, `data/bounds.json`,
 `data/plots.geojson`, `web/legacy_rdp2022.html`) but is no longer the

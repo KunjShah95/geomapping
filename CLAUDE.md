@@ -67,7 +67,10 @@ seam strips / old city; adds plots, IoU-checked against closed rings) → `dp_jo
   against the site root by `SITE`/`U()` at the top of its script, so the same file works at
   `/web/index.html` (dev) and `/<repo>/index.html` (Pages) — never reintroduce a bare `'/data/...'`.
   Pages caps a site at 1 GB; `node tools/build_site.js --max-tile-zoom=16` drops z17
-  (~649 MB total) and rewrites `bounds.json` to match.
+  (~649 MB total) and rewrites `bounds.json` to match. The GitHub repo carries that
+  allowlist plus tools/docs only: `NEW DP BOOK AUDA/`, `tiles/`, `tiles_dp2021_affine/`,
+  `work/` scratch and the 100 MB+ aggregates stay local (GitHub rejects any file over
+  100 MB and any push over 2 GB, which is why the history was re-imported in stages).
 
 ## Next up (from TOWNPLANMAP-COMPARISON.md §5)
 1. PWA manifest is in; add service worker + bottom-sheet mobile layout.
