@@ -1014,7 +1014,10 @@ map.on('load', () => {
           .addTo(map);
       });
       // the record's full detail: plot, village, scheme, land use
-      lookupRecordDetail(p.t, c[0], c[1]).then(showRecordDetail);
+      lookupRecordDetail(p.t, c[0], c[1]).then(d => {
+        showRecordDetail(d);
+        postLrmsPlot(p.t, d, c[0], c[1]);
+      });
       // highlight clicked record
       map.getSource('selected').setData({ type: 'FeatureCollection', features: [{
         type: 'Feature', properties: { t: p.t || '' }, geometry: { type: 'Point', coordinates: c }
@@ -1374,6 +1377,7 @@ function selectOccurrence(i, opts) {
     if (src) src.setData({ type: 'FeatureCollection', features: parcel ? [parcel] : [] });
     showPlotBadge(parcel, f.properties.t);
     showRecordDetail(d);
+    postLrmsPlot(f.properties.t, d, c[0], c[1]);
   });
   if (o.fly) map.flyTo({ center: c, zoom: Math.max(map.getZoom(), 16.4), duration: 700 });
   updateHash();
@@ -1597,6 +1601,24 @@ function showRecordDetail(d) {
   box.innerHTML = rows.map(r =>
     '<div><b>' + r[0] + '</b> ' + r[1] + '</div>').join('');
   box.style.display = 'block';
+}
+
+/* When this page is framed (the LRMS viewer's /map page does this), tell the parent what
+   was clicked: the plan's survey number and the village name read off the sheet. This page
+   has no register district/taluka/village code of its own - the parent resolves the name
+   against its own register. '*' as the target origin is fine: the message carries nothing
+   sensitive, and the embedding origin varies between local dev and production. */
+function postLrmsPlot(number, detail, lon, lat) {
+  if (window.parent === window) return;
+  try {
+    window.parent.postMessage({
+      type: 'lrms:plot',
+      number: number || '',
+      village: (detail && detail.v) || '',
+      lon: lon,
+      lat: lat
+    }, '*');
+  } catch (e) { /* no parent listening, or it rejected the message - not this page's problem */ }
 }
 
 map.on('load', () => {
